@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "niftymonkey.dev",
-  description: "Terminal-inspired portfolio showcasing software projects",
+  description: "Where coffee fuels code and curiosity. Code experiments and side projects.",
   icons: {
     icon: [
       { url: "/logo-small.png" },
