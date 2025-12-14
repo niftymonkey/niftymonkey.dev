@@ -20,8 +20,9 @@ export function HeroSection({ onAnimationComplete }: HeroSectionProps) {
           alt="NiftyMonkey Logo"
           width={80}
           height={80}
+          className="flex-shrink-0"
         />
-        <h1 className="text-4xl text-terminal-green">niftymonkey.dev</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-terminal-green break-words">niftymonkey.dev</h1>
       </div>
 
       <div className="space-y-2 text-lg">
