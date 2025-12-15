@@ -18,4 +18,13 @@ export const projects: Project[] = [
     status: 'live',
     featured: true
   },
+  {
+    id: 'idea-vault',
+    name: 'Idea Vault',
+    description: 'Capture, organize, and refine your app ideas with structured templates and markdown support',
+    url: 'https://idea-vault.niftymonkey.dev',
+    tech: ['Next.js', 'TypeScript', 'Postgres', 'NextAuth'],
+    status: 'live',
+    featured: true
+  },
 ];
