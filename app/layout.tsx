@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
+        url: "https://niftymonkey.dev/logo.png",
         width: 512,
         height: 512,
         alt: "niftymonkey.dev logo",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "niftymonkey.dev",
     description: "Where coffee fuels code and curiosity. Code experiments and side projects.",
-    images: ["/logo.png"],
+    images: ["https://niftymonkey.dev/logo.png"],
   },
 };
 
