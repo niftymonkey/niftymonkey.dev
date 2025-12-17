@@ -6,54 +6,33 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="border border-terminal-gray bg-terminal-dark rounded-lg overflow-hidden hover:border-terminal-cyan transition-colors">
-      {/* Terminal window header */}
-      <div className="bg-terminal-gray/20 px-4 py-2 flex items-center gap-2 border-b border-terminal-gray">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-        </div>
-        <span className="text-terminal-gray text-xs ml-2">describe.sh --project {project.id}</span>
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block hover:bg-terminal-gray/10 py-3 px-2 border-b border-terminal-gray/20 last:border-0 group"
+    >
+      <div className="flex items-center gap-4 mb-1">
+        <span className="text-terminal-gray text-xs w-20 shrink-0">
+          {project.status === 'live' && 'drwxr-xr-x'}
+          {project.status === 'beta' && 'drwxr--r--'}
+          {project.status === 'development' && 'drw-------'}
+        </span>
+        <span className="text-terminal-cyan group-hover:text-terminal-green font-bold">
+          {project.id}/
+        </span>
+        <span className={`text-xs px-2 py-0.5 ml-auto ${
+          project.status === 'live' ? 'text-terminal-green' :
+          project.status === 'beta' ? 'text-terminal-cyan' :
+          'text-terminal-amber'
+        }`}>
+          [{project.status}]
+        </span>
       </div>
-
-      {/* Terminal content */}
-      <div className="p-6">
-        <h3 className="text-xl text-terminal-green mb-2 font-bold">
-          {project.name}
-        </h3>
-
-        <p className="text-foreground mb-4 leading-relaxed">
-          {project.description}
-        </p>
-
-        {/* Tech stack badges */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((tech) => (
-            <span
-              key={tech}
-              className="text-xs px-2 py-1 bg-terminal-dark border border-terminal-gray text-terminal-amber rounded"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Status and link */}
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-terminal-gray">
-            status: <span className="text-terminal-green">{project.status}</span>
-          </span>
-          <a
-            href={project.url}
-            className="text-terminal-cyan hover:text-terminal-green hover:underline transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit Project →
-          </a>
-        </div>
+      <div className="ml-24 text-foreground text-sm mb-1">{project.description}</div>
+      <div className="ml-24 text-terminal-amber text-xs">
+        {project.tech.join(' | ')}
       </div>
-    </div>
+    </a>
   );
 }
