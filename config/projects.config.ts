@@ -27,4 +27,13 @@ export const projects: Project[] = [
     status: 'live',
     featured: true
   },
+  {
+    id: 'review-kit',
+    name: 'ReviewKit',
+    description: 'Brain-dump your accomplishments and let AI transform them into polished performance reviews',
+    url: 'https://review-kit.niftymonkey.dev',
+    tech: ['TBD'],
+    status: 'development',
+    featured: false
+  },
 ];
