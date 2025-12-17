@@ -20,19 +20,35 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-mono">
       <main className="container mx-auto px-4 pt-8 pb-16">
-        <HeroSection onAnimationComplete={() => setShowProjects(true)} />
-
-        {/* Projects Section */}
-        {showProjects && (
-          <section ref={projectsRef}>
-            <h2 className="text-2xl text-terminal-amber mb-6">Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
+        {/* Terminal Window */}
+        <div className="border border-terminal-gray bg-terminal-dark rounded-lg overflow-hidden">
+          {/* Terminal header */}
+          <div className="bg-terminal-gray/20 px-4 py-2 flex items-center gap-2 border-b border-terminal-gray">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-          </section>
-        )}
+            <span className="text-terminal-gray text-xs ml-2">~/dev</span>
+          </div>
+
+          {/* Terminal content */}
+          <div className="p-4">
+            <HeroSection onAnimationComplete={() => setShowProjects(true)} />
+
+            {/* Projects Output */}
+            {showProjects && (
+              <section ref={projectsRef} className="mt-4 ml-4">
+                <div className="text-terminal-gray text-sm mb-2">
+                  total {projects.length}
+                </div>
+                {projects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </section>
+            )}
+          </div>
+        </div>
 
         {/* Footer */}
         <footer className="mt-16 pt-8 border-t border-terminal-gray">
@@ -49,6 +65,7 @@ export default function Home() {
               GitHub
             </a>
           </div>
+
         </footer>
       </main>
     </div>

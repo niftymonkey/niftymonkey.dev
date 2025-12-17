@@ -21,6 +21,7 @@ export function HeroSection({ onAnimationComplete }: HeroSectionProps) {
           width={80}
           height={80}
           className="flex-shrink-0"
+          priority
         />
         <h1 className="text-2xl sm:text-3xl md:text-4xl text-terminal-green break-words">niftymonkey.dev</h1>
       </div>
@@ -36,10 +37,10 @@ export function HeroSection({ onAnimationComplete }: HeroSectionProps) {
 
         {showLsCommand && (
           <>
-            <p className="mt-6 text-terminal-cyan">&gt; ./describe.sh --list-all</p>
+            <p className="mt-6 text-terminal-cyan">&gt; ls -la ./projects/</p>
             <p className="ml-4 text-terminal-gray">
               <TypingAnimation
-                text="Fetching project metadata..."
+                text="Reading directory..."
                 onComplete={() => {
                   setShowLoadingProjects(true);
                   onAnimationComplete();
