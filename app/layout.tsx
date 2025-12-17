@@ -17,6 +17,27 @@ export const metadata: Metadata = {
     ],
     apple: "/logo.png",
   },
+  openGraph: {
+    title: "niftymonkey.dev",
+    description: "Where coffee fuels code and curiosity. Code experiments and side projects.",
+    url: "https://niftymonkey.dev",
+    siteName: "niftymonkey.dev",
+    type: "website",
+    images: [
+      {
+        url: "https://niftymonkey.dev/logo.png",
+        width: 512,
+        height: 512,
+        alt: "niftymonkey.dev logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "niftymonkey.dev",
+    description: "Where coffee fuels code and curiosity. Code experiments and side projects.",
+    images: ["https://niftymonkey.dev/logo.png"],
+  },
 };
 
 export default function RootLayout({
