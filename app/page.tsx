@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { projects } from "@/config/projects.config";
 import { ProjectCard } from "@/components/ProjectCard";
 import { HeroSection } from "@/components/HeroSection";
@@ -56,14 +57,22 @@ export default function Home() {
             <p className="text-terminal-gray text-sm">
               niftymonkey.dev
             </p>
-            <a
-              href="https://github.com/niftymonkey"
-              className="text-terminal-cyan hover:text-terminal-green transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
+<div className="flex gap-6">
+              <Link
+                href="/philosophy"
+                className="text-terminal-cyan hover:text-terminal-green transition-colors"
+              >
+                Philosophy
+              </Link>
+              <a
+                href="https://github.com/niftymonkey"
+                className="text-terminal-cyan hover:text-terminal-green transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
           </div>
 
         </footer>
