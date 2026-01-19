@@ -41,7 +41,7 @@ export const projects: Project[] = [
     name: 'ReviewKit',
     description: 'Brain-dump your accomplishments and let AI transform them into polished performance reviews',
     url: 'https://review-kit.niftymonkey.dev',
-    tech: ['TBD'],
+    tech: ['Next.js', 'Expo', 'TypeScript', 'OpenAI'],
     status: 'development',
     featured: false
   },
