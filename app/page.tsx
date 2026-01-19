@@ -43,7 +43,7 @@ export default function Home() {
                 <div className="text-terminal-gray text-sm mb-2">
                   total {projects.length}
                 </div>
-                {projects.map((project) => (
+                {[...projects].sort((a, b) => a.name.localeCompare(b.name)).map((project) => (
                   <ProjectCard key={project.id} project={project} />
                 ))}
               </section>

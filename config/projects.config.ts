@@ -28,6 +28,15 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    id: 'youtube-digest',
+    name: 'YouTube Digest',
+    description: 'Transform YouTube videos into structured, searchable study guides with timestamped sections',
+    url: 'https://youtube-digest.niftymonkey.dev',
+    tech: ['Next.js', 'TypeScript', 'Postgres', 'Claude'],
+    status: 'beta',
+    featured: true
+  },
+  {
     id: 'review-kit',
     name: 'ReviewKit',
     description: 'Brain-dump your accomplishments and let AI transform them into polished performance reviews',
