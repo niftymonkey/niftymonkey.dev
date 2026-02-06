@@ -23,8 +23,75 @@
   --color-terminal-amber: var(--terminal-amber);
   --color-terminal-gray: var(--terminal-gray);
 
-  /* Font */
+  /* Catppuccin Mocha (Concept 1 - Dotfiles) */
+  --color-cat-base: #1e1e2e;
+  --color-cat-mantle: #181825;
+  --color-cat-crust: #11111b;
+  --color-cat-surface0: #313244;
+  --color-cat-surface1: #45475a;
+  --color-cat-text: #cdd6f4;
+  --color-cat-subtext: #a6adc8;
+  --color-cat-lavender: #b4befe;
+  --color-cat-blue: #89b4fa;
+  --color-cat-green: #a6e3a1;
+  --color-cat-peach: #fab387;
+  --color-cat-red: #f38ba8;
+  --color-cat-mauve: #cba6f7;
+  --color-cat-yellow: #f9e2af;
+  --color-cat-teal: #94e2d5;
+
+  /* GitHub Dark (Concept 2 - Commit Log) */
+  --color-gh-bg: #0d1117;
+  --color-gh-surface: #161b22;
+  --color-gh-border: #30363d;
+  --color-gh-text: #e6edf3;
+  --color-gh-muted: #8b949e;
+  --color-gh-blue: #58a6ff;
+  --color-gh-green: #3fb950;
+  --color-gh-orange: #d29922;
+  --color-gh-purple: #bc8cff;
+  --color-gh-red: #f85149;
+
+  /* htop palette (Concept 3 - Process List) */
+  --color-htop-bg: #0a0e14;
+  --color-htop-surface: #0f1923;
+  --color-htop-green: #00e676;
+  --color-htop-cyan: #00bcd4;
+  --color-htop-yellow: #ffeb3b;
+  --color-htop-red: #ff5252;
+  --color-htop-blue: #448aff;
+  --color-htop-magenta: #e040fb;
+  --color-htop-text: #b0bec5;
+  --color-htop-muted: #546e7a;
+  --color-htop-bar-green: #00c853;
+  --color-htop-bar-blue: #2979ff;
+  --color-htop-bar-cyan: #00b8d4;
+
+  /* Solarized Dark (Concept 4 - Man Page) */
+  --color-sol-bg: #002b36;
+  --color-sol-surface: #073642;
+  --color-sol-text: #839496;
+  --color-sol-heading: #93a1a1;
+  --color-sol-emphasis: #657b83;
+  --color-sol-blue: #268bd2;
+  --color-sol-cyan: #2aa198;
+  --color-sol-green: #859900;
+  --color-sol-orange: #cb4b16;
+  --color-sol-red: #dc322f;
+  --color-sol-magenta: #d33682;
+
+  /* Font families */
   --font-family-mono: var(--font-jetbrains-mono), ui-monospace, "Courier New", monospace;
+  --font-ibm-plex: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  --font-source-code: var(--font-source-code-pro), ui-monospace, monospace;
+  --font-dm: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-literata), Georgia, "Times New Roman", serif;
+  --font-courier: var(--font-courier-prime), "Courier New", monospace;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.4s ease-out;
+  --animate-slide-in-left: slide-in-left 0.5s ease-out;
+  --animate-tick-up: tick-up 0.8s ease-out;
 }
 
 body {
@@ -36,4 +103,24 @@ body {
 
 html {
   overflow-x: hidden;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tick-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
