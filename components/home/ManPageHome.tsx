@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import { projects } from '@/config/projects.config';
+import { ManPageNav } from '@/components/man-page/ManPageNav';
 
 const sortedProjects = [...projects].sort((a, b) => a.name.localeCompare(b.name));
 
 export function ManPageHome() {
   return (
     <div className="min-h-screen bg-background text-foreground font-serif">
+      <ManPageNav />
       <main className="max-w-4xl mx-auto px-8 pt-12 pb-24">
         {/* Man page header */}
         <div className="flex justify-between items-baseline border-b border-terminal-gray/30 pb-3 mb-10 font-courier">
-          <span className="text-terminal-green font-bold">NIFTYMONKEY(1)</span>
+          <Link href="/" className="text-terminal-green font-bold hover:text-terminal-cyan transition-colors">NIFTYMONKEY(1)</Link>
           <span className="text-terminal-gray">Developer Manual</span>
-          <span className="text-terminal-green font-bold">NIFTYMONKEY(1)</span>
+          <Link href="/" className="text-terminal-green font-bold hover:text-terminal-cyan transition-colors">NIFTYMONKEY(1)</Link>
         </div>
 
         {/* NAME */}
@@ -91,7 +93,7 @@ export function ManPageHome() {
               rel="noopener noreferrer"
               className="text-terminal-cyan hover:text-terminal-green transition-colors"
             >
-              github(1)
+              github(3)
             </a>
             <Link
               href="/philosophy"
