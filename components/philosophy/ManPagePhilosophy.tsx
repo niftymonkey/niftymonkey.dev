@@ -1,15 +1,17 @@
 import Link from 'next/link';
 import { principles } from '@/config/principles.config';
+import { ManPageNav } from '@/components/man-page/ManPageNav';
 
 export function ManPagePhilosophy() {
   return (
     <div className="min-h-screen bg-background text-foreground font-serif">
+      <ManPageNav />
       <main className="max-w-4xl mx-auto px-8 pt-12 pb-24">
         {/* Man page header */}
         <div className="flex justify-between items-baseline border-b border-terminal-gray/30 pb-3 mb-10 font-courier">
-          <span className="text-terminal-green font-bold">PHILOSOPHY(7)</span>
+          <Link href="/philosophy" className="text-terminal-green font-bold hover:text-terminal-cyan transition-colors">PHILOSOPHY(7)</Link>
           <span className="text-terminal-gray">Developer Manual</span>
-          <span className="text-terminal-green font-bold">PHILOSOPHY(7)</span>
+          <Link href="/philosophy" className="text-terminal-green font-bold hover:text-terminal-cyan transition-colors">PHILOSOPHY(7)</Link>
         </div>
 
         {/* NAME */}
@@ -85,7 +87,7 @@ export function ManPagePhilosophy() {
               rel="noopener noreferrer"
               className="text-terminal-cyan hover:text-terminal-green transition-colors"
             >
-              github(1)
+              github(3)
             </a>
           </div>
         </section>
