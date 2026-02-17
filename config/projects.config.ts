@@ -45,4 +45,22 @@ export const projects: Project[] = [
     status: 'development',
     featured: false
   },
+  {
+    id: 'session-scribe',
+    name: 'Session Scribe',
+    description: 'Turn D&D session recordings into polished narrative recaps with scene-by-scene detail',
+    url: 'https://github.com/niftymonkey/session-scribe',
+    tech: ['Tauri', 'React', 'TypeScript', 'OpenAI'],
+    status: 'development',
+    featured: true
+  },
+  {
+    id: 'pickai',
+    name: 'pickai',
+    description: 'npm package to classify, score, and recommend AI models for use in your apps',
+    url: 'https://github.com/niftymonkey/pickai',
+    tech: ['TypeScript', 'OpenRouter'],
+    status: 'live',
+    featured: true
+  },
 ];
