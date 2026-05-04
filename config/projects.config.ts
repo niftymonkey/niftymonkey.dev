@@ -33,7 +33,7 @@ export const projects: Project[] = [
     description: 'Transform YouTube videos into concise, structured briefs with timestamped sections',
     url: 'https://brief.niftymonkey.dev',
     tech: ['Next.js', 'TypeScript', 'Postgres', 'Claude'],
-    status: 'beta',
+    status: 'live',
     featured: true
   },
   {
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     description: 'Brain-dump your accomplishments and let AI transform them into polished performance reviews',
     url: 'https://review-kit.niftymonkey.dev',
     tech: ['Next.js', 'Expo', 'TypeScript', 'OpenAI'],
-    status: 'development',
+    status: 'beta',
     featured: false
   },
   {
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     description: 'Voice-first AI coaching assistant for League of Legends',
     url: 'https://github.com/niftymonkey/champ-sage',
     tech: ['Tauri', 'React', 'TypeScript', 'Rust'],
-    status: 'development',
+    status: 'beta',
     featured: true
   },
   {
