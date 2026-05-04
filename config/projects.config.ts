@@ -33,7 +33,7 @@ export const projects: Project[] = [
     description: 'Transform YouTube videos into concise, structured briefs with timestamped sections',
     url: 'https://brief.niftymonkey.dev',
     tech: ['Next.js', 'TypeScript', 'Postgres', 'Claude'],
-    status: 'beta',
+    status: 'live',
     featured: true
   },
   {
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     description: 'Brain-dump your accomplishments and let AI transform them into polished performance reviews',
     url: 'https://review-kit.niftymonkey.dev',
     tech: ['Next.js', 'Expo', 'TypeScript', 'OpenAI'],
-    status: 'development',
+    status: 'beta',
     featured: false
   },
   {
@@ -62,5 +62,32 @@ export const projects: Project[] = [
     tech: ['TypeScript', 'OpenRouter'],
     status: 'live',
     featured: true
+  },
+  {
+    id: 'md',
+    name: 'md',
+    description: 'AI-friendly markdown sharing — upload from agent or human, get a rendered link',
+    url: 'https://md.niftymonkey.dev',
+    tech: ['Next.js', 'TypeScript', 'Postgres'],
+    status: 'live',
+    featured: true
+  },
+  {
+    id: 'champ-sage',
+    name: 'Champ Sage',
+    description: 'Voice-first AI coaching assistant for League of Legends',
+    url: 'https://github.com/niftymonkey/champ-sage',
+    tech: ['Tauri', 'React', 'TypeScript', 'Rust'],
+    status: 'beta',
+    featured: true
+  },
+  {
+    id: 'memory-kit',
+    name: 'Memory Kit',
+    description: 'Voice-first notes app with an LLM-driven memory layer',
+    url: 'https://github.com/niftymonkey/memory-kit',
+    tech: ['TypeScript'],
+    status: 'development',
+    featured: false
   },
 ];
