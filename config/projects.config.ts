@@ -63,4 +63,31 @@ export const projects: Project[] = [
     status: 'live',
     featured: true
   },
+  {
+    id: 'md',
+    name: 'md',
+    description: 'AI-friendly markdown sharing — upload from agent or human, get a rendered link',
+    url: 'https://md.niftymonkey.dev',
+    tech: ['Next.js', 'TypeScript', 'Postgres'],
+    status: 'live',
+    featured: true
+  },
+  {
+    id: 'champ-sage',
+    name: 'Champ Sage',
+    description: 'Voice-first AI coaching assistant for League of Legends',
+    url: 'https://github.com/niftymonkey/champ-sage',
+    tech: ['Tauri', 'React', 'TypeScript', 'Rust'],
+    status: 'development',
+    featured: true
+  },
+  {
+    id: 'memory-kit',
+    name: 'Memory Kit',
+    description: 'Voice-first notes app with an LLM-driven memory layer',
+    url: 'https://github.com/niftymonkey/memory-kit',
+    tech: ['TypeScript'],
+    status: 'development',
+    featured: false
+  },
 ];
