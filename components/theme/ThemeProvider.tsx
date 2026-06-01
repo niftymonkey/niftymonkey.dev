@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useSyncExternalStore, type ReactNode } from 'react';
 import { useThemeKeySequence } from './useThemeKeySequence';
 
 export type Theme = 'terminal' | 'process-list' | 'man-page';
@@ -16,26 +16,32 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const THEME_KEY = 'niftymonkey-theme';
 const UNLOCKED_KEY = 'niftymonkey-switcher-unlocked';
+const THEMES: Theme[] = ['terminal', 'process-list', 'man-page'];
+
+function readStoredTheme(): Theme {
+  try {
+    const saved = localStorage.getItem(THEME_KEY) as Theme | null;
+    if (saved && THEMES.includes(saved)) return saved;
+  } catch {
+    // localStorage unavailable
+  }
+  return 'terminal';
+}
+
+function readStoredUnlocked(): boolean {
+  try {
+    return localStorage.getItem(UNLOCKED_KEY) === 'true';
+  } catch {
+    return false;
+  }
+}
+
+const subscribeNoop = () => () => {};
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('terminal');
-  const [switcherUnlocked, setSwitcherUnlocked] = useState(false);
-  const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(THEME_KEY) as Theme | null;
-      if (saved && ['terminal', 'process-list', 'man-page'].includes(saved)) {
-        setThemeState(saved);
-      }
-      if (localStorage.getItem(UNLOCKED_KEY) === 'true') {
-        setSwitcherUnlocked(true);
-      }
-    } catch {
-      // localStorage unavailable
-    }
-    setIsReady(true);
-  }, []);
+  const isReady = useSyncExternalStore(subscribeNoop, () => true, () => false);
+  const [theme, setThemeState] = useState<Theme>(readStoredTheme);
+  const [switcherUnlocked, setSwitcherUnlocked] = useState(readStoredUnlocked);
 
   const setTheme = useCallback((t: Theme) => {
     setThemeState(t);
@@ -58,7 +64,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useThemeKeySequence(handleUnlock);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, switcherUnlocked, isReady }}>
+    <ThemeContext.Provider
+      value={{
+        theme: isReady ? theme : 'terminal',
+        setTheme,
+        switcherUnlocked: isReady && switcherUnlocked,
+        isReady,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

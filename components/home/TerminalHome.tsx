@@ -1,14 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { projects } from '@/config/projects.config';
 import { ProjectCard } from '@/components/ProjectCard';
 import { HeroSection } from '@/components/HeroSection';
-
-const STORAGE_KEY = 'niftymonkey-visit-count';
-const MAX_ANIMATED_VISITS = 3;
 
 function StaticHero() {
   return (
@@ -37,42 +34,18 @@ function StaticHero() {
 }
 
 export function TerminalHome() {
-  const [showProjects, setShowProjects] = useState(false);
-  const [showReplay, setShowReplay] = useState(false);
-  const [animating, setAnimating] = useState<boolean | null>(null);
+  const [showProjects, setShowProjects] = useState(true);
+  const [showReplay, setShowReplay] = useState(true);
+  const [animating, setAnimating] = useState<boolean | null>(false);
   const projectsRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    try {
-      const count = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
-      const nextCount = count + 1;
-      localStorage.setItem(STORAGE_KEY, String(nextCount));
-      if (nextCount <= MAX_ANIMATED_VISITS) {
-        setAnimating(true);
-      } else {
-        setAnimating(false);
-        setShowProjects(true);
-        setShowReplay(true);
-      }
-    } catch {
-      setAnimating(false);
-      setShowProjects(true);
-      setShowReplay(true);
-    }
-  }, []);
 
   const handleAnimationComplete = useCallback(() => {
     setShowProjects(true);
     setShowReplay(true);
+    setTimeout(() => {
+      projectsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   }, []);
-
-  useEffect(() => {
-    if (showProjects && projectsRef.current) {
-      setTimeout(() => {
-        projectsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
-  }, [showProjects]);
 
   const replayAnimation = useCallback(() => {
     setShowProjects(false);

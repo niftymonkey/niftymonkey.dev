@@ -31,6 +31,28 @@ function statusColor(status: Project['status']): string {
   }
 }
 
+interface SortHeaderProps {
+  label: string;
+  sortKeyVal: SortKey;
+  sortKey: SortKey;
+  sortDir: SortDir;
+  onToggle: (key: SortKey) => void;
+}
+
+function SortHeader({ label, sortKeyVal, sortKey, sortDir, onToggle }: SortHeaderProps) {
+  return (
+    <button
+      onClick={() => onToggle(sortKeyVal)}
+      className={`text-left hover:text-htop-green transition-colors ${sortKey === sortKeyVal ? 'text-htop-green' : 'text-htop-muted'}`}
+    >
+      {label}
+      {sortKey === sortKeyVal && (
+        <span className="ml-0.5">{sortDir === 'asc' ? '▲' : '▼'}</span>
+      )}
+    </button>
+  );
+}
+
 const ASCII_HEADER = `        _  __ _                               _                   _
   _ __ (_)/ _| |_ _   _ _ __ ___   ___  _ __ | | _____ _   _   __| | _____   __
  | '_ \\| | |_| __| | | | '_ \` _ \\ / _ \\| '_ \\| |/ / _ \\ | | | / _\` |/ _ \\ \\ / /
@@ -69,18 +91,6 @@ export function ProcessListHome() {
   const running = sortedProjects.filter(p => p.status === 'live').length;
   const testing = sortedProjects.filter(p => p.status === 'beta').length;
   const building = sortedProjects.filter(p => p.status === 'development').length;
-
-  const SortHeader = ({ label, sortKeyVal }: { label: string; sortKeyVal: SortKey }) => (
-    <button
-      onClick={() => toggleSort(sortKeyVal)}
-      className={`text-left hover:text-htop-green transition-colors ${sortKey === sortKeyVal ? 'text-htop-green' : 'text-htop-muted'}`}
-    >
-      {label}
-      {sortKey === sortKeyVal && (
-        <span className="ml-0.5">{sortDir === 'asc' ? '\u25b2' : '\u25bc'}</span>
-      )}
-    </button>
-  );
 
   return (
     <div className="min-h-screen bg-htop-bg text-htop-text font-mono">
@@ -125,9 +135,9 @@ export function ProcessListHome() {
         <div className="border border-htop-muted/30 rounded overflow-hidden">
           <div className="grid grid-cols-[60px_1fr_100px_60px] gap-4 px-4 py-2.5 bg-htop-surface text-sm font-bold border-b border-htop-muted/30 min-w-[550px]">
             <span className="text-htop-muted">PID</span>
-            <SortHeader label="COMMAND" sortKeyVal="name" />
-            <SortHeader label="STATE" sortKeyVal="status" />
-            <SortHeader label="DEPS" sortKeyVal="tech" />
+            <SortHeader label="COMMAND" sortKeyVal="name" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} />
+            <SortHeader label="STATE" sortKeyVal="status" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} />
+            <SortHeader label="DEPS" sortKeyVal="tech" sortKey={sortKey} sortDir={sortDir} onToggle={toggleSort} />
           </div>
 
           {sorted.map((project) => {
