@@ -90,4 +90,22 @@ export const projects: Project[] = [
     status: 'development',
     featured: false
   },
+  {
+    id: 'regimen',
+    name: 'Regimen',
+    description: 'A portable, improvable practice for working well with AI coding agents',
+    url: 'https://github.com/niftymonkey/regimen',
+    tech: ['Skills', 'Hooks', 'OpenTelemetry'],
+    status: 'development',
+    featured: false
+  },
+  {
+    id: 'boswell',
+    name: 'Boswell',
+    description: 'A personal AI that truly knows you, self-hosted so you own all your data and AI usage',
+    url: 'https://github.com/niftymonkey/boswell',
+    tech: ['Next.js', 'TypeScript', 'Python', 'Postgres', 'OpenRouter'],
+    status: 'development',
+    featured: false
+  },
 ];

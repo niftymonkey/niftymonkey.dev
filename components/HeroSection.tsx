@@ -10,7 +10,6 @@ interface HeroSectionProps {
 
 export function HeroSection({ onAnimationComplete }: HeroSectionProps) {
   const [showLsCommand, setShowLsCommand] = useState(false);
-  const [showLoadingProjects, setShowLoadingProjects] = useState(false);
 
   return (
     <section className="mb-8">
@@ -41,10 +40,7 @@ export function HeroSection({ onAnimationComplete }: HeroSectionProps) {
             <p className="ml-4 text-terminal-gray">
               <TypingAnimation
                 text="Reading directory..."
-                onComplete={() => {
-                  setShowLoadingProjects(true);
-                  onAnimationComplete();
-                }}
+                onComplete={onAnimationComplete}
               />
             </p>
           </>

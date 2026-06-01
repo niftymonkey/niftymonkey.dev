@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface TypingAnimationProps {
   text: string;
@@ -12,23 +12,29 @@ interface TypingAnimationProps {
 export function TypingAnimation({ text, speed = 15, className = '', onComplete }: TypingAnimationProps) {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
+  const firedRef = useRef(false);
+
+  const isComplete = currentIndex >= text.length;
 
   useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, speed);
+    if (currentIndex >= text.length) return;
+    const timeout = setTimeout(() => {
+      setDisplayedText(prev => prev + text[currentIndex]);
+      setCurrentIndex(prev => prev + 1);
+    }, speed);
 
-      return () => clearTimeout(timeout);
-    } else if (!isComplete) {
-      setIsComplete(true);
-      if (onComplete) {
-        setTimeout(onComplete, 500);
-      }
-    }
-  }, [currentIndex, text, speed, onComplete, isComplete]);
+    return () => clearTimeout(timeout);
+  }, [currentIndex, text, speed]);
+
+  useEffect(() => {
+    if (!isComplete || firedRef.current) return;
+    const timeout = setTimeout(() => {
+      firedRef.current = true;
+      onComplete?.();
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [isComplete, onComplete]);
 
   return (
     <span className={className}>
