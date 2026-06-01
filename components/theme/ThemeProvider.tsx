@@ -64,7 +64,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useThemeKeySequence(handleUnlock);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, switcherUnlocked, isReady }}>
+    <ThemeContext.Provider
+      value={{
+        theme: isReady ? theme : 'terminal',
+        setTheme,
+        switcherUnlocked: isReady && switcherUnlocked,
+        isReady,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

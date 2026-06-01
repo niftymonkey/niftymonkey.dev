@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { projects } from '@/config/projects.config';
@@ -42,15 +42,10 @@ export function TerminalHome() {
   const handleAnimationComplete = useCallback(() => {
     setShowProjects(true);
     setShowReplay(true);
+    setTimeout(() => {
+      projectsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   }, []);
-
-  useEffect(() => {
-    if (showProjects && projectsRef.current) {
-      setTimeout(() => {
-        projectsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
-  }, [showProjects]);
 
   const replayAnimation = useCallback(() => {
     setShowProjects(false);
