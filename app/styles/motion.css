@@ -1,0 +1,36 @@
+/* ============================================================
+   MOTION
+   Almost none. Delight lives in the craft, never in an effects
+   layer: a blinking prompt caret, a hover that settles, a
+   footnote that resolves without moving the page. No scroll
+   animation, no parallax, no counters.
+   ============================================================ */
+
+:root {
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+
+  --transition-hover: background var(--dur-fast) var(--ease-standard),
+                      color var(--dur-fast) var(--ease-standard),
+                      border-color var(--dur-fast) var(--ease-standard);
+}
+
+/* The one recurring flourish: a terminal caret. Apply .nb-caret
+   to an empty inline element after a prompt line. */
+.nb-caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  background: currentColor;
+  margin-left: 0.12em;
+  vertical-align: -0.16em;
+  animation: nb-blink 1.15s steps(1) infinite;
+}
+
+@keyframes nb-blink { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-caret { animation: none; }
+  * { scroll-behavior: auto !important; }
+}

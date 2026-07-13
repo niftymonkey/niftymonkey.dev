@@ -1,0 +1,37 @@
+/* ============================================================
+   SPACING, RADII, BORDERS, LAYOUT
+   Calm, generous rhythm. Corners are barely-there (2–8px) — this
+   is paper and terminal, not a rounded consumer app.
+   ============================================================ */
+
+:root {
+  /* ---- spacing scale ---- */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.7rem;
+  --space-4:  1rem;
+  --space-5:  1.4rem;
+  --space-6:  1.8rem;
+  --space-7:  2.4rem;
+  --space-8:  3.2rem;
+
+  /* ---- radii ---- */
+  --radius-xs: 2px;   /* schematic frames, terminal window */
+  --radius-sm: 4px;   /* chips, tags */
+  --radius-md: 6px;   /* cards, figures, rows */
+  --radius-lg: 8px;   /* buttons, banners */
+  --radius-pill: 999px;
+
+  /* ---- borders ---- */
+  --border-width: 1px;
+
+  /* ---- layout widths ---- */
+  --width-read:  42rem;  /* single reading column */
+  --width-shell: 66rem;  /* reading column + sidebar (nav edge to edge) */
+  --width-list:  52rem;  /* index / collection column */
+  --sidebar-width: 13.5rem;
+
+  /* ---- elevation (used sparingly; dark UI leans on borders) ---- */
+  --shadow-card: 0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55);
+}

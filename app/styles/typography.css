@@ -1,0 +1,43 @@
+/* ============================================================
+   TYPOGRAPHY
+   Two families, both system stacks (no webfonts to load — a
+   longevity choice: nothing to rot, nothing to FOUT).
+   - MONO carries the personality: the terminal chrome, all
+     metadata and labels, AND the entry titles/headings.
+   - SANS carries the reading load: long-form prose, deks,
+     evidence quotes — anything you read for minutes.
+   ============================================================ */
+
+:root {
+  --font-mono: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* ---- type scale (rem) ---- */
+  --fs-micro:   0.68rem;  /* uppercase mono labels, column heads */
+  --fs-meta:    0.74rem;  /* metadata, dates, kinds */
+  --fs-small:   0.86rem;  /* captions, comment lines */
+  --fs-body:    1.00rem;  /* default reading size (~17px base) */
+  --fs-lead:    1.16rem;  /* deks / standfirst */
+  --fs-title:   1.24rem;  /* entry / card titles */
+  --fs-h2:      1.50rem;  /* section titles */
+  --fs-h1-min:  1.70rem;
+  --fs-h1-max:  2.35rem;  /* masthead, clamp between min/max */
+
+  /* ---- weights ---- */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold: 600;
+
+  /* ---- line heights ---- */
+  --lh-tight:  1.18;   /* headings */
+  --lh-snug:   1.4;
+  --lh-body:   1.68;   /* long-form reading */
+  --lh-mono:   1.6;
+
+  /* ---- tracking ---- */
+  --ls-label:  0.14em;  /* uppercase mono labels */
+  --ls-wide:   0.22em;  /* eyebrows */
+  --ls-normal: 0.02em;  /* mono headings sit at ~0, never negative */
+
+  --text-base-size: 17px;
+}

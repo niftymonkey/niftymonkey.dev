@@ -1,0 +1,552 @@
+/* ============================================================
+   NOTEBOOK DESIGN SYSTEM, component layer.
+   Every value comes from the token files. Nothing here invents
+   a color or a step on the spacing scale.
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- TerminalBar : the masthead of every surface ---- */
+
+.nb-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface-panel);
+  border-bottom: var(--border-width) solid var(--border);
+  backdrop-filter: saturate(1.2);
+  /* Double-tapping the bar returns you to the top. Selecting a word instead
+     would be a poor answer to that gesture. */
+  user-select: none;
+}
+
+.nb-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-5);
+}
+
+.nb-bar__dots {
+  display: flex;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.nb-bar__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+}
+
+/* ---- Location: the path, and the leaf you are on ---- */
+
+.nb-bar__loc {
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+}
+
+.nb-bar__path {
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.nb-bar__sep,
+.nb-bar__crumb {
+  color: var(--text-faint);
+}
+
+.nb-bar__crumb {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nb-bar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.nb-bar__nav {
+  display: flex;
+  gap: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+}
+
+.nb-bar__nav a {
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: var(--transition-hover);
+}
+
+.nb-bar__nav a:hover {
+  color: var(--text-strong);
+}
+
+.nb-bar__nav-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .nb-bar__dots {
+    display: none;
+  }
+
+  .nb-bar__inner {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+    /* Without this the bar cannot wrap, so an over-wide nav simply overflows
+       and the theme toggle is clipped off the edge of the screen. */
+    flex-wrap: wrap;
+  }
+
+  /* On a phone the ancestry is noise. Drop it and keep the leaf, which is the
+     only part that answers "where am I". Set apart from the nav links beside
+     it: this is a breadcrumb, not another place you can go. */
+  .nb-bar__loc--crumbed .nb-bar__path,
+  .nb-bar__loc--crumbed .nb-bar__sep {
+    display: none;
+  }
+
+  .nb-bar__crumb {
+    color: var(--text-strong);
+    font-weight: var(--fw-semibold);
+  }
+
+  /* Where you are outranks where you could go. The location never shrinks, so
+     it is never truncated to "ado…"; and the nav plus the toggles move as one
+     block, dropping below the location whole rather than splintering with the
+     theme button stranded on a line of its own. */
+  .nb-bar__loc {
+    flex: none;
+  }
+
+  /* It moves as one block and it never shrinks, so it drops below the location
+     whole when it does not fit, rather than overflowing and clipping the theme
+     toggle off the edge of the screen. */
+  .nb-bar__right {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+/* ---- Button ---- */
+
+.nb-btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: transparent;
+  border: var(--border-width) solid var(--border);
+  cursor: pointer;
+  transition: var(--transition-hover);
+}
+
+.nb-btn--pill {
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
+}
+
+.nb-btn--icon {
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.nb-btn:hover {
+  color: var(--text-strong);
+  background: var(--surface-panel);
+  border-color: var(--border-strong);
+}
+
+.nb-btn.is-active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+/* The toggle shows the ground it will take you to: a sun on the dark ground, a
+   moon on the light one. Which icon shows is resolved in CSS, so it is right
+   before hydration and right when no preference has been expressed. */
+.nb-theme-toggle__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nb-theme-toggle__label--light {
+  display: none;
+}
+
+[data-theme='light'] .nb-theme-toggle__label--dark {
+  display: none;
+}
+
+[data-theme='light'] .nb-theme-toggle__label--light {
+  display: inline-flex;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .nb-theme-toggle__label--dark {
+    display: none;
+  }
+
+  :root:not([data-theme]) .nb-theme-toggle__label--light {
+    display: inline-flex;
+  }
+}
+
+/* ---- Chip ---- */
+
+.nb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.5em;
+  border-radius: var(--radius-sm);
+  border: var(--border-width) solid transparent;
+  white-space: nowrap;
+}
+
+.nb-chip--neutral {
+  color: var(--text-faint);
+  border-color: var(--border);
+}
+
+.nb-chip--accent {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.nb-chip--high {
+  color: var(--status-high);
+  background: var(--status-high-bg);
+}
+
+.nb-chip--medium {
+  color: var(--status-medium);
+  background: var(--status-medium-bg);
+}
+
+.nb-chip--contested {
+  color: var(--status-contested);
+  background: var(--status-contested-bg);
+}
+
+.nb-chip--filled {
+  color: var(--surface-page);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.nb-chip__play::before {
+  content: '\25B6';
+  font-size: 0.75em;
+}
+
+/* ---- EntryRow : one line of the plaintext collection ---- */
+
+.nb-row {
+  display: grid;
+  grid-template-columns: 6.5rem 7.5rem 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-3);
+  border-bottom: var(--border-width) solid var(--border);
+  text-decoration: none;
+  transition: var(--transition-hover);
+}
+
+a.nb-row:hover {
+  background: var(--surface-panel);
+}
+
+.nb-row__when,
+.nb-row__kind {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+}
+
+.nb-row__date,
+.nb-row__duration {
+  color: var(--text-faint);
+}
+
+/* Going back and standing behind a piece again is a live act, so it is marked. */
+.nb-row__rev {
+  color: var(--accent);
+}
+
+.nb-row__kind-name {
+  color: var(--text-faint);
+}
+
+.nb-row__kind-name.is-live {
+  color: var(--accent);
+}
+
+.nb-row__play::before {
+  content: '\25B8';
+  margin-right: 0.35em;
+}
+
+.nb-row__main {
+  min-width: 0;
+}
+
+/* Balanced, so a long title splits into even lines instead of filling the first
+   and orphaning a word on the second. The titles are the entries' real titles
+   and some of them are long; the break is the thing to fix, not the words. */
+.nb-row__title {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-title);
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--space-2);
+  text-wrap: balance;
+}
+
+.nb-row__desc {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+.nb-row__note {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--text-faint);
+  margin-top: var(--space-3);
+}
+
+/* Superseded, and kept. Dimmed and struck, never deleted, never a warning. */
+.nb-row--superseded {
+  opacity: 0.5;
+}
+
+.nb-row--superseded .nb-row__title {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  color: var(--text-soft);
+}
+
+@media (max-width: 640px) {
+  .nb-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .nb-row__when,
+  .nb-row__kind {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+}
+
+/* ---- SectionHeading ---- */
+
+.nb-section {
+  margin: var(--space-8) 0 var(--space-5);
+  scroll-margin-top: 5rem;
+}
+
+.nb-section__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-2);
+}
+
+.nb-section__title {
+  font-size: var(--fs-h2);
+  margin: 0;
+}
+
+/* ---- SupersessionBanner : integrity, not a warning ---- */
+
+.nb-supersede {
+  border: var(--border-width) solid var(--border);
+  border-left: 2px solid var(--accent-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-5) 0;
+}
+
+.nb-supersede__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 var(--space-2);
+}
+
+.nb-supersede__body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.nb-supersede__body a {
+  color: var(--accent);
+}
+
+/* ---- Callout ---- */
+
+.nb-callout {
+  background: var(--accent-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-6) 0;
+}
+
+.nb-callout__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-3);
+}
+
+.nb-callout__body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+.nb-callout__body ul {
+  margin: 0;
+  padding-left: var(--space-4);
+}
+
+.nb-callout__body li {
+  margin: var(--space-2) 0;
+}
+
+/* ---- EvidenceCard : the rated citation unit ---- */
+
+.nb-evidence {
+  border-top: var(--border-width) solid var(--border);
+  padding: var(--space-6) 0;
+}
+
+.nb-evidence__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.nb-evidence__id {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+
+.nb-evidence__claim {
+  font-size: var(--fs-title);
+  margin: 0 0 var(--space-3);
+}
+
+.nb-evidence__quote {
+  font-family: var(--font-sans);
+  font-size: 1.04rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+  border-left: 2px solid var(--border-strong);
+  margin: 0;
+  padding: 0.1rem 0 0.1rem var(--space-4);
+  font-style: italic;
+}
+
+.nb-evidence__more {
+  margin-top: var(--space-4);
+}
+
+.nb-evidence__more summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--accent-soft);
+  list-style: none;
+}
+
+.nb-evidence__more summary::-webkit-details-marker {
+  display: none;
+}
+
+.nb-evidence__rows {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.nb-evidence__row {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+.nb-evidence__row-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+@media (max-width: 640px) {
+  .nb-evidence__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}

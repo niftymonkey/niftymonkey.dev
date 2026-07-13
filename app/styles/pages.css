@@ -1,0 +1,373 @@
+/* ============================================================
+   SURFACES: home, philosophy, the notebook index.
+   Composed from the token layer only.
+   ============================================================ */
+
+.nb-lede {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  color: var(--text-soft);
+  max-width: 44rem;
+  margin: 0 0 var(--space-8);
+}
+
+/* The bio is one line, not prose. A reading measure would only break it in
+   half to no one's benefit, so it takes the full column. */
+.nb-lede--bio {
+  max-width: none;
+  text-wrap: pretty;
+}
+
+.nb-block {
+  margin: var(--space-8) 0;
+}
+
+.nb-subtle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-faint);
+  margin: 0 0 var(--space-5);
+}
+
+/* ---- Home: the ls -la project listing ---- */
+
+.nb-project {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-3);
+  border-bottom: var(--border-width) solid var(--border);
+  text-decoration: none;
+  transition: var(--transition-hover);
+}
+
+.nb-project:hover {
+  background: var(--surface-panel);
+}
+
+.nb-project__perms {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-faint);
+}
+
+.nb-project__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+}
+
+.nb-project__name {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+  letter-spacing: var(--ls-normal);
+}
+
+.nb-project__name::after {
+  content: '/';
+  color: var(--text-faint);
+}
+
+.nb-project__status {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+}
+
+.nb-project__status--live {
+  color: var(--accent);
+}
+
+.nb-project__status--beta {
+  color: var(--status-medium);
+}
+
+.nb-project__status--development {
+  color: var(--text-faint);
+}
+
+.nb-project__desc {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  margin: 0 0 var(--space-3);
+}
+
+.nb-project__tech {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--text-faint);
+}
+
+@media (max-width: 640px) {
+  .nb-project {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .nb-project__status {
+    margin-left: 0;
+  }
+}
+
+/* ---- Teaser ---- */
+
+.nb-teaser {
+  font-family: var(--font-sans);
+  color: var(--text-soft);
+  margin: 0 0 var(--space-4);
+}
+
+.nb-link {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-soft);
+  text-decoration: none;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-4);
+  transition: var(--transition-hover);
+}
+
+.nb-link:hover {
+  color: var(--text-strong);
+  background: var(--surface-panel);
+  border-color: var(--border-strong);
+}
+
+/* ---- Philosophy: the core question and the principle cards ---- */
+
+.nb-question {
+  border: var(--border-width) solid var(--accent);
+  background: var(--accent-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin: var(--space-6) 0 var(--space-8);
+}
+
+.nb-question__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--space-2);
+}
+
+.nb-question__text {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--text-strong);
+  margin: 0;
+}
+
+.nb-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  gap: var(--space-5);
+}
+
+.nb-card {
+  background: var(--surface-card);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.nb-card__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  color: var(--accent);
+  margin: 0 0 var(--space-3);
+}
+
+.nb-card__lead {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  margin: 0 0 var(--space-4);
+}
+
+.nb-card__rule {
+  border: 0;
+  border-top: var(--border-width) solid var(--border);
+  margin: 0 0 var(--space-4);
+}
+
+.nb-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+.nb-card__list li {
+  padding-left: var(--space-4);
+  position: relative;
+  margin-bottom: var(--space-2);
+}
+
+.nb-card__list li::before {
+  content: '\2013';
+  position: absolute;
+  left: 0;
+  color: var(--accent-soft);
+}
+
+/* ---- Notebook index ---- */
+
+.nb-readme {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* The command sits with the list it describes, not marooned between two gaps. */
+.nb-prompt--list {
+  margin: var(--space-6) 0 var(--space-2);
+}
+
+.nb-index__head {
+  display: grid;
+  grid-template-columns: 6.5rem 7.5rem 1fr;
+  gap: var(--space-4);
+  padding: 0 var(--space-3) var(--space-3);
+  border-bottom: var(--border-width) solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.nb-index__divider {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: var(--space-7) 0 var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .nb-index__head {
+    display: none;
+  }
+}
+
+/* ---- The entry shell ----
+   The reading column and the contents rail, side by side, from the very top.
+   The rail is level with the title rather than hanging below it, so a reader
+   who lands on the entry can see its shape before reading a word. */
+
+.nb-entry-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+  column-gap: var(--space-8);
+  align-items: start;
+  max-width: var(--width-shell);
+  margin: 0 auto;
+  /* Same top rhythm as every other surface: the header-to-content gap is one
+     value across home, philosophy, the notebook and an entry. */
+  padding: var(--space-7) var(--space-5) var(--space-8);
+}
+
+.nb-entry-column {
+  min-width: 0;
+  max-width: var(--width-read);
+}
+
+.nb-prompt--shell {
+  color: var(--text-soft);
+  margin-bottom: var(--space-6);
+}
+
+.nb-prompt--shell::before {
+  content: '$ ';
+}
+
+.nb-related {
+  margin-top: var(--space-8);
+}
+
+/* ---- The contents rail ---- */
+
+.nb-contents {
+  position: sticky;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+  border-left: var(--border-width) solid var(--border);
+}
+
+.nb-contents__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-4);
+}
+
+.nb-contents__link {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  padding: var(--space-2) var(--space-4);
+  transition: var(--transition-hover);
+}
+
+.nb-contents__link:hover {
+  color: var(--text-strong);
+  border-left-color: var(--border-strong);
+}
+
+/* Where you are is the live thing on this page, so it takes the accent. */
+.nb-contents__link.is-active {
+  color: var(--text-strong);
+  border-left-color: var(--accent);
+}
+
+/* With the rail away, the reading column takes the whole shell rather than
+   leaving a column-shaped hole where the contents used to be. */
+[data-toc='closed'] .nb-entry-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+[data-toc='closed'] .nb-entry-column {
+  max-width: none;
+}
+
+[data-toc='closed'] .nb-contents {
+  display: none;
+}
+
+/* Below this width the rail is gone, so its toggle goes with it. A control for
+   something that is not on screen is worse than no control. Same breakpoint as
+   the rail itself, so the two cannot drift apart. */
+@media (max-width: 900px) {
+  .nb-entry-shell {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-7) var(--space-4) var(--space-7);
+  }
+
+  .nb-contents,
+  .nb-contents-toggle {
+    display: none;
+  }
+}
