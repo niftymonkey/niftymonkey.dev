@@ -8,7 +8,7 @@ export interface Principle {
 export const principles: Principle[] = [
   {
     id: 'trust-mechanism',
-    title: 'Trust Through Transparency',
+    title: 'Trust via Transparency',
     summary: 'Open source is not an ideology for me, it is a practical way to establish trust.',
     details: [
       'When software makes claims about encryption, privacy, or anything else, users should be able to verify.',

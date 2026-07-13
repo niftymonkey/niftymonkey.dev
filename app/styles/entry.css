@@ -1,0 +1,505 @@
+/* ============================================================
+   THE ENTRY SURFACE.
+
+   The dossier keeps its own markup, so its content is untouched:
+   every word, element and order is exactly as published. What
+   follows is the dossier's own stylesheet with its colour
+   variables re-pointed at the notebook tokens, nested under
+   .nb-entry so its bare element rules cannot leak onto the
+   other surfaces.
+
+   Nothing here changes a word. It only changes how words look.
+   ============================================================ */
+
+.nb-entry {
+  /* The dossier's semantic variables, re-pointed at the notebook's tokens.
+     This remap IS the re-skin. The layout underneath is the author's. */
+  --ground: var(--surface-page);
+  --surface: var(--surface-card);
+  --surface-2: var(--surface-panel);
+  --ink: var(--text-strong);
+  --ink-soft: var(--text-soft);
+  --ink-faint: var(--text-faint);
+  --line: var(--border);
+  --line-strong: var(--border-strong);
+  --high: var(--status-high);
+  --high-bg: var(--status-high-bg);
+  --med: var(--status-medium);
+  --med-bg: var(--status-medium-bg);
+  --contra: var(--status-contested);
+  --contra-bg: var(--status-contested-bg);
+  --shadow: var(--shadow-card);
+
+  /* Sans carries the reading load; the dossier set its prose in a serif and
+     shipped an embedded Inter to do it. Both give way to the system stacks. */
+  --serif: var(--font-sans);
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+
+  --maxw: var(--width-read);
+
+  :root[data-theme="light"] {
+      --ground: #f6f7f9; --surface: #ffffff; --surface-2: #eef1f4;
+      --ink: #19212e; --ink-soft: #4d586a; --ink-faint: #7c8697;
+      --line: #e0e4ea; --line-strong: #cdd4de;
+      --accent: #1f4763; --accent-soft: #396b8c;
+      --high: #1f7a5f; --high-bg: #e4f1ec; --med: #9a6613; --med-bg: #f6ecd8;
+      --contra: #a24b2c; --contra-bg: #f5e6de;
+      --shadow: 0 1px 2px rgba(20,30,45,.04), 0 6px 20px -12px rgba(20,30,45,.18);
+    }
+    :root
+
+    * { box-sizing: border-box; }
+    & { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    & {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--accent); text-underline-offset: 2px; text-decoration-color: var(--line-strong); }
+    a:hover { text-decoration-color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; border-radius: 3px; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ---- Masthead ---- */
+    .masthead { border-bottom: 1px solid var(--line); background: var(--surface); }
+    .masthead__inner { max-width: var(--maxw); margin: 0 auto; padding: 3.2rem 1.5rem 2.4rem; }
+    .eyebrow {
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent-soft); margin: 0 0 1rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .eyebrow::before { content: ""; width: 1.6rem; height: 1px; background: var(--accent-soft); display: inline-block; }
+    h1 {
+      font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 2.75rem);
+      line-height: 1.08; letter-spacing: -.01em; margin: 0 0 .9rem; text-wrap: balance; color: var(--ink);
+    }
+    .dek { font-size: 1.12rem; color: var(--ink-soft); margin: 0 0 1.8rem; max-width: 40rem; text-wrap: pretty; }
+    .stamp {
+      display: inline-block; font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
+      border: 1px solid var(--line); border-radius: 999px; padding: .3rem .7rem;
+      margin: 0 0 1.9rem;
+    }
+
+    /* Evidence cards collapse to claim + quote. The chip carries the epistemic status while
+       closed; the summary names the source so no quotation is ever shown unattributed. */
+    .cardx { border-top: 1px solid var(--line); margin-top: .55rem; }
+    .cardx > summary {
+      display: flex; align-items: baseline; gap: .5rem; cursor: pointer;
+      padding: .5rem 0 .1rem; list-style: none; color: var(--ink-faint);
+      font-family: var(--mono); font-size: .7rem; letter-spacing: .06em;
+    }
+    .cardx > summary::-webkit-details-marker { display: none; }
+    .cardx > summary::after {
+      content: ""; margin-left: auto; flex: none; align-self: center;
+      width: .36rem; height: .36rem; margin-right: .15rem;
+      border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+      transform: translateY(-.1rem) rotate(45deg); transition: transform .18s ease;
+    }
+    .cardx[open] > summary::after { transform: translateY(.05rem) rotate(225deg); }
+    .cardx > summary:hover { color: var(--ink-soft); }
+    .cardx > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .cardx > summary::after { transition: none; } }
+    .cardx__src { color: var(--ink-soft); font-weight: 600; text-transform: uppercase; }
+    .cardx__hint { text-transform: lowercase; letter-spacing: .02em; }
+    .cardx[open] .cardx__hint { visibility: hidden; }
+    .cardx[open] > summary { margin-bottom: .3rem; }
+    /* A collapsed card must never hide its evidence from a printer. */
+    @media print { .cardx > summary { display: none; } .cardx > *:not(summary) { display: block !important; } }
+
+    /* Provenance: collapsed by default. Each row scans as a label plus a one-line
+       gist; the full prose is one click away, so the masthead stays short. */
+    .provenance { border-top: 1px solid var(--line); padding-top: 1.1rem; max-width: 46rem; }
+    .prov { border-bottom: 1px solid var(--line); }
+    .prov > summary {
+      display: flex; align-items: baseline; gap: .6rem; cursor: pointer;
+      padding: .6rem 0; list-style: none; color: var(--ink-faint);
+    }
+    .prov > summary::-webkit-details-marker { display: none; }
+    .prov > summary::after {
+      content: ""; margin-left: auto; flex: none; align-self: center;
+      width: .4rem; height: .4rem; margin-right: .2rem;
+      border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+      transform: translateY(-.1rem) rotate(45deg); transition: transform .18s ease;
+    }
+    .prov[open] > summary::after { transform: translateY(.05rem) rotate(225deg); }
+    .prov > summary:hover { color: var(--ink-soft); }
+    .prov > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .prov > summary::after { transition: none; } }
+    .prov__lbl {
+      font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-soft); font-weight: 600; flex: none; min-width: 6.2rem;
+    }
+    .prov__gist { font-size: .82rem; line-height: 1.45; }
+    .prov > p, .prov > ul {
+      margin: 0 0 .95rem; padding-left: 6.8rem; font-size: .84rem; line-height: 1.6;
+      color: var(--ink-faint);
+    }
+    .prov > ul { list-style: none; }
+    .prov > ul > li { position: relative; padding-left: 1rem; margin-bottom: .5rem; }
+    .prov > ul > li::before {
+      content: ""; position: absolute; left: 0; top: .62em;
+      width: .28rem; height: .28rem; border-radius: 50%; background: var(--accent-soft);
+    }
+    .prov > ul > li b { color: var(--ink-soft); font-weight: 600; }
+    .prov > p b { color: var(--ink-soft); font-weight: 600; }
+    @media (max-width: 34rem) {
+      .prov > summary { flex-wrap: wrap; }
+      .prov__lbl { min-width: 100%; }
+      .prov > p, .prov > ul { padding-left: 0; }
+    }
+    .provenance a { color: var(--ink-soft); text-underline-offset: 2px; }
+    .provenance a:hover { color: var(--accent); }
+    /* ---- At a glance ---- */
+    .glance { padding: 2.6rem 0 .6rem; }
+    .glance__lead {
+      font-family: var(--serif); font-size: 1.28rem; line-height: 1.5; color: var(--ink);
+      margin: 0 0 1.9rem; text-wrap: pretty;
+    }
+    .glance__lead b { font-weight: 600; color: var(--ink); }
+    /* ---- At a glance: stat tiles ---- */
+    /* Evidence type (self-reported perception vs measured outcome) is the encoding,
+       never valence. It rides four redundant channels: a spelled-out tag word, a
+       dashed-vs-solid border, a neutral-vs-accent hue, and a left grounding bar.
+       Measured evidence wears the brand accent because it is the weightier claim;
+       self-report is recessive and provisional. Nothing is red or green. */
+    .stats { display: grid; grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+    .stat--gap { grid-column: 1 / -1; }
+    @media (min-width: 26rem) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 44rem) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+    .stat {
+      display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line);
+      border-left: 3px solid var(--line); border-radius: 0;
+      padding: .85rem .95rem .8rem; box-shadow: var(--shadow);
+    }
+    .stat--perceived { border-left-color: var(--line-strong); }
+    .stat--measured  { border-left-color: var(--accent); }
+
+    .stat__tag {
+      align-self: flex-start; font-family: var(--mono); font-size: .6rem;
+      letter-spacing: .09em; text-transform: uppercase; font-weight: 600;
+      padding: .16rem .42rem; border-radius: 4px; margin-bottom: .55rem; white-space: nowrap;
+    }
+    .stat__tag--perceived {
+      color: var(--ink-soft); background: transparent; border: 1px dashed var(--line-strong);
+    }
+    .stat__tag--measured {
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    }
+
+    .stat__num {
+      font-family: var(--serif); font-size: 1.85rem; font-weight: 600; line-height: 1;
+      font-variant-numeric: tabular-nums; letter-spacing: -.02em; color: var(--ink);
+    }
+    .stat__num--text { font-size: 1.5rem; padding-top: .2rem; }
+
+    .stat__lbl { font-size: .82rem; color: var(--ink-soft); margin-top: .5rem; line-height: 1.35; }
+    .stat__src {
+      font-family: var(--mono); font-size: .66rem; color: var(--ink-faint);
+      margin-top: auto; padding-top: .5rem; text-transform: uppercase; letter-spacing: .05em;
+    }
+
+    /* ---- The pivot tile: belief vs measurement ---- */
+    /* Full-width tile leading with the durable, current finding (self-assessment
+       barely predicts measured output) and carrying the vivid 2025 illustration in
+       its foot. Spans two columns (see the grid rules above). */
+    .stat--gap {
+      background: var(--surface-2); border: 1px solid var(--line-strong);
+      border-left: 3px solid var(--accent-soft);
+    }
+    .stat__gaphead {
+      font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent-soft); font-weight: 600; margin-bottom: .7rem;
+    }
+    .stat__gaptop { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; }
+    .stat__gaptop .stat__gaphead { margin-bottom: 0; }
+    .stat__gaptop .stat__tag { margin-bottom: 0; align-self: center; }
+    .stat__foot {
+      font-size: .74rem; color: var(--ink-faint); line-height: 1.35;
+      margin-top: .7rem; padding-top: .55rem; border-top: 1px solid var(--line);
+    }
+    .precedent {
+      margin: 1.8rem 0 0; padding: 1.35rem 1.5rem; background: var(--surface);
+      border: 1px solid var(--line); border-left: 3px solid var(--accent-soft);
+      border-radius: 0;
+    }
+    .precedent h3 {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent-soft); font-weight: 600; margin: 0 0 .7rem;
+    }
+    .precedent p { margin: 0 0 .75rem; font-size: .96rem; line-height: 1.62; color: var(--ink-soft); }
+    .precedent p:last-child { margin-bottom: 0; }
+    .precedent b { font-weight: 600; color: var(--ink); }
+
+    /* ---- Nav ---- */
+    nav.toc {
+      position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--ground) 88%, transparent);
+      backdrop-filter: blur(8px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      margin-top: 2.4rem;
+    }
+    .toc__inner { max-width: var(--maxw); margin: 0 auto; padding: .55rem 1.5rem; display: flex; gap: .3rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .toc__inner::-webkit-scrollbar { display: none; }
+    .toc a {
+      font-family: var(--mono); font-size: .73rem; letter-spacing: .03em; white-space: nowrap;
+      color: var(--ink-soft); text-decoration: none; padding: .35rem .7rem; border-radius: 6px;
+    }
+    .toc a:hover { background: var(--surface-2); color: var(--ink); }
+    .toc a.active { background: var(--accent); color: #fff; }
+    .toc__brand {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent-soft); font-weight: 600; align-self: center; white-space: nowrap; flex: none;
+      padding-right: .6rem; margin-right: .4rem; border-right: 1px solid var(--line-strong);
+    }
+    .toc__sep { width: 1px; align-self: stretch; margin: .15rem .4rem; background: var(--line-strong); flex: none; }
+
+    /* ---- Sections ---- */
+    section.theme { padding: 3rem 0 1rem; scroll-margin-top: 3.5rem; }
+    .theme__num { font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-soft); }
+    .theme__title { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; line-height: 1.2; margin: .5rem 0 .6rem; letter-spacing: -.01em; text-wrap: balance; }
+    .theme__intro { color: var(--ink-soft); margin: 0 0 1.8rem; font-size: 1.02rem; max-width: 42rem; text-wrap: pretty; }
+
+    /* ---- Working questions: closes each theme ---- */
+    .theme__q { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent-soft); padding: 1.2rem 1.4rem; margin: .4rem 0 1.2rem; }
+    .theme__q h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-soft); font-weight: 600; margin: 0 0 .7rem; }
+    .theme__q p { margin: 0 0 .7rem; font-size: .95rem; color: var(--ink-soft); }
+    .theme__q ul { margin: 0; padding-left: 1.1rem; }
+    .theme__q li { font-size: .95rem; color: var(--ink-soft); line-height: 1.6; margin: 0 0 .55rem; }
+    .theme__q li:last-child { margin-bottom: 0; }
+
+    /* ---- Cards ---- */
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--line); border-radius: 0;
+      padding: 1.35rem 1.5rem 1.45rem; margin-bottom: 1.1rem; box-shadow: var(--shadow);
+      scroll-margin-top: 3.5rem;
+    }
+    .card--contra { border-left: 3px solid var(--contra); }
+    .card__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; }
+    .card__id {
+      font-family: var(--mono); font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+      color: var(--accent); background: var(--surface-2); padding: .18rem .5rem; border-radius: 5px;
+    }
+    .chip {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase;
+      padding: .25rem .6rem; border-radius: 999px; font-weight: 600; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .chip::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: currentColor; }
+    .chip--high { color: var(--high); background: var(--high-bg); }
+    .chip--med { color: var(--med); background: var(--med-bg); }
+    .chip--contra { color: var(--contra); background: var(--contra-bg); }
+    .chip[data-tip] { position: relative; cursor: help; }
+    .chip[data-tip]:hover::after, .chip[data-tip]:focus::after {
+      content: attr(data-tip);
+      position: absolute; right: 0; top: calc(100% + .5rem); z-index: 30;
+      width: max-content; max-width: min(21rem, 78vw);
+      background: var(--ink); color: var(--surface);
+      font-family: var(--sans); font-size: .78rem; font-weight: 400; line-height: 1.5;
+      letter-spacing: 0; text-transform: none; white-space: normal; text-align: left;
+      padding: .5rem .7rem; box-shadow: 0 2px 12px rgba(0,0,0,.22);
+    }
+    .card__claim { font-family: var(--serif); font-size: 1.16rem; font-weight: 600; line-height: 1.4; margin: 0 0 .85rem; color: var(--ink); text-wrap: pretty; }
+    .card__quote {
+      margin: 0 0 .95rem; padding: .1rem 0 .1rem 1rem; border-left: 2px solid var(--accent-soft);
+      color: var(--ink-soft); font-size: .96rem; line-height: 1.55; font-style: italic;
+    }
+    .card__row { font-size: .9rem; line-height: 1.5; margin: .5rem 0 0; display: flex; gap: .55rem; }
+    .card__row-lbl {
+      font-family: var(--mono); font-size: .66rem; text-transform: uppercase; letter-spacing: .07em;
+      color: var(--ink-faint); flex: 0 0 auto; padding-top: .2rem; width: 3.6rem;
+    }
+    .card__cite { color: var(--ink-soft); }
+    .card__cite a { font-family: var(--mono); font-size: .82rem; word-break: break-word; }
+    .card__caveat .card__row-lbl { color: var(--contra); }
+    .card__caveat span.txt { color: var(--ink-soft); }
+    .warnmark { color: var(--contra); font-weight: 700; }
+
+    /* secondary detail rows (Measured / Update / Pattern) share the caveat's muted body */
+    .card__row .txt { color: var(--ink-soft); }
+
+
+    /* ---- Table ---- */
+    .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 0; box-shadow: var(--shadow); background: var(--surface); }
+    table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 34rem; }
+    thead th {
+      text-align: left; font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-faint); padding: .8rem 1rem; border-bottom: 1px solid var(--line-strong); background: var(--surface-2); font-weight: 600;
+    }
+    tbody td { padding: .8rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tbody tr:last-child td { border-bottom: none; }
+    td.obj { color: var(--ink); font-weight: 500; }
+    td.ev { color: var(--ink-soft); }
+    td.ev code { font-family: var(--mono); font-size: .82rem; color: var(--accent); background: var(--surface-2); padding: .06rem .32rem; border-radius: 4px; }
+    td.ev a { text-decoration: none; }
+    td.ev a:hover code, td.ev a:focus-visible code { background: var(--accent); color: var(--surface); }
+
+    /* ---- Resources ---- */
+    .res { display: grid; gap: .7rem; margin: 1.4rem 0 0; padding: 0; list-style: none; counter-reset: r; }
+    .res li {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 0; padding: .9rem 1.1rem;
+      display: grid; grid-template-columns: 1.9rem 1fr; gap: .3rem 0; box-shadow: var(--shadow);
+    }
+    .res li::before {
+      counter-increment: r; content: counter(r, decimal-leading-zero);
+      font-family: var(--mono); font-size: .78rem; color: var(--accent-soft); grid-row: span 2; padding-top: .1rem;
+    }
+    .res b { font-weight: 600; color: var(--ink); }
+    .res .rmeta { color: var(--ink-soft); font-size: .92rem; }
+    .res .rlink { font-family: var(--mono); font-size: .76rem; grid-column: 2; word-break: break-word; }
+    .res .rnote { grid-column: 2; font-size: .84rem; color: var(--ink-faint); margin-top: .35rem; }
+    .tier { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-soft); margin: 1.8rem 0 .3rem; }
+
+    /* ---- Callout ---- */
+    .callout {
+      background: var(--surface-2); border: 1px solid var(--line); border-radius: 0;
+      padding: 1.2rem 1.4rem; margin: 1.4rem 0 0; font-size: .96rem; color: var(--ink-soft); line-height: 1.6;
+    }
+    .callout b { color: var(--ink); }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--line); margin-top: 3.5rem; padding: 2.4rem 0 3.5rem; color: var(--ink-faint); }
+    footer .wrap { display: grid; gap: .7rem; }
+    footer h3 { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 .3rem; }
+    footer p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--ink-soft); }
+    footer .caveats { display: grid; gap: .55rem; }
+    footer .caveats p b { color: var(--ink); font-weight: 600; }
+
+    hr.rule { border: none; border-top: 1px solid var(--line); margin: 2.6rem 0 0; }
+}
+
+/* ---- The notebook's identity, imposed on the dossier's markup ---- */
+
+.nb-entry h1,
+.nb-entry h2,
+.nb-entry h3,
+.nb-entry .card__claim,
+.nb-entry .theme__title {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+}
+
+/* The accent marks where you are and nothing else: the eyebrow, the theme
+   number, the section you are currently reading. */
+.nb-entry .eyebrow,
+.nb-entry .theme__num {
+  font-family: var(--font-mono);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.nb-entry .chip {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.nb-entry .card,
+.nb-entry .stat,
+.nb-entry .callout,
+.nb-entry .theme__q {
+  border-radius: var(--radius-md);
+}
+
+.nb-entry .toc a.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-entry * {
+    transition: none !important;
+  }
+}
+
+/* ---- Flush the dossier's own chrome ----
+   The dossier was a standalone page, so it carried its own page furniture: a
+   masthead painted onto a raised surface, a centred wrap, its own footer band.
+   Inside the notebook, the shell supplies all of that. The entry's blocks sit
+   flush in the reading column so the document reads as one continuous thing
+   rather than a card stacked on a card. */
+
+.nb-entry .masthead {
+  background: none;
+  border-bottom: 0;
+  padding: 0;
+}
+
+.nb-entry .masthead__inner,
+.nb-entry main > .wrap,
+.nb-entry footer .wrap {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nb-entry main {
+  display: block;
+}
+
+.nb-entry footer {
+  padding-bottom: 0;
+}
+
+/* The dossier's date stamp, set as one of the notebook's meta pills. */
+.nb-entry .stamp {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: none;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2) var(--space-4);
+}
+
+/* The dossier set its own reading measures for a standalone 50rem page: the
+   dek, the provenance block and each theme intro carried their own max-width.
+   Inside the notebook the reading column owns the measure, so these defer to
+   it. Without this they stay pinned at their old width when the contents rail
+   collapses, and the page reflows around two blocks that refuse to move. */
+
+.nb-entry .dek,
+.nb-entry .provenance,
+.nb-entry .theme__intro {
+  max-width: none;
+}
+
+/* ---- Line breaking ----
+   Headings balance across their lines instead of filling the first and
+   orphaning a word on the last. Prose uses `pretty`, which is the rule that
+   refuses to leave a lone word stranded on its own line. The dossier already
+   asked for this on its dek and theme intros; it should hold everywhere. */
+
+.nb-entry h1,
+.nb-entry h2,
+.nb-entry h3,
+.nb-entry .card__claim,
+.nb-entry .theme__title {
+  text-wrap: balance;
+}
+
+.nb-entry p,
+.nb-entry li,
+.nb-entry .txt,
+.nb-entry .prov__gist,
+.nb-entry .card__quote,
+.nb-entry .card__row span,
+.nb-entry .stat__lbl,
+.nb-entry .rnote {
+  text-wrap: pretty;
+}

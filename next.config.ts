@@ -1,11 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  async rewrites() {
+  async redirects() {
     return [
-      // The AI adoption dossier is a self-contained static document under public/.
-      // Next serves public/ by exact path only, so this maps the clean URL onto the file.
-      { source: "/ai-adoption", destination: "/ai-adoption/index.html" },
+      // The dossier is now the notebook's first entry. Its original URL was
+      // published and shared, so it keeps working, permanently.
+      { source: '/ai-adoption', destination: '/notebook/adopting-ai', permanent: true },
+      { source: '/ai-adoption/index.html', destination: '/notebook/adopting-ai', permanent: true },
     ];
   },
 };

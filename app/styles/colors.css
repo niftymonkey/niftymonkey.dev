@@ -1,0 +1,106 @@
+/* ============================================================
+   COLORS — dark-native first, light second.
+   The notebook is dark by default; light is a first-class peer.
+   Accent is a single muted sage that only ever marks LIVE or
+   ACTIVE things (prompts, the current section, a re-review mark,
+   the headline entry). It is a signal, never decoration.
+   ============================================================ */
+
+:root {
+  /* ---- surfaces ---- */
+  --surface-page:   #0f1113;  /* the page / terminal ground */
+  --surface-card:   #15181b;  /* raised panels, cards, figures */
+  --surface-panel:  #181c1f;  /* title bars, hover rows, insets */
+
+  /* ---- text ---- */
+  --text-strong:    #edf0f2;  /* headings, entry titles */
+  --text-soft:      #949ca4;  /* body prose, secondary */
+  --text-faint:     #59616a;  /* metadata, comments, disabled */
+
+  /* ---- lines ---- */
+  --border:         #23272c;  /* default hairline */
+  --border-strong:  #2c3138;  /* emphasised hairline, quote rule */
+
+  /* ---- accent (sage) ---- */
+  --accent:         oklch(0.77 0.09 158);
+  --accent-soft:    oklch(0.70 0.08 158);
+  --accent-bg:      oklch(0.77 0.09 158 / .10);
+
+  /* ---- epistemic / status tones ---- */
+  --status-high:       oklch(0.78 0.10 158);
+  --status-high-bg:    oklch(0.78 0.10 158 / .13);
+  --status-medium:     oklch(0.80 0.11 82);
+  --status-medium-bg:  oklch(0.80 0.11 82 / .14);
+  --status-contested:  oklch(0.72 0.13 32);
+  --status-contested-bg: oklch(0.72 0.13 32 / .15);
+
+  /* ---- selection ---- */
+  --selection-bg:   oklch(0.77 0.09 158 / .22);
+}
+
+/* Light peer — applied when the OS prefers light and no explicit
+   theme is set, or when [data-theme="light"] is present. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --surface-page:  #f6f7f7;
+    --surface-card:  #ffffff;
+    --surface-panel: #eef1f1;
+    --text-strong:   #14181b;
+    --text-soft:     #4c545c;
+    --text-faint:    #7b838c;
+    --border:        #e4e7e9;
+    --border-strong: #d3d8db;
+    --accent:        oklch(0.48 0.09 158);
+    --accent-soft:   oklch(0.42 0.08 158);
+    --accent-bg:     oklch(0.48 0.09 158 / .08);
+    --status-high:      oklch(0.46 0.10 158);
+    --status-high-bg:   oklch(0.46 0.10 158 / .12);
+    --status-medium:    oklch(0.52 0.11 78);
+    --status-medium-bg: oklch(0.52 0.11 78 / .13);
+    --status-contested: oklch(0.52 0.13 32);
+    --status-contested-bg: oklch(0.52 0.13 32 / .12);
+    --selection-bg:  oklch(0.48 0.09 158 / .16);
+  }
+}
+
+[data-theme="light"] {
+  --surface-page:  #f6f7f7;
+  --surface-card:  #ffffff;
+  --surface-panel: #eef1f1;
+  --text-strong:   #14181b;
+  --text-soft:     #4c545c;
+  --text-faint:    #7b838c;
+  --border:        #e4e7e9;
+  --border-strong: #d3d8db;
+  --accent:        oklch(0.48 0.09 158);
+  --accent-soft:   oklch(0.42 0.08 158);
+  --accent-bg:     oklch(0.48 0.09 158 / .08);
+  --status-high:      oklch(0.46 0.10 158);
+  --status-high-bg:   oklch(0.46 0.10 158 / .12);
+  --status-medium:    oklch(0.52 0.11 78);
+  --status-medium-bg: oklch(0.52 0.11 78 / .13);
+  --status-contested: oklch(0.52 0.13 32);
+  --status-contested-bg: oklch(0.52 0.13 32 / .12);
+  --selection-bg:  oklch(0.48 0.09 158 / .16);
+}
+
+[data-theme="dark"] {
+  --surface-page:  #0f1113;
+  --surface-card:  #15181b;
+  --surface-panel: #181c1f;
+  --text-strong:   #edf0f2;
+  --text-soft:     #949ca4;
+  --text-faint:    #59616a;
+  --border:        #23272c;
+  --border-strong: #2c3138;
+  --accent:        oklch(0.77 0.09 158);
+  --accent-soft:   oklch(0.70 0.08 158);
+  --accent-bg:     oklch(0.77 0.09 158 / .10);
+  --status-high:      oklch(0.78 0.10 158);
+  --status-high-bg:   oklch(0.78 0.10 158 / .13);
+  --status-medium:    oklch(0.80 0.11 82);
+  --status-medium-bg: oklch(0.80 0.11 82 / .14);
+  --status-contested: oklch(0.72 0.13 32);
+  --status-contested-bg: oklch(0.72 0.13 32 / .15);
+  --selection-bg:  oklch(0.77 0.09 158 / .22);
+}
