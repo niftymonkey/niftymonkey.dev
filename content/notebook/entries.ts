@@ -40,7 +40,7 @@ export interface NotebookEntry {
 export const entries: readonly NotebookEntry[] = [
   {
     slug: 'adopting-ai',
-    title: 'Adopting AI in Software Engineering: The Evidence So Far',
+    title: 'Adopting AI: The Evidence So Far',
     description:
       'What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes.',
     kind: 'dossier',

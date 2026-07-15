@@ -71,16 +71,12 @@
     /* ---- Masthead ---- */
     .masthead { border-bottom: 1px solid var(--line); background: var(--surface); }
     .masthead__inner { max-width: var(--maxw); margin: 0 auto; padding: 3.2rem 1.5rem 2.4rem; }
-    .eyebrow {
-      font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--accent-soft); margin: 0 0 1rem; display: flex; align-items: center; gap: .6rem;
-    }
-    .eyebrow::before { content: ""; width: 1.6rem; height: 1px; background: var(--accent-soft); display: inline-block; }
     h1 {
       font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 2.75rem);
       line-height: 1.08; letter-spacing: -.01em; margin: 0 0 .9rem; text-wrap: balance; color: var(--ink);
     }
-    .dek { font-size: 1.12rem; color: var(--ink-soft); margin: 0 0 1.8rem; max-width: 40rem; text-wrap: pretty; }
+    h1 .h1-tail { display: block; }
+    .dek { font-size: 1.12rem; color: var(--ink-soft); margin: 0 0 1.5rem; max-width: 40rem; text-wrap: pretty; }
     .stamp {
       display: inline-block; font-family: var(--mono); font-size: .68rem;
       letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
@@ -158,7 +154,7 @@
     .provenance a { color: var(--ink-soft); text-underline-offset: 2px; }
     .provenance a:hover { color: var(--accent); }
     /* ---- At a glance ---- */
-    .glance { padding: 2.6rem 0 .6rem; }
+    .glance { padding: 0 0 .6rem; margin: 2.6rem 0 0; }
     .glance__lead {
       font-family: var(--serif); font-size: 1.28rem; line-height: 1.5; color: var(--ink);
       margin: 0 0 1.9rem; text-wrap: pretty;
@@ -264,13 +260,13 @@
     .toc__sep { width: 1px; align-self: stretch; margin: .15rem .4rem; background: var(--line-strong); flex: none; }
 
     /* ---- Sections ---- */
-    section.theme { padding: 3rem 0 1rem; scroll-margin-top: 3.5rem; }
+    section.theme { padding: 0; scroll-margin-top: 3.5rem; }
     .theme__num { font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-soft); }
     .theme__title { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; line-height: 1.2; margin: .5rem 0 .6rem; letter-spacing: -.01em; text-wrap: balance; }
     .theme__intro { color: var(--ink-soft); margin: 0 0 1.8rem; font-size: 1.02rem; max-width: 42rem; text-wrap: pretty; }
 
     /* ---- Working questions: closes each theme ---- */
-    .theme__q { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent-soft); padding: 1.2rem 1.4rem; margin: .4rem 0 1.2rem; }
+    .theme__q { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent-soft); padding: 1.2rem 1.4rem; margin: .4rem 0 3rem; }
     .theme__q h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-soft); font-weight: 600; margin: 0 0 .7rem; }
     .theme__q p { margin: 0 0 .7rem; font-size: .95rem; color: var(--ink-soft); }
     .theme__q ul { margin: 0; padding-left: 1.1rem; }
@@ -369,10 +365,7 @@
     /* ---- Footer ---- */
     footer { border-top: 1px solid var(--line); margin-top: 3.5rem; padding: 2.4rem 0 3.5rem; color: var(--ink-faint); }
     footer .wrap { display: grid; gap: .7rem; }
-    footer h3 { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 .3rem; }
     footer p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--ink-soft); }
-    footer .caveats { display: grid; gap: .55rem; }
-    footer .caveats p b { color: var(--ink); font-weight: 600; }
 
     hr.rule { border: none; border-top: 1px solid var(--line); margin: 2.6rem 0 0; }
 }
@@ -452,19 +445,18 @@
   padding-bottom: 0;
 }
 
-/* The dossier's date stamp, set as one of the notebook's meta pills. */
+/* The dossier's date stamp: an understated meta line, not a pill. */
 .nb-entry .stamp {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--text-faint);
   background: none;
-  border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-pill);
-  padding: var(--space-2) var(--space-4);
+  border: none;
+  padding: 0;
+  margin: 0 0 0.9rem;
 }
 
 /* The dossier set its own reading measures for a standalone 50rem page: the
@@ -503,3 +495,59 @@
 .nb-entry .rnote {
   text-wrap: pretty;
 }
+
+/* The overview and provenance section headings, matched to the guide and recap labels. */
+.nb-entry .glance__label, .nb-entry .prov__title {
+  font-family: var(--mono); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin: 0 0 .8rem;
+}
+.nb-entry .themes__label {
+  font-family: var(--mono); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin: 2.4rem 0 .8rem;
+}
+.nb-entry .glance, .nb-entry .provenance { scroll-margin-top: 3.5rem; }
+.nb-entry .theme__q ul, .nb-entry .prov ul { list-style: disc; padding-left: 1.15rem; margin: .5rem 0; }
+.nb-entry .theme__q li, .nb-entry .prov li { margin: .35rem 0; }
+.nb-entry .provenance { border-top: 0; padding-top: 0; margin-top: 1.6rem; }
+
+/* Opening summary: the reader's map */
+.nb-entry .guide {
+  margin: 1.2rem 0 0;
+  scroll-margin-top: 3.5rem;
+}
+.nb-entry .guide__label {
+  font-family: var(--mono); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin: 0 0 .8rem;
+}
+.nb-entry .guide__lead { font-size: 1rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 1.1rem; }
+.nb-entry .guide__lead b { color: var(--ink); font-weight: 600; }
+.nb-entry .guide__map { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .12rem; }
+.nb-entry .guide__map a {
+  display: grid; grid-template-columns: 2.3rem 1fr; align-items: baseline; gap: .4rem;
+  text-decoration: none; padding: .4rem .5rem; border-radius: var(--radius-sm); border: 1px solid transparent;
+}
+.nb-entry .guide__map a:hover { background: var(--surface-2); border-color: var(--line); }
+.nb-entry .guide__map-n { font-family: var(--mono); font-size: .8rem; color: var(--accent-soft); font-weight: 600; }
+.nb-entry .guide__map-t { font-size: .96rem; color: var(--ink); line-height: 1.4; }
+.nb-entry .guide__also { font-size: .86rem; line-height: 1.55; color: var(--ink-faint); margin: 0; }
+.nb-entry .guide__also a { color: var(--ink-soft); }
+
+/* One-line signpost under each theme title */
+.nb-entry .theme__signpost {
+  font-size: .96rem; line-height: 1.45; color: var(--ink);
+  margin: 0 0 .8rem; padding-left: .8rem; border-left: 2px solid var(--accent);
+}
+
+/* Closing recap */
+.nb-entry .recap {
+  background: var(--surface-2); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent-soft); border-radius: var(--radius-md);
+  padding: 1.4rem 1.6rem; margin: 2.4rem 0 0; scroll-margin-top: 3.5rem;
+}
+.nb-entry .recap p.recap__label {
+  font-family: var(--mono); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin: 0 0 .8rem;
+}
+.nb-entry .recap p { font-size: 1rem; line-height: 1.62; color: var(--ink-soft); margin: 0 0 .8rem; }
+.nb-entry .recap p:last-child { margin-bottom: 0; }
+.nb-entry .recap b { color: var(--ink); font-weight: 600; }

@@ -343,6 +343,15 @@
   border-left-color: var(--accent);
 }
 
+.nb-contents__group {
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-soft); font-weight: 600; margin: .8rem 0 .2rem; padding-left: var(--space-4);
+}
+.nb-contents__link--sub { padding-left: calc(var(--space-4) + .8rem); }
+a.nb-contents__group { text-decoration: none; display: block; transition: var(--transition-hover); }
+a.nb-contents__group:hover { color: var(--text-strong); }
+a.nb-contents__group.is-active { color: var(--accent); }
+
 /* With the rail away, the reading column takes the whole shell rather than
    leaving a column-shaped hole where the contents used to be. */
 [data-toc='closed'] .nb-entry-shell {
