@@ -76,7 +76,7 @@
       line-height: 1.08; letter-spacing: -.01em; margin: 0 0 .9rem; text-wrap: balance; color: var(--ink);
     }
     h1 .h1-tail { display: block; }
-    .dek { font-size: 1.12rem; color: var(--ink-soft); margin: 0 0 1.5rem; max-width: 40rem; text-wrap: pretty; }
+    .dek { font-size: 1.12rem; color: var(--ink-soft); margin: 0 0 1rem; max-width: 40rem; text-wrap: pretty; }
     .stamp {
       display: inline-block; font-family: var(--mono); font-size: .68rem;
       letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);
@@ -456,7 +456,7 @@
   background: none;
   border: none;
   padding: 0;
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.5rem;
 }
 
 /* The dossier set its own reading measures for a standalone 50rem page: the
@@ -506,13 +506,13 @@
   color: var(--accent); font-weight: 600; margin: 2.4rem 0 .8rem;
 }
 .nb-entry .glance, .nb-entry .provenance { scroll-margin-top: 3.5rem; }
-.nb-entry .theme__q ul, .nb-entry .prov ul { list-style: disc; padding-left: 1.15rem; margin: .5rem 0; }
-.nb-entry .theme__q li, .nb-entry .prov li { margin: .35rem 0; }
+.nb-entry .theme__q ul { list-style: disc; padding-left: 1.15rem; margin: .5rem 0; }
+.nb-entry .theme__q li { margin: .35rem 0; }
 .nb-entry .provenance { border-top: 0; padding-top: 0; margin-top: 1.6rem; }
 
 /* Opening summary: the reader's map */
 .nb-entry .guide {
-  margin: 1.2rem 0 0;
+  margin: 0.5rem 0 0;
   scroll-margin-top: 3.5rem;
 }
 .nb-entry .guide__label {
@@ -533,11 +533,6 @@
 .nb-entry .guide__also a { color: var(--ink-soft); }
 
 /* One-line signpost under each theme title */
-.nb-entry .theme__signpost {
-  font-size: .96rem; line-height: 1.45; color: var(--ink);
-  margin: 0 0 .8rem; padding-left: .8rem; border-left: 2px solid var(--accent);
-}
-
 /* Closing recap */
 .nb-entry .recap {
   background: var(--surface-2); border: 1px solid var(--line);

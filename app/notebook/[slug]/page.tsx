@@ -79,7 +79,7 @@ export default async function Entry({ params }: { params: Promise<{ slug: string
 
       <div className="nb-entry-shell">
         <div className="nb-entry-column">
-          <span id="top" aria-hidden="true" />
+          <span id="overview" aria-hidden="true" style={{ scrollMarginTop: '50vh' }} />
           <p className="nb-prompt nb-prompt--shell">
             cat {entry.slug}.md
             <span className="nb-caret" />

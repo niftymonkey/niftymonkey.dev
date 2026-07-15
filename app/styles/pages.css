@@ -290,11 +290,11 @@
 
 .nb-prompt--shell {
   color: var(--text-soft);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 
 .nb-prompt--shell::before {
-  content: '$ ';
+  content: '> ';
 }
 
 .nb-related {

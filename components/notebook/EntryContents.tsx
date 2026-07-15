@@ -43,10 +43,10 @@ function buildRows(links: ContentsLink[]): ContentsRow[] {
  * nav he published with the entry, so the notebook never renames his sections.
  */
 export function EntryContents({ links }: { links: ContentsLink[] }) {
-  const [active, setActive] = useState('top');
+  const [active, setActive] = useState('overview');
 
   useEffect(() => {
-    const ids = ['top', ...links.map((link) => link.href.slice(1))];
+    const ids = ['overview', ...links.map((link) => link.href.slice(1))];
 
     // The active row is the last section whose heading has scrolled up to a line
     // just below the sticky bar. Unlike a thin mid-viewport intersection band,
@@ -56,7 +56,7 @@ export function EntryContents({ links }: { links: ContentsLink[] }) {
     const update = () => {
       frame = 0;
       const line = 130;
-      let current = 'top';
+      let current = 'overview';
       for (const id of ids) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= line) current = id;
