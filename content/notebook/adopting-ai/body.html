@@ -1,15 +1,21 @@
 <header class="masthead">
   <div class="masthead__inner">
-    <p class="eyebrow">Research Dossier</p>
-    <h1>Adopting AI in Software Engineering: The Evidence So Far</h1>
+    <h1>Adopting AI: <span class="h1-tail">The Evidence So Far</span></h1>
     <p class="dek">What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes.</p>
     <p class="stamp">Updated July 2026</p>
-    <div class="provenance">
-      <details class="prov">
-        <summary><span class="prov__lbl">Purpose</span><span class="prov__gist">What has been measured about adopting AI in engineering organizations, and how it has gone.</span></summary>
-        <p>This is research about what people and companies have actually done while adopting AI in software engineering, what was measured when they did, and what came out of it. It gathers what exists, states plainly how strong each piece is, and stops there.</p>
-        <p>It is not a decision document, and it does not argue for adoption. Each theme ends with <b>working questions</b>, which are the questions an organization has to answer for itself once it has seen the evidence; the document deliberately does not answer them. The <b>resources</b> at the end are what a team can reach for when it goes to answer them.</p>
-      </details>
+    <section class="guide" id="guide" aria-label="What's inside">
+      <p class="guide__lead">This is research on what organizations have actually measured while adopting AI in software engineering, and how it went. It is <b>not a recommendation</b>. Five themes, seventeen evidence cards graded by confidence. Each theme closes with <b>working questions</b> it deliberately leaves for you to answer, and the <b>resources</b> at the end are what to reach for when you go to answer them.</p>
+      <ol class="guide__map">
+        <li><a href="#amplifier"><span class="guide__map-n">01</span><span class="guide__map-t">AI amplifies an organization; it doesn't fix one</span></a></li>
+        <li><a href="#roles"><span class="guide__map-n">02</span><span class="guide__map-t">The engineer's role moves from author to director</span></a></li>
+        <li><a href="#verifying"><span class="guide__map-n">03</span><span class="guide__map-t">Verification becomes the bottleneck</span></a></li>
+        <li><a href="#rollout"><span class="guide__map-n">04</span><span class="guide__map-t">Rollout is phased and governance-first</span></a></li>
+        <li><a href="#risks"><span class="guide__map-n">05</span><span class="guide__map-t">The failure modes are real, and they don't announce themselves</span></a></li>
+      </ol>
+      <p class="guide__also">Also inside: how it was made, its sources, and how claims were verified (the panels below) &middot; working questions after each theme &middot; <a href="#resources">resources</a> to run.</p>
+    </section>
+    <div class="provenance" id="provenance">
+      <p class="prov__title">Provenance</p>
       <details class="prov">
         <summary><span class="prov__lbl">Method</span><span class="prov__gist">Six research angles, worked independently, then adversarially reviewed.</span></summary>
         <p>An AI deep-research run, then edited and fact-checked by hand. A scoping pass split the question into six angles:</p>
@@ -24,7 +30,7 @@
         <p>Independent search agents worked each angle. A separate pass then took the opposite side, going back over every finding to look for reasons it was wrong.</p>
       </details>
       <details class="prov">
-        <summary><span class="prov__lbl">Sources</span><span class="prov__gist">Controlled trials, survey and measurement research, vendor guidance, and practitioner writing.</span></summary>
+        <summary><span class="prov__lbl">Sources</span><span class="prov__gist">Controlled trials, measurement research, vendor guidance, and practitioner writing.</span></summary>
         <p>Four kinds of source, and they are not equally independent:</p>
         <ul>
           <li><b>Controlled trials.</b> Anthropic's randomized trial on what AI assistance does to coding skill, and METR's randomized trial on experienced open-source developers.</li>
@@ -50,7 +56,8 @@
 
 <main>
   <div class="wrap">
-    <section class="glance" id="top">
+    <section class="glance" id="glance">
+      <p class="glance__label">At a glance</p>
       <p class="glance__lead">Across this research, the measured gains are real, and the spread is enormous: the same tools deliver up to 40% on one kind of work and as low as 0% on another. What separates those outcomes is rarely the tool. It is <b>the conditions the tool lands in</b>: the type of task it is given, the health of the codebase, the strength of the verification infrastructure, the shape of the engineer's role. Those are things an organization can shape. The evidence describes work moving from <b>writing</b> code toward <b>directing and verifying</b> it, and the organizations that build for that shift are the ones that capture the gains.</p>
       <div class="stats">
 
@@ -105,21 +112,26 @@
   <nav class="toc" aria-label="Sections">
     <div class="toc__inner">
       <span class="toc__brand">Themes</span>
-      <a href="#t1">Amplifier</a>
-      <a href="#t2">Roles</a>
-      <a href="#t3">Verifying</a>
-      <a href="#t4">Rollout</a>
-      <a href="#t5">Risks</a>
+      <a href="#overview">Overview</a>
+      <a href="#provenance">Provenance</a>
+      <a href="#glance">At a glance</a>
+      <a href="#amplifier">Amplifier</a>
+      <a href="#roles">Roles</a>
+      <a href="#verifying">Verifying</a>
+      <a href="#rollout">Rollout</a>
+      <a href="#risks">Risks</a>
       <span class="toc__sep" aria-hidden="true"></span>
       <a href="#resources">Resources</a>
+      <a href="#recap">Where this leaves us</a>
     </div>
   </nav>
 
   <div class="wrap">
 
+    <p class="themes__label" id="themes">Themes</p>
+
     <!-- THEME 1 -->
-    <section class="theme" id="t1">
-      <p class="theme__num">Theme 01</p>
+    <section class="theme" id="amplifier">
       <h2 class="theme__title">AI amplifies an organization; it doesn't fix one</h2>
       <p class="theme__intro">AI raises the ceiling for teams with their fundamentals in order and lowers the floor for teams without them. Where the control systems arrived after the acceleration rather than before it, the measured result was instability rather than throughput (<a href="#e2">E2</a>).</p>
 
@@ -172,10 +184,9 @@
     </section>
 
     <!-- THEME 2 -->
-    <section class="theme" id="t2">
-      <p class="theme__num">Theme 02</p>
+    <section class="theme" id="roles">
       <h2 class="theme__title">The engineer's role moves from author to director</h2>
-      <p class="theme__intro">This is where the tester analogy earns its keep: the mechanical work gets absorbed and the role relocates "up" to judgment, direction, and quality ownership. Skill doesn't become obsolete: it moves. What the organization has to build so that direction is possible is <a href="#t3">Theme 03</a>'s subject; this theme is about the person.</p>
+      <p class="theme__intro">This is where the tester analogy earns its keep: the mechanical work gets absorbed and the role relocates "up" to judgment, direction, and quality ownership. Skill doesn't become obsolete: it moves. What the organization has to build so that direction is possible is <a href="#verifying">Theme 03</a>'s subject; this theme is about the person.</p>
 
       <article class="card" id="e4">
         <div class="card__head"><span class="card__id">E4</span><span class="chip chip--high" data-tip="High: fact-checked against the live article; quotations verbatim and claim confirmed." tabindex="0">High confidence</span></div>
@@ -224,8 +235,7 @@
     </section>
 
     <!-- THEME 3 -->
-    <section class="theme" id="t3">
-      <p class="theme__num">Theme 03</p>
+    <section class="theme" id="verifying">
       <h2 class="theme__title">Verification becomes the bottleneck</h2>
       <p class="theme__intro">AI generates faster than a team can check, so checking becomes the constraint, and the rest of the software development lifecycle (SDLC) adapts around it. The vendor guidance in this theme converges on making the loop close automatically; the measured wins in it landed where the loop already closed.</p>
 
@@ -288,10 +298,9 @@
     </section>
 
     <!-- THEME 4 -->
-    <section class="theme" id="t4">
-      <p class="theme__num">Theme 04</p>
+    <section class="theme" id="rollout">
       <h2 class="theme__title">Rollout is phased and governance-first</h2>
-      <p class="theme__intro"><a href="#t1">Theme 01</a> found that the control systems have to be in place before the acceleration. This is what that order looked like when real organizations ran it. Every vendor and analyst playbook read for this dossier leads with organizational and governance work, then a small pilot, then expansion, rather than a technical big-bang, and the adopters who published their rollouts did the same. The shape matches the one organizations used for CI/CD, Git, and test automation, though no source here draws that comparison: it is the dossier's.</p>
+      <p class="theme__intro"><a href="#amplifier">Theme 01</a> found that the control systems have to be in place before the acceleration. This is what that order looked like when real organizations ran it. Every vendor and analyst playbook read for this dossier leads with organizational and governance work, then a small pilot, then expansion, rather than a technical big-bang, and the adopters who published their rollouts did the same. The shape matches the one organizations used for CI/CD, Git, and test automation, though no source here draws that comparison: it is the dossier's.</p>
 
       <article class="card" id="e11">
         <div class="card__head"><span class="card__id">E11</span><span class="chip chip--high" data-tip="High: peer-reviewed venue; quotations verified verbatim against the paper. Meta reporting on its own internal tool." tabindex="0">High · measured</span></div>
@@ -342,10 +351,9 @@
     </section>
 
     <!-- THEME 5 -->
-    <section class="theme" id="t5">
-      <p class="theme__num">Theme 05</p>
+    <section class="theme" id="risks">
       <h2 class="theme__title">The failure modes are real, and they don't announce themselves</h2>
-      <p class="theme__intro">New skill quietly fails to form, the gains are smaller than they feel, duplication accumulates without anyone noticing, and in every case the people involved reported that things were going well. None of these show up from the inside, which is the whole argument for measuring rather than assuming. (Where the gains do land is <a href="#t3">Theme 03</a>.)</p>
+      <p class="theme__intro">New skill quietly fails to form, the gains are smaller than they feel, duplication accumulates without anyone noticing, and in every case the people involved reported that things were going well. None of these show up from the inside, which is the whole argument for measuring rather than assuming. (Where the gains do land is <a href="#verifying">Theme 03</a>.)</p>
 
       <article class="card" id="e14">
         <div class="card__head"><span class="card__id">E14</span><span class="chip chip--high" data-tip="High: survived the adversarial fact-check. Published by the vendor against its own commercial interest, which strengthens it." tabindex="0">High · against vendor interest</span></div>
@@ -413,7 +421,6 @@
 
     <!-- RESOURCES -->
     <section class="theme" id="resources">
-      <p class="theme__num">What to reach for</p>
       <h2 class="theme__title">Resources</h2>
       <p class="theme__intro">Each card above links its own source. These are the things a team reaches for after the working questions: artifacts it can actually run, and a short list worth reading in full. Everything here was fetched and checked. Where something is gated, or assumes a particular vendor's tools, it says so.</p>
 
@@ -444,15 +451,17 @@
       </ul>
 
     </section>
+
+    <section class="recap" id="recap" aria-label="Where this leaves us">
+      <p class="recap__label">Where this leaves us</p>
+      <p>The evidence gathered here is uneven and often disagrees, and that spread is itself the finding rather than something to average away. Where the gains landed, they tracked the conditions the tool met more than the tool itself: the shape of the task, the health of the codebase, the strength of verification, the shape of the engineer's role. The role moved from writing toward directing and verifying; verification became the constraint the rest of the work adapts around; the rollouts that worked led with governance and measured as they went; and the failure modes stayed invisible unless someone measured for them.</p>
+      <p>The studies here run from 2023 to 2026, a stretch over which the tools themselves changed out from under the research, from autocomplete suggestions to agents that plan work and run their own checks. Half the sources are vendors writing about their own products, and every card that leans on one says so. The two randomized trials are small, 52 and 16 participants. And nothing here is longitudinal on organizational adoption, because that research does not exist yet: what exists is measurement studies, vendor guidance, and a handful of published rollouts.</p>
+    </section>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="caveats">
-      <h3>What this evidence base is</h3>
-      <p>The studies here run from 2023 to 2026, a stretch over which the tools themselves changed out from under the research, from autocomplete suggestions to agents that plan work and run their own checks. Across that much time and change, they often do not agree with each other, and the spread between them is the finding rather than something to average away. Half the sources are vendors writing about their own products, and every card that leans on one says so. The two randomized trials are small, 52 and 16 participants. And nothing here is longitudinal on organizational adoption, because that research does not exist yet: what exists is measurement studies, vendor guidance, and a handful of published rollouts.</p>
-      <p style="margin-top:.9rem;color:var(--ink-faint);font-family:var(--mono);font-size:.74rem;">Synthesized from a multi-source deep-research pass, July 2026.</p>
-    </div>
+    <p style="color:var(--ink-faint);font-family:var(--mono);font-size:.74rem;">Synthesized from a multi-source deep-research pass, July 2026.</p>
   </div>
 </footer>
