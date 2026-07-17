@@ -39,7 +39,6 @@ export default async function Entry({ params }: { params: Promise<{ slug: string
       <TerminalBar
         path="~/notebook"
         subpath={entry.slug}
-        maxWidth="66rem"
         nav={navFor('entry')}
         right={
           <>

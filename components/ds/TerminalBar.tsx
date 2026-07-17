@@ -17,7 +17,7 @@ export interface TerminalBarProps extends HTMLAttributes<HTMLElement> {
   subpath?: string;
   /** Right-hand slot for controls (theme toggle, contents toggle). */
   right?: ReactNode;
-  /** Inner container max-width; defaults to the collection width. */
+  /** Inner container max-width; defaults to the shell width, nav edge to edge. */
   maxWidth?: string;
   /** Cross-navigation. Every surface links to the others. */
   nav?: readonly NavItem[];
@@ -35,7 +35,7 @@ export function TerminalBar({
   path,
   subpath,
   right,
-  maxWidth = '60rem',
+  maxWidth = 'var(--width-shell)',
   nav = [],
   className,
   ...rest

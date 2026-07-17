@@ -14,6 +14,10 @@
 html {
   font-size: var(--text-base-size);
   scroll-behavior: smooth;
+  /* Reserve the scrollbar gutter on every page so a short surface (a notebook
+     index with few entries) and a tall one stay the same width. Without this,
+     the centered frame shifts as the scrollbar comes and goes between routes. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -85,7 +89,7 @@ a {
 }
 
 .nb-shell {
-  max-width: 60rem;
+  max-width: var(--width-shell);
   margin: 0 auto;
   padding: var(--space-7) var(--space-5) var(--space-8);
 }
