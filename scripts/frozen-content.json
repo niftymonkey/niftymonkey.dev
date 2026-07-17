@@ -161,7 +161,7 @@
       "summarySource": "McKinsey",
       "source": "McKinsey · Unleashing developer productivity with generative AI (internal lab, 40+ of its own developers, June 2023). mckinsey.com",
       "context": "The gradient tracks speed, not value: McKinsey also reports that developers using the tools on complex tasks were \"25 to 30 percent more likely than those without the tools to complete those tasks within the time frame given\". Read the low end as where time savings thin out, not as where AI stops helping. McKinsey attributes the variance to two things, and the second is the sharper result: \"in some cases, tasks took junior developers 7 to 10 percent longer with the tools than without them.\" What the tools are pointed at is one lever; who is holding them is the other. The other end of the task axis is E10, where later tooling on bounded, mechanically checkable work posted the largest gains anyone has reported: a gradient across task shapes and tool generations, not a controlled comparison.",
-      "caveat": "⚠",
+      "caveat": "⚠ The broader \"up to twice as fast\" generalization failed verification: it appears nowhere in this document. What survived are the task-by-task figures above, not a blanket multiplier. 2023 lab study on that era's tools.",
       "confidence": "med",
       "tip": "Medium: a 2023 lab study run before modern agentic tools, and a self-study: McKinsey's own developers on self-recorded timings, published by a firm that sells AI transformation. Survived the fact-check 2 to 1."
     },

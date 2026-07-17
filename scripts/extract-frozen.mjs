@@ -65,8 +65,8 @@ export function extractCards(html) {
     quote: pick(block, /<blockquote class="card__quote">([\s\S]*?)<\/blockquote>/),
     summarySource: pick(block, /<span class="cardx__src">([\s\S]*?)<\/span>/),
     source: pick(block, /card__row card__cite">[\s\S]*?<\/span><span>([\s\S]*?)<\/span><\/div>/),
-    context: pick(block, /<span class="card__row-lbl">Context<\/span><span class="txt">([\s\S]*?)<\/span>/),
-    caveat: pick(block, /<span class="card__row-lbl">Caveat<\/span><span class="txt">([\s\S]*?)<\/span>/),
+    context: pick(block, /<span class="card__row-lbl">Context<\/span><span class="txt">([\s\S]*?)<\/span>\s*<\/div>/),
+    caveat: pick(block, /<span class="card__row-lbl">Caveat<\/span><span class="txt">([\s\S]*?)<\/span>\s*<\/div>/),
     confidence: (block.match(/chip chip--(\w+)/) ?? [])[1] ?? null,
     tip: pick(block, /data-tip="([^"]*)"/),
   }));
