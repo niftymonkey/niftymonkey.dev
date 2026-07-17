@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import type { EntrySection } from './sections';
+import { entries } from './entries';
 import AdoptingAi from './adopting-ai/entry.mdx';
 import { sections as adoptingAiSections } from './adopting-ai/sections';
 
@@ -21,3 +22,12 @@ export interface EntryBody {
 export const bodies: Record<string, EntryBody> = {
   'adopting-ai': { Body: AdoptingAi, sections: adoptingAiSections },
 };
+
+const unwritten = entries.filter((entry) => !(entry.slug in bodies));
+if (unwritten.length) {
+  throw new Error(
+    `The notebook lists ${unwritten.map((e) => e.slug).join(', ')}, but nothing here says ` +
+      `what to render. Add the entry to this map, or take it out of entries.ts. A listed ` +
+      `entry that will not open is worse than one that was never listed.`,
+  );
+}
