@@ -1,52 +1,45 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
-export interface ContentsLink {
-  href: string;
-  label: string;
-}
-
-const THEME_HREFS = new Set(['#amplifier', '#roles', '#verifying', '#rollout', '#risks']);
+import type { EntrySection } from '@/content/notebook/sections';
 
 type ContentsRow =
-  | { kind: 'group'; label: string; href?: string }
-  | { kind: 'link'; href: string; label: string; sub?: boolean };
+  | { kind: 'group'; label: string }
+  | { kind: 'link'; id: string; label: string; sub: boolean };
 
 /**
- * Turns the flat contents links into display rows. The contiguous theme run
- * (#amplifier, #roles, …) sits under a plain "Themes" heading; every other link
- * stays a flat top-level row.
+ * Turns an entry's sections into display rows. A contiguous run sharing a group
+ * is drawn beneath one heading of that name; everything else is a flat
+ * top-level row. The grouping is whatever the entry said it was, so a second
+ * entry that groups differently, or not at all, needs nothing here.
  */
-function buildRows(links: ContentsLink[]): ContentsRow[] {
+function buildRows(sections: readonly EntrySection[]): ContentsRow[] {
   const rows: ContentsRow[] = [];
-  let inThemes = false;
+  let openGroup: string | undefined;
 
-  for (const link of links) {
-    if (THEME_HREFS.has(link.href)) {
-      if (!inThemes) {
-        rows.push({ kind: 'group', label: 'Themes' });
-        inThemes = true;
-      }
-      rows.push({ kind: 'link', href: link.href, label: link.label, sub: true });
-    } else {
-      inThemes = false;
-      rows.push({ kind: 'link', href: link.href, label: link.label });
+  for (const section of sections) {
+    if (section.group && section.group !== openGroup) {
+      rows.push({ kind: 'group', label: section.group });
     }
+    openGroup = section.group;
+    rows.push({
+      kind: 'link',
+      id: section.id,
+      label: section.label,
+      sub: Boolean(section.group),
+    });
   }
 
   return rows;
 }
 
-/**
- * The contents rail. The links are the author's own, lifted from the contents
- * nav he published with the entry, so the notebook never renames his sections.
- */
-export function EntryContents({ links }: { links: ContentsLink[] }) {
-  const [active, setActive] = useState('overview');
+/** The contents rail. The sections, their order and their words are the entry's own. */
+export function EntryContents({ sections }: { sections: readonly EntrySection[] }) {
+  const [active, setActive] = useState(sections[0]?.id ?? '');
 
   useEffect(() => {
-    const ids = ['overview', ...links.map((link) => link.href.slice(1))];
+    const ids = sections.map((section) => section.id);
+    if (!ids.length) return;
 
     // The active row is the last section whose heading has scrolled up to a line
     // just below the sticky bar. Unlike a thin mid-viewport intersection band,
@@ -56,7 +49,7 @@ export function EntryContents({ links }: { links: ContentsLink[] }) {
     const update = () => {
       frame = 0;
       const line = 130;
-      let current = 'overview';
+      let current = ids[0];
       for (const id of ids) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= line) current = id;
@@ -80,33 +73,23 @@ export function EntryContents({ links }: { links: ContentsLink[] }) {
       window.removeEventListener('resize', onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [links]);
+  }, [sections]);
 
-  const rows = buildRows(links);
+  const rows = buildRows(sections);
 
   return (
     <nav className="nb-contents" aria-label="On this page">
       <p className="nb-contents__label">On this page</p>
       {rows.map((row, index) =>
         row.kind === 'group' ? (
-          row.href ? (
-            <a
-              key={`group-${index}`}
-              href={row.href}
-              className={`nb-contents__group${active === row.href.slice(1) ? ' is-active' : ''}`}
-            >
-              {row.label}
-            </a>
-          ) : (
-            <p key={`group-${index}`} className="nb-contents__group">
-              {row.label}
-            </p>
-          )
+          <p key={`group-${index}`} className="nb-contents__group">
+            {row.label}
+          </p>
         ) : (
           <a
-            key={row.href}
-            href={row.href}
-            className={`nb-contents__link${row.sub ? ' nb-contents__link--sub' : ''}${active === row.href.slice(1) ? ' is-active' : ''}`}
+            key={row.id}
+            href={`#${row.id}`}
+            className={`nb-contents__link${row.sub ? ' nb-contents__link--sub' : ''}${active === row.id ? ' is-active' : ''}`}
           >
             {row.label}
           </a>

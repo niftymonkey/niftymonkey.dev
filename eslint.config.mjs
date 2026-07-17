@@ -15,6 +15,9 @@ const eslintConfig = defineConfig([
     // The design handoff bundle. Reference material, never source: its
     // prototypes ship a review-only runtime that must not reach the app.
     "tmp/**",
+    // Session scratch and git worktree checkouts: whole copies of the repo,
+    // not source to lint. Their contents are linted in their own trees.
+    ".claude/**",
   ]),
 ]);
 
