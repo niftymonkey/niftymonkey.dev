@@ -1,6 +1,8 @@
+import createMDX from '@next/mdx';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   async redirects() {
     return [
       // The dossier is now the notebook's first entry. Its original URL was
@@ -11,4 +13,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);
