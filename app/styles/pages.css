@@ -225,12 +225,29 @@
 
 /* ---- Notebook index ---- */
 
+/* The gutter carries a `#` per wrapped row; the prose wraps in its own column
+   so the marks never change where it breaks. */
 .nb-readme {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1ch;
+  align-items: start;
   font-family: var(--font-mono);
   font-size: var(--fs-small);
+  line-height: 1.65;
   color: var(--text-faint);
   margin: 0;
-  white-space: pre-line;
+}
+
+/* A column of `#`, each on its own line at the shared line-height, so mark k
+   sits level with visual row k of the prose beside it. */
+.nb-readme__gutter {
+  display: flex;
+  flex-direction: column;
+}
+
+.nb-readme__text {
+  text-wrap: pretty;
 }
 
 /* The command sits with the list it describes, not marooned between two gaps. */

@@ -3,6 +3,7 @@ import { TerminalBar } from '@/components/ds/TerminalBar';
 import { EntryRow } from '@/components/ds/EntryRow';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { navFor } from '@/components/site/nav';
+import { ReadmeComment } from '@/components/notebook/ReadmeComment';
 import { entries, sortEntries, type NotebookEntry } from '@/content/notebook/entries';
 import { fixtureEntries, isFixturesEnabled } from '@/content/notebook/fixtures';
 
@@ -57,11 +58,7 @@ export default async function Notebook({
       <main className="nb-shell">
         <p className="nb-prompt">cat README</p>
 
-        <p className="nb-readme">
-          {`# a small, permanent collection of engineering thinking worth keeping.
-# written as carefully as i can, and revisited so it stays honest as the ground moves.
-# newest first; each carries the date i last stood behind it.`}
-        </p>
+        <ReadmeComment text="engineering thinking worth keeping, written as carefully as i can and revisited so it stays honest as the ground moves." />
 
         {/* -t sorts by time, newest first. The flag is the ordering rule. */}
         <p className="nb-prompt nb-prompt--list">
