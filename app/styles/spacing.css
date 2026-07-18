@@ -32,6 +32,8 @@
   --width-list:  52rem;  /* index / collection column */
   --sidebar-width: 13.5rem;
 
-  /* ---- elevation (used sparingly; dark UI leans on borders) ---- */
-  --shadow-card: 0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55);
 }
+
+/* Elevation lives in colors.css with the rest of the theme tokens: a shadow is
+   a themed color, and defining it here once put it after the theme blocks in
+   the cascade, silently overriding their values on the explicit-theme path. */
