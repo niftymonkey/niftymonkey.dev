@@ -1,10 +1,10 @@
 import type { ComponentType } from 'react';
 import type { EntrySection } from './sections';
 import { entries } from './entries';
-import AdoptingAi from './adopting-ai/entry.mdx';
-import { sections as adoptingAiSections } from './adopting-ai/sections';
-import WhatChangesForYou from './what-changes-for-you/entry.mdx';
-import { sections as whatChangesForYouSections } from './what-changes-for-you/sections';
+import AdoptingAiEvidence from './adopting-ai-evidence/entry.mdx';
+import { sections as adoptingAiEvidenceSections } from './adopting-ai-evidence/sections';
+import AdoptingAiEngineer from './adopting-ai-engineer/entry.mdx';
+import { sections as adoptingAiEngineerSections } from './adopting-ai-engineer/sections';
 
 export interface EntryBody {
   /** The entry itself: a real component tree, compiled from its own file. */
@@ -22,8 +22,8 @@ export interface EntryBody {
  * whether it still stands. This is where the writing itself is hung.
  */
 export const bodies: Record<string, EntryBody> = {
-  'adopting-ai': { Body: AdoptingAi, sections: adoptingAiSections },
-  'what-changes-for-you': { Body: WhatChangesForYou, sections: whatChangesForYouSections },
+  'adopting-ai-evidence': { Body: AdoptingAiEvidence, sections: adoptingAiEvidenceSections },
+  'adopting-ai-engineer': { Body: AdoptingAiEngineer, sections: adoptingAiEngineerSections },
 };
 
 const unwritten = entries.filter((entry) => !(entry.slug in bodies));

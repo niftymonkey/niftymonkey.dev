@@ -12,18 +12,24 @@ import styles from './entry-kit.module.css';
  * same ideas; migrating it onto this kit is optional future work.
  */
 
-/** The entry's opening block: title, dek, and date stamp. */
+/**
+ * The entry's opening block: title, dek, and date stamp. An entry with more
+ * front matter than that (the dossier's reader guide and provenance) passes it
+ * as children, rendered after the stamp inside the same flow.
+ */
 export function Masthead({
   title,
   tail,
   dek,
   stamp,
+  children,
 }: {
   title: string;
   /** Second line of the title, e.g. the part after "Adopting AI:". */
   tail: string;
   dek: string;
   stamp: string;
+  children?: ReactNode;
 }) {
   return (
     <header className="masthead">
@@ -33,6 +39,7 @@ export function Masthead({
         </h1>
         <p className="dek">{dek}</p>
         <p className="stamp">{stamp}</p>
+        {children}
       </div>
     </header>
   );

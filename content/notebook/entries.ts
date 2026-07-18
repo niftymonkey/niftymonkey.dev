@@ -39,25 +39,25 @@ export interface NotebookEntry {
  */
 export const entries: readonly NotebookEntry[] = [
   {
-    slug: 'what-changes-for-you',
-    title: 'Adopting AI: What Changes for You',
+    slug: 'adopting-ai-engineer',
+    title: "Adopting AI: An Engineer's Guide",
     description:
       'What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?',
     kind: 'essay',
-    duration: '7 min',
+    duration: '9 min',
     published: '2026-07',
-    related: ['adopting-ai'],
+    headline: true,
+    related: ['adopting-ai-evidence'],
   },
   {
-    slug: 'adopting-ai',
+    slug: 'adopting-ai-evidence',
     title: 'Adopting AI: The Evidence So Far',
     description:
       'What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes.',
     kind: 'dossier',
     duration: '34 min',
     published: '2026-07',
-    headline: true,
-    related: ['what-changes-for-you'],
+    related: ['adopting-ai-engineer'],
   },
 ];
 

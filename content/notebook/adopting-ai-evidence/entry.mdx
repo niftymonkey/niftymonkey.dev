@@ -1,3 +1,4 @@
+import { Masthead } from '@/components/notebook/entry-kit';
 import {
   Apparatus,
   Caveat,
@@ -16,11 +17,12 @@ import {
   WorkingQuestions,
 } from './components';
 
-<header className="masthead">
-  <div className="masthead__inner">
-    <h1>Adopting AI: <span className="h1-tail">The Evidence So Far</span></h1>
-    <p className="dek">What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes.</p>
-    <p className="stamp">Updated July 2026</p>
+<Masthead
+  title="Adopting AI:"
+  tail="The Evidence So Far"
+  dek="What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes."
+  stamp="Updated July 2026"
+>
     <section className="guide" id="guide" aria-label="What's inside">
       <p className="guide__lead">This is research on what organizations have actually measured while adopting AI in software engineering, and how it went. It is <b>not a recommendation</b>. Five themes, seventeen evidence cards graded by confidence. Each theme closes with <b>working questions</b> it deliberately leaves for you to answer, and the <b>resources</b> at the end are what to reach for when you go to answer them.</p>
       <ol className="guide__map">
@@ -65,8 +67,7 @@ import {
         <p>Every quotation was checked against its source before publication, and the ones that failed were replaced with the source's real words. No statistic changed in the process; where a quote was wrong, it was the wording that was wrong and not the finding.</p>
       </ProvPanel>
     </div>
-  </div>
-</header>
+</Masthead>
 
 <main>
   <div className="wrap">

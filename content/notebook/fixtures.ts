@@ -3,8 +3,9 @@ import type { NotebookEntry } from './entries';
 /**
  * NOT REAL WRITING. These entries do not exist and must never be published.
  *
- * The design handoff's notebook index shipped with five entries; only
- * `adopting-ai` is real. These four are the invented ones, kept solely so the
+ * The design handoff's notebook index shipped with five entries; only the
+ * dossier (now `adopting-ai-evidence`) was real then. These four are the
+ * invented ones, kept solely so the
  * index can be rendered at a realistic size during development and checked for
  * the things a one-entry index cannot exercise: the accent landing on exactly
  * one headline, a video row sitting next to a written one without either

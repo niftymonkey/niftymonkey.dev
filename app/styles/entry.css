@@ -497,6 +497,40 @@
 }
 
 /* The overview and provenance section headings, matched to the guide and recap labels. */
+/* Tailwind's preflight strips list markers; restore them for unclassed lists
+   on every entry. Wrapped in :where() so this carries zero extra specificity:
+   any list that declares its own treatment (the guide map, the resources, a
+   dot list below) wins without a fight. */
+.nb-entry :where(ul:not([class])) {
+  list-style: disc;
+}
+.nb-entry :where(ol:not([class])) {
+  list-style: decimal;
+}
+
+/* Inside a collapsed panel, an unclassed list drops the disc for the small
+   accent dot the dossier's provenance panels established, so disclosure
+   content reads quieter than body prose. Reusable by any entry's <details>. */
+.nb-entry details :where(ul:not([class])) {
+  list-style: none;
+  padding-left: 0;
+}
+.nb-entry details :where(ul:not([class]) > li) {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+.nb-entry details :where(ul:not([class]) > li)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+
 .nb-entry .glance__label, .nb-entry .prov__title {
   font-family: var(--mono); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase;
   color: var(--accent); font-weight: 600; margin: 0 0 .8rem;
