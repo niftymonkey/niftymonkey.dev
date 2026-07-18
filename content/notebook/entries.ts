@@ -19,8 +19,6 @@ export interface NotebookEntry {
   note?: string;
   /** Retired but kept: still reachable, still linked, never deleted. */
   superseded?: boolean;
-  /** The single entry the accent is allowed to mark. */
-  headline?: boolean;
   /**
    * Curated by hand, per entry, because the author wrote both ends and is the
    * only one who knows what actually connects. Never algorithmic, never "here
@@ -46,7 +44,6 @@ export const entries: readonly NotebookEntry[] = [
     kind: 'essay',
     duration: '9 min',
     published: '2026-07',
-    headline: true,
     related: ['adopting-ai-evidence'],
   },
   {

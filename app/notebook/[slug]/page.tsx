@@ -74,7 +74,6 @@ export default async function Entry({ params }: { params: Promise<{ slug: string
                   date={other.published}
                   reviewed={other.reviewed}
                   kind={other.kind}
-                  accent={other.headline}
                   duration={other.duration}
                   title={other.title}
                   description={other.description}

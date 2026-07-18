@@ -7,10 +7,9 @@ import type { NotebookEntry } from './entries';
  * dossier (now `adopting-ai-evidence`) was real then. These four are the
  * invented ones, kept solely so the
  * index can be rendered at a realistic size during development and checked for
- * the things a one-entry index cannot exercise: the accent landing on exactly
- * one headline, a video row sitting next to a written one without either
- * looking like the exception, and a superseded entry reading as integrity
- * rather than as a broken link.
+ * the things a one-entry index cannot exercise: a video row sitting next to a
+ * written one without either looking like the exception, and a superseded
+ * entry reading as integrity rather than as a broken link.
  *
  * Reachable only at /notebook?fixtures=1, and only outside production. See
  * `isFixturesEnabled` below, which is the single gate.
