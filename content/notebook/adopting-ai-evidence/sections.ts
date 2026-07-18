@@ -15,5 +15,5 @@ export const sections: readonly EntrySection[] = [
   { id: 'rollout', label: 'Rollout', group: 'Themes' },
   { id: 'risks', label: 'Risks', group: 'Themes' },
   { id: 'resources', label: 'Resources' },
-  { id: 'recap', label: 'Where this leaves us' },
+  { id: 'recap', label: 'Where things stand' },
 ];

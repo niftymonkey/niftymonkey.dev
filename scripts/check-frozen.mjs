@@ -11,7 +11,7 @@
 import { readFile } from 'node:fs/promises';
 import { toText } from './extract-frozen.mjs';
 
-const PAGE = '.next/server/app/notebook/adopting-ai.html';
+const PAGE = '.next/server/app/notebook/adopting-ai-evidence.html';
 const REFERENCE = 'scripts/frozen-content.json';
 
 /** Fields whose text must survive verbatim, in the order a reader meets them. */

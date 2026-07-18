@@ -256,10 +256,6 @@ a.nb-row:hover {
 }
 
 .nb-row__kind-name {
-  color: var(--text-faint);
-}
-
-.nb-row__kind-name.is-live {
   color: var(--accent);
 }
 

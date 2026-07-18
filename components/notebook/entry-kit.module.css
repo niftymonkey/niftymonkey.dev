@@ -1,0 +1,63 @@
+/*
+ * Prose styles for essay-style notebook entries, shared by the entry kit.
+ *
+ * Entries written as plain markdown need these because the app's Tailwind
+ * preflight strips bare-element margins and list markers, and the entry
+ * surface's base ink is the strong heading color. The dossier never hit
+ * either problem because every element it renders carries its own class;
+ * these rules give unclassed prose the same reading texture (soft ink, a
+ * slightly larger body size, a real blank line between paragraphs, visible
+ * list markers). Boxed asides keep their own styles; the shared .theme__q
+ * rules are more specific and win where they overlap.
+ */
+
+.pos {
+  margin-top: 2.2rem;
+}
+
+/* The first section reads as part of the masthead's flow, the way the
+   dossier's guide follows its stamp, so it forgoes the section gap. */
+:global(header.masthead) + .pos {
+  margin-top: 0;
+}
+
+.body p {
+  margin: 0 0 1.15rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.body > p:last-child {
+  margin-bottom: 0;
+}
+
+.body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.body ul,
+.body ol {
+  margin: 0 0 1.15rem;
+  padding-left: 1.25rem;
+}
+
+.body ul {
+  list-style: disc;
+}
+
+.body ol {
+  list-style: decimal;
+}
+
+.body li {
+  margin: 0 0 0.6rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.body li:last-child {
+  margin-bottom: 0;
+}

@@ -3,7 +3,7 @@
    The notebook is dark by default; light is a first-class peer.
    Accent is a single muted sage that only ever marks LIVE or
    ACTIVE things (prompts, the current section, a re-review mark,
-   the headline entry). It is a signal, never decoration.
+   an entry's kind label). It is a signal, never decoration.
    ============================================================ */
 
 :root {

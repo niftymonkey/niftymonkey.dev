@@ -16,8 +16,6 @@ export interface EntryRowProps {
   /** Optional forward pointer, e.g. "supersedes notes-on-ai-pair-programming". */
   note?: string;
   href?: string;
-  /** Marks the current headline entry. */
-  accent?: boolean;
   /** Prepends the video play triangle. */
   video?: boolean;
   /** Retired-but-kept entry: dimmed, struck title, no hover. */
@@ -27,9 +25,8 @@ export interface EntryRowProps {
 /**
  * One line of the plaintext collection.
  *
- * The accent is reserved for what is live: the headline entry, and the mark on
- * an entry the author has gone back and stood behind again. Everything else is
- * quiet, so that when something is sage it means something.
+ * The kind label and the re-review mark carry the accent, on every row alike;
+ * everything else is quiet.
  */
 export function EntryRow({
   date,
@@ -40,12 +37,10 @@ export function EntryRow({
   description,
   note,
   href,
-  accent,
   video,
   superseded,
 }: EntryRowProps) {
   const classes = ['nb-row', superseded ? 'nb-row--superseded' : ''].filter(Boolean).join(' ');
-  const live = Boolean(accent || reviewed) && !superseded;
 
   const body = (
     <>
@@ -59,7 +54,7 @@ export function EntryRow({
       </span>
 
       <span className="nb-row__kind">
-        <span className={`nb-row__kind-name${live ? ' is-live' : ''}`}>
+        <span className="nb-row__kind-name">
           {video ? <span className="nb-row__play" aria-hidden="true" /> : null}
           {kind}
         </span>

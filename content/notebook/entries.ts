@@ -19,8 +19,6 @@ export interface NotebookEntry {
   note?: string;
   /** Retired but kept: still reachable, still linked, never deleted. */
   superseded?: boolean;
-  /** The single entry the accent is allowed to mark. */
-  headline?: boolean;
   /**
    * Curated by hand, per entry, because the author wrote both ends and is the
    * only one who knows what actually connects. Never algorithmic, never "here
@@ -39,14 +37,24 @@ export interface NotebookEntry {
  */
 export const entries: readonly NotebookEntry[] = [
   {
-    slug: 'adopting-ai',
+    slug: 'adopting-ai-engineer',
+    title: "Adopting AI: An Engineer's Guide",
+    description:
+      'What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?',
+    kind: 'essay',
+    duration: '9 min',
+    published: '2026-07',
+    related: ['adopting-ai-evidence'],
+  },
+  {
+    slug: 'adopting-ai-evidence',
     title: 'Adopting AI: The Evidence So Far',
     description:
       'What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes.',
     kind: 'dossier',
     duration: '34 min',
     published: '2026-07',
-    headline: true,
+    related: ['adopting-ai-engineer'],
   },
 ];
 

@@ -1,3 +1,4 @@
+import { Masthead } from '@/components/notebook/entry-kit';
 import {
   Apparatus,
   Caveat,
@@ -16,11 +17,12 @@ import {
   WorkingQuestions,
 } from './components';
 
-<header className="masthead">
-  <div className="masthead__inner">
-    <h1>Adopting AI: <span className="h1-tail">The Evidence So Far</span></h1>
-    <p className="dek">What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes.</p>
-    <p className="stamp">Updated July 2026</p>
+<Masthead
+  title="Adopting AI:"
+  tail="The Evidence So Far"
+  dek="What the current evidence shows about bringing AI into an engineering organization: where the gains land, what they depend on, and how the work changes."
+  stamp="Updated July 2026"
+>
     <section className="guide" id="guide" aria-label="What's inside">
       <p className="guide__lead">This is research on what organizations have actually measured while adopting AI in software engineering, and how it went. It is <b>not a recommendation</b>. Five themes, seventeen evidence cards graded by confidence. Each theme closes with <b>working questions</b> it deliberately leaves for you to answer, and the <b>resources</b> at the end are what to reach for when you go to answer them.</p>
       <ol className="guide__map">
@@ -65,8 +67,7 @@ import {
         <p>Every quotation was checked against its source before publication, and the ones that failed were replaced with the source's real words. No statistic changed in the process; where a quote was wrong, it was the wording that was wrong and not the finding.</p>
       </ProvPanel>
     </div>
-  </div>
-</header>
+</Masthead>
 
 <main>
   <div className="wrap">
@@ -431,8 +432,8 @@ import {
 
     </Theme>
 
-    <section className="recap" id="recap" aria-label="Where this leaves us">
-      <p className="recap__label">Where this leaves us</p>
+    <section className="recap" id="recap" aria-label="Where things stand">
+      <p className="recap__label">Where things stand</p>
       <p>The evidence gathered here is uneven and often disagrees, and that spread is itself the finding rather than something to average away. Where the gains landed, they tracked the conditions the tool met more than the tool itself: the shape of the task, the health of the codebase, the strength of verification, the shape of the engineer's role. The role moved from writing toward directing and verifying; verification became the constraint the rest of the work adapts around; the rollouts that worked led with governance and measured as they went; and the failure modes stayed invisible unless someone measured for them.</p>
       <p>The studies here run from 2023 to 2026, a stretch over which the tools themselves changed out from under the research, from autocomplete suggestions to agents that plan work and run their own checks. Half the sources are vendors writing about their own products, and every card that leans on one says so. The two randomized trials are small, 52 and 16 participants. And nothing here is longitudinal on organizational adoption, because that research does not exist yet: what exists is measurement studies, vendor guidance, and a handful of published rollouts.</p>
     </section>

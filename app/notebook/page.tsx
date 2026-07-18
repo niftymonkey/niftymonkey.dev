@@ -26,7 +26,6 @@ function Rows({ list }: { list: NotebookEntry[] }) {
           description={entry.description}
           note={entry.note}
           href={`/notebook/${entry.slug}`}
-          accent={entry.headline}
           video={entry.kind === 'video'}
           superseded={entry.superseded}
         />

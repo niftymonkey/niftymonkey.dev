@@ -23,7 +23,7 @@ A blog is a stream. Posts are dated, published once, and quietly rot. Nobody goe
 
 ## The feel
 
-Quietly crafted, not decorated. The metaphor is an engineering logbook rendered as a terminal: monospace chrome, system type, dark-native with light mode as a first-class equal, and one sage accent used only to mark what is *live*: the current section, a re-review, a running example. Delight lives in the precision and the voice, not in effects. It should feel unmistakably mine, and unmistakably made by hand.
+Quietly crafted, not decorated. The metaphor is an engineering logbook rendered as a terminal: monospace chrome, system type, dark-native with light mode as a first-class equal, and one sage accent with only two jobs: naming an entry's kind, and marking what is *live*: the current section, a re-review, a running example. Delight lives in the precision and the voice, not in effects. The voice is a person talking, never an instrument reporting; that holds for every entry, whatever its subject or audience. It should feel unmistakably mine, and unmistakably made by hand.
 
 ## The test of a good entry
 
