@@ -43,12 +43,6 @@ export function TerminalBar({
   return (
     <header className={['nb-bar', className ?? ''].filter(Boolean).join(' ')} {...rest}>
       <div className="nb-bar__inner" style={{ maxWidth }}>
-        <div className="nb-bar__dots" aria-hidden="true">
-          <span className="nb-bar__dot" />
-          <span className="nb-bar__dot" />
-          <span className="nb-bar__dot" />
-        </div>
-
         <span className={`nb-bar__loc${subpath ? ' nb-bar__loc--crumbed' : ''}`}>
           <span className="nb-bar__path">{path}</span>
           {subpath ? (
