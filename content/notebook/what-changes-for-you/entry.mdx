@@ -1,12 +1,11 @@
-import { Position, Footing, Mode } from './components';
+import { Masthead, Position, Footing, Mode } from '@/components/notebook/entry-kit';
 
-<header className="masthead">
-  <div className="masthead__inner">
-    <h1>Adopting AI: <span className="h1-tail">What Changes for You</span></h1>
-    <p className="dek">What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?</p>
-    <p className="stamp">Draft · July 2026</p>
-  </div>
-</header>
+<Masthead
+  title="Adopting AI:"
+  tail="What Changes for You"
+  dek="What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?"
+  stamp="Draft · July 2026"
+/>
 
 <Position id="what-this-is" title="What this is">
 
@@ -67,37 +66,43 @@ Here's the hopeful part, and I think it's the right read: the deciding factor wa
 
 </Position>
 
-<Position id="practice" title="What I actually do about it">
+<Position id="practice" title="Turning positions into practice">
 
-Everything above compresses into a small set of practices. They differ by what mode you're in, not by your title; a principal engineer learning a new domain is, for that domain, junior again.
+I believe that everything above compresses into a small set of practices, and that position is supported by the measured engagement patterns in the research, the playbooks practitioners keep publishing, and my own use, though the footing at the end is honest about how uneven that last part is. The practices differ by what mode you're in, not by your title; a principal engineer learning a new domain is, for that domain, junior again.
 
 <Mode>When you're learning the thing</Mode>
 
-- Use AI as a tutor, not a typist. Ask it concepts, tradeoffs, why this instead of that. Then write the code yourself. This is the highest-scoring pattern in the one randomized trial we have, and it's the generation effect doing what it always does.
-- Attempt first, always. "Always attempt a problem yourself before asking the AI." The attempt is where the learning lives, even when it fails; especially when it fails.
-- Do not outsource the debugging of the thing you're trying to learn. It feels like using AI responsibly ("I wrote the code myself!") and it's the trap cluster from the trial: debugging is where mastery forms, and it's the first skill to quietly not-form.
-- Keep some reps with no assistance at all. A day a week, a problem a day, whatever's sustainable: read the full error, open the actual documentation, feel where you're weak. One practitioner's framing of the cost is exactly right: "You'll write worse code, but you'll understand every line of it."
+This is the mode the over-reliance position was about, so these habits are the protection.
+
+- Use AI as a tutor, not a typist. Ask it concepts, tradeoffs, why this instead of that; then write the code yourself.
+- Attempt first, always. The attempt is where the learning lives, even when it fails. Especially when it fails.
+- Never outsource the debugging of the thing you're trying to learn. It feels responsible ("I wrote the code myself!"), and it's still the trap: debugging is where mastery forms.
+- Keep some reps with no assistance at all: read the full error, open the actual documentation, feel where you're weak. The code from those sessions will be worse, and you'll know why every line of it is there.
 
 <Mode>When you're producing</Mode>
 
-- Route by shape, per the position above: delegate the bounded and checkable, keep the complex and contextual close.
-- Stay actively in the loop on anything delegated. Follow what the agent is doing the way the retained-their-skills pilots followed the automation: predict what should happen next, notice when it doesn't. Passive supervision is the documented risk posture, and complacency does not announce itself.
-- Give every delegation a pass/fail check the machine can run, and be suspicious of any completed work that only has "looks done" going for it.
-- Review AI output as if a confident stranger wrote it, because one did. The decision-support literature has a number for what happens otherwise: when an imperfect aid is wrong, it doesn't just fail to help, it actively recruits you into the error.
-- Distrust on purpose. The line I'd put on the wall came from a senior engineer quoted by Addy Osmani: "The best software engineers won’t be the fastest coders, but those who know when to distrust AI."
+This is most of the day: the routing and steering positions turned into habit.
+
+- Route by shape. Delegate the bounded and checkable; keep the complex and contextual close.
+- Steer at the seams. Agree on the plan before code gets written, catch the wrong turn while it's cheap, and when the work comes back, actually read it.
+- Give every delegation a pass/fail check the machine can run, and be suspicious of finished work whose only evidence is that it looks done.
+- Review AI output like a confident stranger wrote it, because one did. Knowing when not to believe it is the skill that compounds.
 
 <Mode>When you're responsible for other engineers</Mode>
 
-- Don't strip-mine the training ground. The bounded, well-specified tasks that agents do best are the same tasks juniors have always learned on. Deliberately preserve some of that work for humans who are still forming, and treat the choice as a training budget, not an inefficiency.
-- Keep pairing and review human where formation is the point. An assistant can substitute for some of pairing's individual benefits and none of its team benefits; and a review culture that asks *why does this work* is now load-bearing for skill formation, not just for quality.
-- Make the countermeasures normal, not remedial. Critique-the-AI passes, explain-it-back moments, occasionally building from scratch: framed as how we all stay sharp, these stick; framed as punishment for juniors, they die.
+And if other engineers' growth is your job, the junior concern above is yours to design for.
 
-<Footing>The shakiest of the five, and deliberately so. The individual practices trace to the trial's engagement clusters and the mechanism literature; the mentoring practices are reasoned from the delegation-deficit warning and practitioner reports rather than measured interventions. I'm ahead of the evidence here, and I've chosen to be, because "wait for the longitudinal data" is not a strategy available to anyone currently employed.</Footing>
+- Don't strip-mine the training ground. The bounded tasks agents do best are the same ones juniors have always learned on; keep some for the humans still forming, and call it a training budget rather than an inefficiency.
+- Keep pairing and review human where formation is the point. A review culture that asks *why does this work* is now load-bearing for skill formation, not just quality.
+- Write the working agreements down, and pull the whole team into writing them. The norms are getting set right now, deliberately or by default.
+- Make the countermeasures normal, not remedial. Explain-it-back moments, critique-the-AI passes, the occasional from-scratch build: when everyone does them, they read as staying sharp and they stick; reserve them for juniors and they read as punishment and die.
+
+<Footing>The shakiest of the five, deliberately, and in two ways. The habits themselves trace to measured engagement patterns, practitioner playbooks, and the automation literature; the longitudinal proof doesn't exist yet, and I've chosen not to wait for it. The second way is personal: like money advice, these are easy to write down and genuinely hard to live. Some I now do without thinking. Some I've only recently started, and a couple I keep having to restart. I'm publishing them anyway, partly because the evidence supports them and partly because an entry that gets re-reviewed is a good way to hold myself to them.</Footing>
 
 </Position>
 
 <section className="recap" id="closing">
-  <p className="recap__label">Where this leaves you</p>
+  <p className="recap__label">Where things stand</p>
   <p>The gains are real and task-shaped, the role is moving toward direction and verification, and the sharpest known risk lands on skills that haven't formed yet, which makes how you engage a decision with compound interest. None of it requires enthusiasm. It requires the thing the craft always required: deliberateness about where your attention goes.</p>
   <p>I hold these positions as firmly as their footing says, and no more. The record is early: the trials are small, nothing is longitudinal, and the tools change out from under the research every year. When the evidence moves, this entry moves, and what I got wrong stays on the record. That's what the notebook is for.</p>
 </section>

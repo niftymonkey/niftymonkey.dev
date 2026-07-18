@@ -9,5 +9,5 @@ export const sections: readonly EntrySection[] = [
   { id: 'perception', label: 'Measuring', group: 'Positions' },
   { id: 'formation', label: 'Over-reliance', group: 'Positions' },
   { id: 'practice', label: 'Practice', group: 'Positions' },
-  { id: 'closing', label: 'Where this leaves you' },
+  { id: 'closing', label: 'Where things stand' },
 ];

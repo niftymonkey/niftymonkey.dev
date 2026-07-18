@@ -533,11 +533,11 @@
 .nb-entry .guide__also a { color: var(--ink-soft); }
 
 /* One-line signpost under each theme title */
-/* Closing recap */
+/* Closing recap. Not a boxed aside: it closes the entry as prose, set off by
+   the same hairline the footer uses, on both entries. */
 .nb-entry .recap {
-  background: var(--surface-2); border: 1px solid var(--line);
-  border-left: 3px solid var(--accent-soft); border-radius: var(--radius-md);
-  padding: 1.4rem 1.6rem; margin: 2.4rem 0 0; scroll-margin-top: 3.5rem;
+  border-top: 1px solid var(--line);
+  padding: 2rem 0 0; margin: 2.6rem 0 0; scroll-margin-top: 3.5rem;
 }
 .nb-entry .recap p.recap__label {
   font-family: var(--mono); font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase;
