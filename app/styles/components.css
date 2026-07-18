@@ -38,19 +38,6 @@
   padding: var(--space-3) var(--space-5);
 }
 
-.nb-bar__dots {
-  display: flex;
-  gap: var(--space-2);
-  flex: none;
-}
-
-.nb-bar__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: var(--radius-pill);
-  background: var(--border-strong);
-}
-
 /* ---- Location: the path, and the leaf you are on ---- */
 
 .nb-bar__loc {
@@ -108,10 +95,6 @@
 }
 
 @media (max-width: 640px) {
-  .nb-bar__dots {
-    display: none;
-  }
-
   .nb-bar__inner {
     padding: var(--space-3) var(--space-4);
     gap: var(--space-3);
