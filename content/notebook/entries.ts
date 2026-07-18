@@ -39,6 +39,16 @@ export interface NotebookEntry {
  */
 export const entries: readonly NotebookEntry[] = [
   {
+    slug: 'what-changes-for-you',
+    title: 'Adopting AI: What Changes for You',
+    description:
+      'What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?',
+    kind: 'essay',
+    duration: '7 min',
+    published: '2026-07',
+    related: ['adopting-ai'],
+  },
+  {
     slug: 'adopting-ai',
     title: 'Adopting AI: The Evidence So Far',
     description:
@@ -47,6 +57,7 @@ export const entries: readonly NotebookEntry[] = [
     duration: '34 min',
     published: '2026-07',
     headline: true,
+    related: ['what-changes-for-you'],
   },
 ];
 

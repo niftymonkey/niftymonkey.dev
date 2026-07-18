@@ -3,6 +3,8 @@ import type { EntrySection } from './sections';
 import { entries } from './entries';
 import AdoptingAi from './adopting-ai/entry.mdx';
 import { sections as adoptingAiSections } from './adopting-ai/sections';
+import WhatChangesForYou from './what-changes-for-you/entry.mdx';
+import { sections as whatChangesForYouSections } from './what-changes-for-you/sections';
 
 export interface EntryBody {
   /** The entry itself: a real component tree, compiled from its own file. */
@@ -21,6 +23,7 @@ export interface EntryBody {
  */
 export const bodies: Record<string, EntryBody> = {
   'adopting-ai': { Body: AdoptingAi, sections: adoptingAiSections },
+  'what-changes-for-you': { Body: WhatChangesForYou, sections: whatChangesForYouSections },
 };
 
 const unwritten = entries.filter((entry) => !(entry.slug in bodies));

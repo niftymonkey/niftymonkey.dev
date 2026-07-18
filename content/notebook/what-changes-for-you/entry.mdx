@@ -1,0 +1,103 @@
+import { Position, Footing, Mode } from './components';
+
+<header className="masthead">
+  <div className="masthead__inner">
+    <h1>Adopting AI: <span className="h1-tail">What Changes for You</span></h1>
+    <p className="dek">What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?</p>
+    <p className="stamp">Draft · July 2026</p>
+  </div>
+</header>
+
+<Position id="what-this-is" title="What this is">
+
+These are positions, not a survey: what I believe an engineer should actually do. Each one ends with its footing: how firmly I hold it, and why. The measured evidence behind them lives in [Adopting AI: The Evidence So Far](/notebook/adopting-ai); this entry only borrows its conclusions. Nothing here asks for a particular tool or any enthusiasm about AI, just deliberateness.
+
+</Position>
+
+<Position id="expect" title="What to expect">
+
+Two things the evidence says to expect from the organization around you. First, AI amplifies what an organization already is: strong review and feedback loops get multiplied, and vague requirements turn into confidently wrong code faster. If adoption feels messy where you are, the mess was probably already there; it's just moving quicker now. Second, the rollouts that worked were sequences, not switches: they started small, led with guardrails, measured as they went, and expanded deliberately. Yours may look nothing like that; plenty of organizations hand everyone the tool at once. If that's where you are, the pattern still tells you something useful: what's missing, and the most important missing pieces (working agreements, review norms, machine-checkable verification) are things a single team can build without waiting for the organization.
+
+The practical move is the same either way: get involved early. The norms for how AI is used where you work are being written right now, deliberately or by default, and they'll be written whether or not you're in the room.
+
+</Position>
+
+<Position id="directing" title="From writing code to directing it">
+
+With AI in the mix, the skills you've spent years building matter more, not less. You are still designing, testing, debugging, and solving problems; you're just applying that craft through the tool as well as directly in the code. The precedent is test automation: it took the repetitive part of the tester's job and made the judgment part *the* job. Software engineering is at the front edge of the same passage.
+
+Even successful agentic sessions get steered ("I intervened, corrected and steered all the time," one honest practitioner writeup admits), and Anthropic's own teams report first-attempt success on small-to-medium pull requests about one-third of the time. So expect to be in the loop: that's the job working, not failing. And steering isn't hovering; good patterns put the human at the few points that need one (the plan, the first wrong turn, the final judgment) and let the rest run. Directing well is just your old skills pointed at a new target: decompose the problem, make intent precise, build the checks. If you can't state what done looks like, you've found the actual blocker, and it wasn't the AI.
+
+<Footing>Firm on the direction of the shift: it shows up in measurement, vendor guidance, and practitioner writing independently. How far it goes is genuinely uncertain; the best writing on the future role frames scenarios, not predictions.</Footing>
+
+</Position>
+
+<Position id="routing" title="Route your work by its shape">
+
+The measured gains are task-shaped, and the spread is enormous: on the order of 40% on simple, well-specified work, near zero on complex work deep in an existing codebase. Every headline win in the record is a migration, a conversion, a repetitive change with a machine-checkable finish line. So before reaching for the tool, ask two things:
+
+- **Is the task bounded and well-specified?** Migrations, test scaffolding, boilerplate, format conversions, documentation drafts: hand them over freely. Design decisions inside a system only you understand: keep your hands on the wheel and use AI as a sounding board.
+- **Can a machine tell you whether it worked?** If there's a test suite, a typecheck, a build that fails loudly, delegation is cheap to verify. If the only check is your own careful reading, you haven't saved verification time; you've moved all of it to yourself.
+
+This predicts something worth noticing: two engineers of identical skill will get wildly different value from the same tool depending on what they point it at. When someone says they tried it and it was useless, my first question is no longer about the tool. It's about the task.
+
+<Footing>Firm, and standing on more legs than any other position here: lab studies, measurement research, the published migration case studies, practitioner writing, and a lot of my own experience all point the same way. Ironically, the next position implies you should discount my personal experience; fine, but the other four legs hold their weight.</Footing>
+
+</Position>
+
+<Position id="perception" title="The value is measured, not felt">
+
+Most opinions about AI's value, including yours and mine, start as feelings: the session went smoothly, so it must be helping; it fumbled, so it must not be. The evidence says that's exactly the signal not to trust. In a Stanford study, only one engineer in three estimated their own productivity within a quartile. In METR's randomized trial, developers believed AI had sped them up by 20% while measurement showed the work taking longer (METR has since revised the result upward; the gap between belief and measurement is the part that survives). And it cuts both ways: the colleague who's sure AI makes them faster and the one who's sure it doesn't are making the same kind of estimate.
+
+So the position is simple: AI's value is something you measure, not something you feel. Keep cheap receipts: how often delegated output survived to merge without rework, where the time actually went. Nothing heavyweight; just enough that your opinion of the tool is anchored to data instead of to how the session felt. (For what it's worth, I take this one further than the position requires: I've built tooling around my own AI interactions that keeps these receipts for me. You don't need to go that far.)
+
+<Footing>Firm. The perception gap is a finding about human self-assessment, not tool capability, so it doesn't expire as models improve.</Footing>
+
+</Position>
+
+<Position id="formation" title="Over-reliance has a cost">
+
+So is the over-reliance worry real? Honestly, yeah, a pattern is forming. In the one randomized trial we have on engineers, the people who learned a new library with AI in hand scored nearly two letter grades worse on mastery afterward (50% versus 67%), and the biggest gap was in debugging. Student studies keep landing in the same place: scores go up, learning stays flat. There's survey work showing the more people trust the tool, the less they think critically. And the old automation research explains why: the thinking skills you stop using are the ones that fade. Nobody's measured long-term atrophy in working engineers yet, in either direction. But everything nearby points the same way: lean on it wrong, and something real slips.
+
+It's sharpest for juniors, because the skills that don't form are the ones that make you a senior later: debugging, root-cause instinct, knowing why the code works. In that same trial, the people who delegated everything finished fastest, "at the cost of learning the library." And the trap wasn't just delegation: the group that wrote their own code but handed the debugging to AI landed near the bottom too. When someone worries out loud that AI could stunt junior growth, this is the substance behind it.
+
+Here's the hopeful part, and I think it's the right read: the deciding factor was how people engaged, not whether they used AI. The highest scorers used it heavily, for concepts, and wrote the code themselves. Deskilling isn't a law of nature (calculators taught alongside real instruction actually improved arithmetic). It comes down to how deliberately you design your working habits around the tool, and that's in your hands.
+
+<Footing>Firm that over-reliance carries a measurable cost and that how you engage decides it: a randomized trial, converging student studies, and a robust mechanism literature. Much shakier on long-term atrophy in working engineers, because that data doesn't exist yet. The position I most expect to revise.</Footing>
+
+</Position>
+
+<Position id="practice" title="What I actually do about it">
+
+Everything above compresses into a small set of practices. They differ by what mode you're in, not by your title; a principal engineer learning a new domain is, for that domain, junior again.
+
+<Mode>When you're learning the thing</Mode>
+
+- Use AI as a tutor, not a typist. Ask it concepts, tradeoffs, why this instead of that. Then write the code yourself. This is the highest-scoring pattern in the one randomized trial we have, and it's the generation effect doing what it always does.
+- Attempt first, always. "Always attempt a problem yourself before asking the AI." The attempt is where the learning lives, even when it fails; especially when it fails.
+- Do not outsource the debugging of the thing you're trying to learn. It feels like using AI responsibly ("I wrote the code myself!") and it's the trap cluster from the trial: debugging is where mastery forms, and it's the first skill to quietly not-form.
+- Keep some reps with no assistance at all. A day a week, a problem a day, whatever's sustainable: read the full error, open the actual documentation, feel where you're weak. One practitioner's framing of the cost is exactly right: "You'll write worse code, but you'll understand every line of it."
+
+<Mode>When you're producing</Mode>
+
+- Route by shape, per the position above: delegate the bounded and checkable, keep the complex and contextual close.
+- Stay actively in the loop on anything delegated. Follow what the agent is doing the way the retained-their-skills pilots followed the automation: predict what should happen next, notice when it doesn't. Passive supervision is the documented risk posture, and complacency does not announce itself.
+- Give every delegation a pass/fail check the machine can run, and be suspicious of any completed work that only has "looks done" going for it.
+- Review AI output as if a confident stranger wrote it, because one did. The decision-support literature has a number for what happens otherwise: when an imperfect aid is wrong, it doesn't just fail to help, it actively recruits you into the error.
+- Distrust on purpose. The line I'd put on the wall came from a senior engineer quoted by Addy Osmani: "The best software engineers won’t be the fastest coders, but those who know when to distrust AI."
+
+<Mode>When you're responsible for other engineers</Mode>
+
+- Don't strip-mine the training ground. The bounded, well-specified tasks that agents do best are the same tasks juniors have always learned on. Deliberately preserve some of that work for humans who are still forming, and treat the choice as a training budget, not an inefficiency.
+- Keep pairing and review human where formation is the point. An assistant can substitute for some of pairing's individual benefits and none of its team benefits; and a review culture that asks *why does this work* is now load-bearing for skill formation, not just for quality.
+- Make the countermeasures normal, not remedial. Critique-the-AI passes, explain-it-back moments, occasionally building from scratch: framed as how we all stay sharp, these stick; framed as punishment for juniors, they die.
+
+<Footing>The shakiest of the five, and deliberately so. The individual practices trace to the trial's engagement clusters and the mechanism literature; the mentoring practices are reasoned from the delegation-deficit warning and practitioner reports rather than measured interventions. I'm ahead of the evidence here, and I've chosen to be, because "wait for the longitudinal data" is not a strategy available to anyone currently employed.</Footing>
+
+</Position>
+
+<section className="recap" id="closing">
+  <p className="recap__label">Where this leaves you</p>
+  <p>The gains are real and task-shaped, the role is moving toward direction and verification, and the sharpest known risk lands on skills that haven't formed yet, which makes how you engage a decision with compound interest. None of it requires enthusiasm. It requires the thing the craft always required: deliberateness about where your attention goes.</p>
+  <p>I hold these positions as firmly as their footing says, and no more. The record is early: the trials are small, nothing is longitudinal, and the tools change out from under the research every year. When the evidence moves, this entry moves, and what I got wrong stays on the record. That's what the notebook is for.</p>
+</section>
