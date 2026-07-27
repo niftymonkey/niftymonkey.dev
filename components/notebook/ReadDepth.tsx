@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { track } from '@vercel/analytics';
 import type { EntrySection } from '@/content/notebook/sections';
-import { useActiveSection } from './useActiveSection';
+import { measureActiveSection, useActiveSection } from './useActiveSection';
 
 /**
  * Reports how far into an entry a reader got, once, as they leave.
@@ -41,11 +41,20 @@ export function ReadDepth({
   }, [active, sections]);
 
   useEffect(() => {
+    const ids = sections.map((section) => section.id);
+
     const report = () => {
+      if (sent.current) return;
+      // The rail commits its own reading on an animation frame, and a frame
+      // scheduled as the page is leaving may never run. Reading position here
+      // instead credits the last stretch of scrolling on the way out.
+      const live = sections.findIndex((section) => section.id === measureActiveSection(ids));
+      if (live > furthest.current) furthest.current = live;
+
       const index = furthest.current;
       // Nobody who never left the opening section has told us anything a page
       // view didn't. Those visits stay countable as views minus depth events.
-      if (sent.current || index <= 0) return;
+      if (index <= 0) return;
       sent.current = true;
       // The index rides along inside the value, zero-padded, because Pro allows
       // an event only two properties and the dashboard orders buckets by count.
