@@ -89,7 +89,12 @@ export default async function Entry({ params }: { params: Promise<{ slug: string
       </div>
 
       <EntryBehavior />
-      <ReadDepth slug={entry.slug} />
+      {/*
+        Keyed by slug so that following a related-entry link builds a fresh
+        reporter rather than carrying the previous entry's furthest point into
+        the next one.
+      */}
+      <ReadDepth key={entry.slug} slug={entry.slug} sections={sections} />
     </>
   );
 }

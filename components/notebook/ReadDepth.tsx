@@ -1,40 +1,82 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { track } from '@vercel/analytics';
+import type { EntrySection } from '@/content/notebook/sections';
+import { measureActiveSection, useActiveSection } from './useActiveSection';
 
 /**
- * Reports once when a reader reaches an entry's closing section.
+ * Reports how far into an entry a reader got, once, as they leave.
  *
- * Page views already say an entry was opened. This says it was read to the
- * end, which is the distinction worth having when deciding what to write next.
+ * Page views say an entry was opened. This says where it lost them, which is
+ * the question worth asking when deciding what to write next. Reaching the end
+ * needs no separate event: the closing section is the last section, so a
+ * finished read is simply the last bucket.
  *
- * It finds the closing section by class rather than by id because each entry
- * authors that section itself in MDX under its own id (`closing`, `recap`),
- * and the dossier's markup is frozen. Class is the thing they actually share.
+ * One event per visit, not one per section crossed. Vercel bills per event and,
+ * more to the point, a cookieless dashboard cannot tell one reader's five
+ * milestones from five readers, so a single report at the end is both cheaper
+ * and the only shape that reads honestly.
  *
- * A zero threshold, not a fraction: the section is taller than a phone
- * viewport, so any fraction risks an end a small screen can never satisfy.
- * Its top edge entering the viewport already means the body has been scrolled
- * past. The observer disconnects on the first hit, so an entry reports at most
- * once per page load.
- *
- * Nothing renders and nothing is stored on the page: no counter, no reaction.
+ * Known bias, accepted: the report goes out at the first sign of leaving, so a
+ * reader who switches tabs mid-entry and returns to finish is recorded at the
+ * depth they had when they switched. Waiting for a truer signal means risking
+ * no signal, since a closing tab grants no second chance. Depth therefore reads
+ * as a floor, never an overstatement.
  */
-export function ReadDepth({ slug }: { slug: string }) {
+export function ReadDepth({
+  slug,
+  sections,
+}: {
+  slug: string;
+  sections: readonly EntrySection[];
+}) {
+  const active = useActiveSection(sections);
+  const furthest = useRef(0);
+  const sent = useRef(false);
+
   useEffect(() => {
-    const closing = document.querySelector('.nb-entry .recap');
-    if (!closing) return;
+    const index = sections.findIndex((section) => section.id === active);
+    if (index > furthest.current) furthest.current = index;
+  }, [active, sections]);
 
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      observer.disconnect();
-      track('Entry read', { slug });
-    });
-    observer.observe(closing);
+  useEffect(() => {
+    const ids = sections.map((section) => section.id);
 
-    return () => observer.disconnect();
-  }, [slug]);
+    const report = () => {
+      if (sent.current) return;
+      // The rail commits its own reading on an animation frame, and a frame
+      // scheduled as the page is leaving may never run. Reading position here
+      // instead credits the last stretch of scrolling on the way out.
+      const live = sections.findIndex((section) => section.id === measureActiveSection(ids));
+      if (live > furthest.current) furthest.current = live;
+
+      const index = furthest.current;
+      // Nobody who never left the opening section has told us anything a page
+      // view didn't. Those visits stay countable as views minus depth events.
+      if (index <= 0) return;
+      sent.current = true;
+      // The index rides along inside the value, zero-padded, because Pro allows
+      // an event only two properties and the dashboard orders buckets by count.
+      // Padding is what makes them sort back into the order they are read in.
+      const position = String(index).padStart(2, '0');
+      track('Entry depth', { slug, furthest: `${position}-${sections[index].id}` });
+    };
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') report();
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    window.addEventListener('pagehide', report);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('pagehide', report);
+      // Following a link to another entry unmounts this without ever hiding the
+      // page, which is the one exit route the two listeners above cannot see.
+      report();
+    };
+  }, [slug, sections]);
 
   return null;
 }
