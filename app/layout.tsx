@@ -3,6 +3,7 @@ import './globals.css';
 import './styles/components.css';
 import './styles/pages.css';
 import './styles/entry.css';
+import { Analytics } from '@vercel/analytics/next';
 import { ThemeScript } from '@/components/theme/ThemeScript';
 import { BarScrollTop } from '@/components/site/BarScrollTop';
 
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         {children}
         <BarScrollTop />
+        <Analytics />
       </body>
     </html>
   );

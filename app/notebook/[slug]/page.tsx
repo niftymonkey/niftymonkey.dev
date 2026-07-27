@@ -6,6 +6,7 @@ import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { EntryBehavior } from '@/components/notebook/EntryBehavior';
 import { ContentsToggle } from '@/components/notebook/ContentsToggle';
 import { EntryContents } from '@/components/notebook/EntryContents';
+import { ReadDepth } from '@/components/notebook/ReadDepth';
 import { navFor } from '@/components/site/nav';
 import { entries, getEntry } from '@/content/notebook/entries';
 import { bodies } from '@/content/notebook/registry';
@@ -88,6 +89,7 @@ export default async function Entry({ params }: { params: Promise<{ slug: string
       </div>
 
       <EntryBehavior />
+      <ReadDepth slug={entry.slug} />
     </>
   );
 }
