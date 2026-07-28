@@ -37,6 +37,15 @@ export interface NotebookEntry {
  */
 export const entries: readonly NotebookEntry[] = [
   {
+    slug: 'adopting-ai-onramp',
+    title: 'Adopting AI: The On-Ramp',
+    description: 'What should I actually do first?',
+    kind: 'essay',
+    duration: '8 min',
+    published: '2026-07',
+    related: ['adopting-ai-engineer', 'adopting-ai-evidence'],
+  },
+  {
     slug: 'adopting-ai-engineer',
     title: "Adopting AI: An Engineer's Guide",
     description:

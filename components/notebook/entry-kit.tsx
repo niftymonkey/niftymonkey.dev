@@ -25,8 +25,8 @@ export function Masthead({
   children,
 }: {
   title: string;
-  /** Second line of the title, e.g. the part after "Adopting AI:". */
-  tail: string;
+  /** Second line of the title, e.g. the part after "Adopting AI:". Omit for a single-line title. */
+  tail?: string;
   dek: string;
   stamp: string;
   children?: ReactNode;
@@ -35,7 +35,8 @@ export function Masthead({
     <header className="masthead">
       <div className="masthead__inner">
         <h1>
-          {title} <span className="h1-tail">{tail}</span>
+          {title}
+          {tail ? <> <span className="h1-tail">{tail}</span></> : null}
         </h1>
         <p className="dek">{dek}</p>
         <p className="stamp">{stamp}</p>

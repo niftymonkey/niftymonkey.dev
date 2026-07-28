@@ -5,6 +5,8 @@ import AdoptingAiEvidence from './adopting-ai-evidence/entry.mdx';
 import { sections as adoptingAiEvidenceSections } from './adopting-ai-evidence/sections';
 import AdoptingAiEngineer from './adopting-ai-engineer/entry.mdx';
 import { sections as adoptingAiEngineerSections } from './adopting-ai-engineer/sections';
+import AdoptingAiOnramp from './adopting-ai-onramp/entry.mdx';
+import { sections as adoptingAiOnrampSections } from './adopting-ai-onramp/sections';
 
 export interface EntryBody {
   /** The entry itself: a real component tree, compiled from its own file. */
@@ -24,6 +26,7 @@ export interface EntryBody {
 export const bodies: Record<string, EntryBody> = {
   'adopting-ai-evidence': { Body: AdoptingAiEvidence, sections: adoptingAiEvidenceSections },
   'adopting-ai-engineer': { Body: AdoptingAiEngineer, sections: adoptingAiEngineerSections },
+  'adopting-ai-onramp': { Body: AdoptingAiOnramp, sections: adoptingAiOnrampSections },
 };
 
 const unwritten = entries.filter((entry) => !(entry.slug in bodies));
