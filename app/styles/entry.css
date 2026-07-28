@@ -365,22 +365,6 @@
     .res .rnote { grid-column: 2; font-size: .84rem; color: var(--ink-faint); margin-top: .35rem; }
     .tier { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-soft); margin: 1.8rem 0 .3rem; }
 
-    /* ---- Moments: the on-ramp's recognizable-symptom blocks ---- */
-    .arrives {
-      font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--accent-soft); margin: 0 0 1.4rem;
-    }
-    .moment { margin: 1.9rem 0 1.8rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-    .moment:last-of-type { border-bottom: 1px solid var(--line); padding-bottom: 1.6rem; margin-bottom: 2rem; }
-    .moment__tag { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-soft); }
-    .moment__symptom { font-size: 1.08rem; font-weight: 600; line-height: 1.45; margin: .35rem 0 .6rem; color: var(--ink); text-wrap: pretty; }
-    .moment__row { font-size: .92rem; line-height: 1.55; margin: .65rem 0 0; display: flex; gap: .65rem; }
-    .moment__lbl {
-      font-family: var(--mono); font-size: .66rem; text-transform: uppercase; letter-spacing: .07em;
-      color: var(--ink-faint); flex: 0 0 auto; padding-top: .22rem; width: 4.4rem;
-    }
-    .moment__row .txt { color: var(--ink-soft); }
-
     /* ---- Callout ---- */
     .callout {
       background: var(--surface-2); border: 1px solid var(--line); border-radius: 0;
