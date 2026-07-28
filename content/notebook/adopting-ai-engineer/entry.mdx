@@ -50,7 +50,7 @@ This predicts something worth noticing: two engineers of identical skill will ge
 
 Most opinions about AI's value, including yours and mine, start as feelings: the session went smoothly, so it must be helping; it fumbled, so it must not be. The evidence says that's exactly the signal not to trust. In a Stanford study, only one engineer in three estimated their own productivity within a quartile. In METR's randomized trial, developers believed AI had sped them up by 20% while measurement showed the work taking longer (METR has since revised the result upward; the gap between belief and measurement is the part that survives). And it cuts both ways: the colleague who's sure AI makes them faster and the one who's sure it doesn't are making the same kind of estimate.
 
-So the position is simple: AI's value is something you measure, not something you feel. Keep cheap receipts: how often delegated output survived to merge without rework, where the time actually went. Nothing heavyweight; just enough that your opinion of the tool is anchored to data instead of to how the session felt. (For what it's worth, I take this one further than the position requires: I've built tooling around my own AI interactions that keeps these receipts for me. You don't need to go that far.)
+So the position is simple: AI's value is something you measure, not something you feel. You'll recognize the moment this one becomes yours: you hear yourself telling someone the tool is saving you hours and realize you're quoting a feeling, not a number. I've said something very similar myself, numerous times, and that's the day to start keeping cheap receipts: how often delegated output survived to merge without rework, where the time actually went. Nothing heavyweight; just enough that your opinion of the tool is anchored to data instead of to how the session felt. (For what it's worth, I take this one further than the position requires: I've built tooling around my own AI interactions that keeps these receipts for me. You don't need to go that far.)
 
 <Footing>Firm. The perception gap is a finding about human self-assessment, not tool capability, so it doesn't expire as models improve.</Footing>
 
@@ -70,36 +70,38 @@ Here's the hopeful part, and I think it's the right read: the deciding factor wa
 
 <Position id="practice" title="Turning positions into practice">
 
-I believe that everything above compresses into a small set of practices, and that position is supported by the measured engagement patterns in the research, the playbooks practitioners keep publishing, and my own use, though the footing at the end is honest about how uneven that last part is. The practices differ by what mode you're in, not by your title; a principal engineer learning a new domain is, for that domain, junior again.
+I believe that everything above compresses into a small set of practices, and that position is supported by the measured engagement patterns in the research, the playbooks practitioners keep publishing, and my own use, though the footing at the end is honest about how uneven that last part is. The practices differ by what mode you're in, not by your title; a principal engineer learning a new domain is, for that domain, junior again. And none of it will take until you're using the thing in earnest, on real work: every opinion about these tools, mine included, is vibes until your own use starts confirming or breaking it. The habits below attach to what that use serves up, in whatever order it serves them.
 
 <Mode>When you're learning the thing</Mode>
 
 This is the mode the over-reliance position was about, so these habits are the protection.
 
-- Use AI as a tutor, not a typist. Ask it concepts, tradeoffs, why this instead of that; then write the code yourself.
-- Attempt first, always. The attempt is where the learning lives, even when it fails. Especially when it fails.
-- Never outsource the debugging of the thing you're trying to learn. It feels responsible ("I wrote the code myself!"), and it's still the trap: debugging is where mastery forms.
-- Keep some reps with no assistance at all: read the full error, open the actual documentation, feel where you're weak. The code from those sessions will be worse, and you'll know why every line of it is there.
+- **Use AI as a tutor, not a typist.** Ask it concepts, tradeoffs, why this instead of that; then write the code yourself.
+- **Attempt first, always, with a real timebox.** The attempt is where the learning lives, even when it fails. Especially when it fails.
+- **Never outsource the debugging of the thing you're trying to learn.** It feels responsible ("I wrote the code myself!"), and it's still the trap: debugging is where mastery forms.
+- **Keep some reps with no assistance at all.** Read the full error, open the actual documentation, feel where you're weak. The code from those sessions will be worse, and you'll know why every line of it is there.
+- **Turn on your tool's [learning mode](https://claude.com/plugins/learning-output-style), if it has one.** Making yourself write the load-bearing lines is exactly the engagement pattern the trial rewarded.
 
 <Mode>When you're producing</Mode>
 
-This is most of the day: the routing and steering positions turned into habit.
+This is most of the day: the routing and steering positions turned into habit, and the mode your first weeks of playing will teach fastest.
 
-- Route by shape. Delegate the bounded and checkable; keep the complex and contextual close.
-- Steer at the seams. Agree on the plan before code gets written, catch the wrong turn while it's cheap, and when the work comes back, actually read it.
-- Give every delegation a pass/fail check the machine can run, and be suspicious of finished work whose only evidence is that it looks done.
-- Review AI output like a confident stranger wrote it, because one did. Knowing when not to believe it is the skill that compounds.
+- **Route by shape.** When it nails something you expected to take an hour and then confidently botches something trivial, that's not moodiness; those are different kinds of task, and it's reliably strong at one and weak at the other. Delegate the bounded and checkable (migrations, test scaffolding, boilerplate, conversions); keep your hands on the wheel wherever the real context lives in your head.
+- **Argue about the approach before the code exists.** If you keep interrupting mid-flight ("no, not like that"), that argument was always coming; it's cheaper up front. Flip the conversation: have it interview you until it can write the plan, then let it build against the plan (a lot of how I work here is derived from Matt Pocock's [seven phases](https://www.aihero.dev/my-7-phases-of-ai-development) and his [skills repo](https://github.com/mattpocock/Skills): good starting points to adapt). If you can describe the diff in one sentence, skip the ceremony.
+- **Give every delegation a check the machine can run.** Without one you haven't delegated; you've handed off the typing and kept the verification. Name the command that proves it worked, make the agent run it as it goes and show evidence rather than assert success ([Anthropic's best-practices doc](https://code.claude.com/docs/en/best-practices#give-claude-a-way-to-verify-its-work) is where that rule comes from), and commit checkpoints so a wrong turn costs a revert instead of an argument.
+- **Review what's left like a confident stranger wrote it, because one did.** Machine checks first; your reading is for what no check was ever going to see, and I've had exactly that kind of bug reach the main branch. Read for the tells: duplicated code where reuse existed, brute-force fixes that dodge the root cause, tests that assert nothing, any weakening of CI (a hard stop). When you do catch something, write down the instruction or check that would have caught it for you ([GitHub's ten-minute review protocol](https://github.blog/ai-and-ml/generative-ai/agent-pull-requests-are-everywhere-heres-how-to-review-them/#red-flags-to-watch-for) is the checklist version of this hunt).
+- **When the same wrong turn shows up twice, stop patching.** The second time the same mistake comes back, the thing that breaks isn't the session; it's your trust in it, and from there "done" is just a claim it has to prove. Reset with a better prompt that carries what you learned, or take the work back yourself; starting over beats wrestling more often than it feels like it should ([Fowler's piece on steering](https://martinfowler.com/articles/exploring-gen-ai/13-role-of-developer-skills.html#what-can-you-do-to-safeguard-against-ai-missteps) is where the stopping rule comes from). Knowing when not to believe it is the skill that compounds.
 
 <Mode>When you're responsible for other engineers</Mode>
 
-And if other engineers' growth is your job, the junior concern above is yours to design for.
+This mode starts earlier than the org chart suggests: the first time you try to bring another engineer along. Doing that with friends has taught me it splits people. One of mine is getting it: seeing the value, learning, visibly improving. Another decided early that he wants nothing to do with it, and no argument I've made has moved him. I've stopped trying; the experiences above have to happen to you. So start smaller than evangelism: help someone pick one bounded task, and get out of the way. And if other engineers' growth actually is your job, the junior concern above is yours to design for.
 
-- Don't strip-mine the training ground. The bounded tasks agents do best are the same ones juniors have always learned on; keep some for the humans still forming, and call it a training budget rather than an inefficiency.
-- Keep pairing and review human where formation is the point. A review culture that asks *why does this work* is now load-bearing for skill formation, not just quality.
-- Write the working agreements down, and pull the whole team into writing them. The norms are getting set right now, deliberately or by default.
-- Make the countermeasures normal, not remedial. Explain-it-back moments, critique-the-AI passes, the occasional from-scratch build: when everyone does them, they read as staying sharp and they stick; reserve them for juniors and they read as punishment and die.
+- **Don't strip-mine the training ground.** The bounded tasks agents do best are the same ones juniors have always learned on; keep some for the humans still forming, and call it a training budget rather than an inefficiency.
+- **Keep pairing and review human where formation is the point.** A review culture that asks *why does this work* is now load-bearing for skill formation, not just quality.
+- **Write the working agreements down, and pull the whole team into writing them.** The norms are getting set right now, deliberately or by default.
+- **Make the countermeasures normal, not remedial.** Explain-it-back moments, critique-the-AI passes, the occasional from-scratch build: when everyone does them, they read as staying sharp and they stick; reserve them for juniors and they read as punishment and die.
 
-<Footing>The shakiest of the five, deliberately, and in two ways. The habits themselves trace to measured engagement patterns, practitioner playbooks, and the automation literature; the longitudinal proof doesn't exist yet, and I've chosen not to wait for it. The second way is personal: like money advice, these are easy to write down and genuinely hard to live. Some I now do without thinking. Some I've only recently started, and a couple I keep having to restart. I'm publishing them anyway, partly because the evidence supports them and partly because an entry that gets re-reviewed is a good way to hold myself to them.</Footing>
+<Footing>The shakiest of the five, deliberately, and in two ways. The habits themselves trace to measured engagement patterns, practitioner playbooks, and the automation literature; the longitudinal proof doesn't exist yet, and I've chosen not to wait for it. The second way is personal: like money advice, these are easy to write down and genuinely hard to live. Some I now do without thinking. Some I've only recently started, and a couple I keep having to restart. One split worth naming: in the last mode, the peer half is lived and the lead half is sourced. I'm publishing them anyway, partly because the evidence supports them and partly because an entry that gets re-reviewed is a good way to hold myself to them.</Footing>
 
 </Position>
 

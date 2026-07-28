@@ -42,7 +42,7 @@ export const entries: readonly NotebookEntry[] = [
     description:
       'What should I, as a software engineer, expect to think about and do differently as AI is adopted where I work?',
     kind: 'essay',
-    duration: '9 min',
+    duration: '12 min',
     published: '2026-07',
     related: ['adopting-ai-evidence'],
   },
