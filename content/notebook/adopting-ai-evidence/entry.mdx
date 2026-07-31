@@ -297,6 +297,7 @@ import {
           <li>Approval comes before deployment: GitHub's first getting-started step is sending resources to legal and security for sign-off. What already exists here: an approved-tool list, a policy on what code and data can leave the company, a written home for both? Which piece is missing? (<a href="#e12">E12</a>)</li>
           <li>Does each team have a written working agreement for AI: which kinds of tasks they default to it for, what review its output gets before merging, and what it must never touch? If those norms live only in people's heads, a 60-minute facilitated play with a copyable template exists for writing them down (<a href="#reach-norms">Resources</a>).</li>
           <li>Before the next expansion step, what would tell us the last one worked: time saved, developer satisfaction, delivery metrics, cost per seat? Ready-made starting points are in <a href="#reach-measure">Resources</a>: DX's three dimensions, DORA's AI Capabilities Model, and the metric ladder in GitHub's own adoption playbook. Meta watched acceptance rate and the share of code written by the tool at every step, and used what came back to iterate before rolling out further. (<a href="#e13">E13</a>, <a href="#e11">E11</a>)</li>
+          <li>If the last step did save time, where did it go? Microsoft Digital added a "so what" question on top of hours and dollars saved, and reports the honest difficulty rather than a solution: "it’s difficult to prove exactly where each person reinvested them." (<a href="#reach-reinvest">Resources</a>)</li>
         </ul>
       </WorkingQuestions>
     </Theme>
@@ -408,6 +409,12 @@ import {
           meta={<><b>DX · AI ROI calculator.</b> Team size, loaded salary, tooling cost and adoption rate in; hours reclaimed and an ROI ratio out.</>}
           link={<a href="https://getdx.com/blog/ai-roi-calculator/">getdx.com/blog/ai-roi-calculator</a>}
           note={<>Free, no form. Read it against <a href="#e16">E16</a> before you quote it: its central input is self-reported hours saved per developer per week, which is precisely the number this document shows people get wrong. Use it to make the cost side legible, not to prove the benefit side. DX's two flagship AI measurement whitepapers are gated behind name, work email and a demo request; the free DX material is in its research and blog sections.</>}
+        />
+        <Resource
+          id="reach-reinvest"
+          meta={<><b>Microsoft Digital · Measuring the impact of our AI investments in IT.</b> An enterprise IT organization's value framework: six value areas, three questions asked before and after every build, and the one thing the other measurement sources here do not supply, a review cadence. Monthly and end-of-year targets per initiative, reviewed with the leadership team every month.</>}
+          link={<a href="https://www.microsoft.com/insidetrack/blog/measuring-the-impact-of-our-ai-investments-in-it-at-microsoft/">microsoft.com/insidetrack/blog</a>}
+          note={<>Free, no gate. An operating rhythm, not evidence: no outcomes are reported anywhere in it, and its worked example is an unbuilt ServiceNow ticket automation whose "roughly 750 hours" is a pre-build estimate of current manual effort, not a saving. First-party, closing on a product pitch, and scoped to IT operations rather than to engineering, so what transfers is the cadence and the vocabulary, not the example.</>}
         />
       </ul>
 
