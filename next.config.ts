@@ -14,6 +14,25 @@ const nextConfig: NextConfig = {
       { source: '/notebook/adopting-ai', destination: '/notebook/adopting-ai-evidence', permanent: true },
     ];
   },
+  async headers() {
+    // A robots meta tag only reaches a crawler that parses the HTML. The shelf
+    // also serves PDFs, images, and downloads, so the instruction belongs on
+    // the response itself. The segment comes from the environment for the same
+    // reason it does everywhere else: this file is public.
+    const shelf = process.env.SHELF_PATH;
+    if (!shelf) return [];
+
+    return [
+      {
+        source: `/${shelf}/:path*`,
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+      {
+        source: `/${shelf}`,
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({});

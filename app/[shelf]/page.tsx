@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { list } from '@vercel/blob';
+import { list, type ListBlobResultBlob } from '@vercel/blob';
 import { TerminalBar } from '@/components/ds/TerminalBar';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { isShelfSegment } from './shelfPath';
@@ -36,12 +36,27 @@ function formatDate(date: Date) {
   return date.toISOString().slice(0, 10);
 }
 
+/** `list` returns a page at a time, a thousand blobs at most. The shelf shows everything on it. */
+async function listEverything() {
+  const all: ListBlobResultBlob[] = [];
+  let cursor: string | undefined;
+
+  do {
+    const page = await list({ cursor });
+    all.push(...page.blobs);
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+
+  return all;
+}
+
 export default async function Shelf({ params }: { params: Promise<{ shelf: string }> }) {
   const { shelf } = await params;
   if (!isShelfSegment(shelf)) notFound();
 
-  const { blobs } = await list();
-  const items = [...blobs].sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+  const items = (await listEverything()).sort(
+    (a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime(),
+  );
 
   return (
     <>
