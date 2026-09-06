@@ -1,0 +1,127 @@
+/* niftymonkey.dev tokens and chrome, plus the two motion languages:
+   words print like terminal output, screens drop into stacks like objects. */
+:root {
+  --sage: oklch(0.77 0.09 158); --sage-soft: oklch(0.70 0.08 158); --sage-wash: oklch(0.77 0.09 158 / 0.10); --amber: oklch(0.80 0.11 82);
+  --ground: #0f1113; --sheet: #15181b; --panel: #181c1f; --ink: #edf0f2; --ink-soft: #949ca4; --ink-faint: #59616a; --hair: #23272c; --hair-strong: #2c3138;
+  --mono: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bar: 3.1rem;
+  --s-bg: #15181b; --s-panel: #181c1f; --s-line: #23272c; --s-line2: #2c3138; --s-text: #949ca4; --s-accent: oklch(0.77 0.09 158); --s-accent2: oklch(0.80 0.11 82); --s-accent-wash: oklch(0.77 0.09 158 / 0.14); --s-term: #0f1113;
+}
+html { font-size: 17px; scroll-snap-type: y mandatory; scroll-padding-top: var(--bar); }
+body { margin: 0; background: var(--ground); color: var(--ink-soft); font-family: var(--sans); font-size: 1rem; line-height: 1.68; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+a { color: inherit; } a:hover { color: var(--ink); }
+.mono { font-family: var(--mono); }
+
+/* terminal bar */
+.bar { position: sticky; top: 0; z-index: 5; background: var(--panel); border-bottom: 1px solid var(--hair); }
+.bar-inner { display: flex; align-items: center; gap: 1rem; max-width: 66rem; margin: 0 auto; padding: 0.7rem 1.4rem; font-family: var(--mono); font-size: 0.74rem; }
+.bar-inner.wide { max-width: none; padding-left: 3.3rem; padding-right: 3.3rem; }
+.bar-path { color: var(--ink-soft); } .bar-sep, .bar-crumb { color: var(--ink-faint); }
+.bar-nav { display: flex; gap: 1rem; margin-left: auto; }
+.bar-nav a { color: var(--ink-faint); text-decoration: none; }
+.btn-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 24px; border: 1px solid var(--hair); border-radius: 4px; color: var(--ink-faint); }
+
+/* type */
+.prompt { font-family: var(--mono); font-size: 0.86rem; color: var(--sage); margin: 0 0 1rem; display: flex; align-items: center; }
+.prompt::before { content: "> "; white-space: pre; }
+.typed { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: typing 1.1s steps(26) 300ms forwards; }
+@keyframes typing { to { width: 26ch; } }
+.caret { display: inline-block; width: 0.5em; height: 1.05em; background: currentColor; margin-left: 0.15em; animation: blink 1.15s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+h1, h2, h3 { font-family: var(--mono); font-weight: 600; letter-spacing: 0.02em; line-height: 1.18; color: var(--ink); margin: 0; }
+h1 { font-size: 2.35rem; margin-bottom: 1.4rem; }
+.big { font-size: 4.6rem; line-height: 1.02; letter-spacing: 0.01em; text-wrap: balance; }
+.huge { font-size: 6.2rem; line-height: 1; letter-spacing: 0; }
+.lede { font-family: var(--sans); font-size: 1.16rem; line-height: 1.4; color: var(--ink-soft); max-width: 44rem; margin: 0 0 3.2rem; text-wrap: pretty; }
+.meta { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-faint); }
+.label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+.count { font-family: var(--mono); font-size: 0.86rem; letter-spacing: 0.08em; color: var(--sage); }
+.status-live { color: var(--sage); } .status-private { color: var(--ink-faint); }
+.p { margin: 0 0 1rem; text-wrap: pretty; }
+.hard { list-style: none; margin: 0; padding: 0; font-size: 0.86rem; line-height: 1.6; }
+.hard li { position: relative; padding-left: 1rem; margin-bottom: 0.5rem; }
+.hard li::before { content: "\2013"; position: absolute; left: 0; color: var(--sage-soft); }
+.hard.big-list { font-size: 1rem; }
+.hard.big-list li { padding: 0.9rem 0 0.9rem 1.2rem; margin: 0; border-top: 1px solid var(--hair); }
+.hard.big-list li::before { top: 0.9rem; }
+
+/* screens */
+.shot { background: var(--sheet); border: 1px solid var(--hair-strong); border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55); }
+.shot .tag { position: absolute; left: 10px; bottom: 8px; z-index: 2; font-family: var(--mono); font-size: 0.68rem; color: var(--ink-soft); background: rgba(15,17,19,0.8); padding: 3px 7px; border-radius: 3px; }
+.shot.live { border-color: var(--sage); box-shadow: 0 0 0 1px oklch(0.77 0.09 158 / 0.35), 0 1px 3px rgba(0,0,0,.30), 0 24px 60px -28px oklch(0.77 0.09 158 / 0.45); }
+
+/* layout */
+.shell { max-width: 66rem; margin: 0 auto; padding: 0 1.4rem 3.2rem; }
+.snap { scroll-snap-align: start; min-height: calc(100vh - var(--bar)); box-sizing: border-box; padding-top: 2.4rem; }
+.entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 3.2rem; padding: 0 0 3.2rem; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem; }
+.small { display: grid; grid-template-columns: 8rem 1fr 14rem; gap: 1rem; padding: 1.4rem 0.7rem; border-bottom: 1px solid var(--hair); align-items: start; }
+.divider { margin-bottom: 1.8rem; }
+.divider .rule { display: block; height: 1px; background: var(--hair-strong); transform: scaleX(0); transform-origin: 0 50%; margin-top: 0.7rem; }
+.tier-count { color: var(--sage); }
+
+/* stacks: screens as objects. --r is the rest tilt. */
+.stack { position: relative; }
+.stack .shot { position: absolute; transform: rotate(var(--r, 0deg)); opacity: 0; }
+.fan { position: relative; }
+.fan .shot { position: absolute; transform: rotate(var(--r, 0deg)); }
+.ministack { position: relative; aspect-ratio: 16 / 10; }
+.ministack .shot { position: absolute; transform: rotate(var(--r, 0deg)); opacity: 0; }
+
+/* words print: lines land top to bottom on arrival */
+[data-enter] [data-i] { --d: calc(var(--i, 0) * 110ms + 100ms); opacity: 0; }
+[data-enter].in [data-i] { animation: land 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d); }
+@keyframes land { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+[data-enter].in .divider .rule { animation: grow 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 60ms both; }
+@keyframes grow { to { transform: scaleX(1); } }
+/* screens draw: a frame buffer filling top to bottom, sage scan line at the edge */
+[data-enter] .shot[data-i] { opacity: 1; clip-path: inset(0 0 100% 0); }
+[data-enter].in .shot[data-i] { animation: draw 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d); }
+@keyframes draw { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+[data-enter] .shot[data-i]::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--sage); opacity: 0; z-index: 3; }
+[data-enter].in .shot[data-i]::after { animation: scan 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d); }
+@keyframes scan { from { top: 0; opacity: 1; } 90% { opacity: 1; } to { top: 100%; opacity: 0; } }
+/* screens drop: objects settling into a stack on arrival */
+[data-enter] .shot[data-k] { --d: calc(var(--k, 0) * 150ms + 250ms); opacity: 0; }
+[data-enter].in .shot[data-k] { animation: drop 1100ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: var(--d); }
+@keyframes drop { from { opacity: 0; transform: translateY(-60px) rotate(var(--r, 0deg)) scale(0.94); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+/* hero rise on load */
+.rise { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.fan .shot { animation: drop 1100ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
+  .typed { animation: none; width: 26ch; } .caret { animation: none; }
+  [data-enter] [data-i], [data-enter] .shot[data-i], [data-enter] .shot[data-k], .stack .shot, .ministack .shot, .fan .shot, .rise { opacity: 1; clip-path: none; animation: none !important; }
+  .divider .rule { transform: none; }
+}
+
+/* ---- small screens ---- */
+@media (max-width: 900px) {
+  html { scroll-snap-type: y proximity; }
+  .bar-inner { flex-wrap: wrap; padding: 0.7rem 1rem; gap: 0.7rem; }
+  .shell { padding: 0 1rem 2.4rem; }
+  .snap { min-height: 0; padding-top: 2rem; }
+  .big { font-size: clamp(2rem, 9vw, 3.2rem); }
+  .huge { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .lede { font-size: 1.05rem; margin-bottom: 2rem; }
+  .entry, .pair { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+  .small { grid-template-columns: minmax(0, 1fr); gap: 0.7rem; padding: 1.4rem 0; }
+  .small .shot { max-width: 20rem; }
+  /* the hero fan, positions in percentages so it scales with the width (inline px positions are overridden) */
+  .fan { width: 100%; max-width: 32rem; height: min(78vw, 26rem); margin: 0 auto; }
+  .ministack { max-width: 32rem; }
+  .fan .shot:nth-child(1) { left: 0 !important; top: 24% !important; width: 66% !important; }
+  .fan .shot:nth-child(2) { left: 10% !important; top: 12% !important; width: 66% !important; }
+  .fan .shot:nth-child(3) { left: 30% !important; top: 0 !important; width: 70% !important; }
+  .fan .shot:nth-child(4) { left: 4% !important; top: 50% !important; width: 24% !important; }
+  .fan .shot:nth-child(5) { left: 50% !important; top: 58% !important; width: 48% !important; }
+  /* a scene stack: the live screen full width, the two small ones tucked under it, still tilted */
+  .stack { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; padding-bottom: 0.5rem; }
+  .stack .shot { position: relative; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; width: auto !important; }
+  .stack .shot:nth-child(1) { grid-column: 1 / -1; }
+  .stack .shot:nth-child(2) { margin-top: -10%; margin-left: 4%; z-index: 2; }
+  .stack .shot:nth-child(3) { margin-top: -10%; margin-right: 4%; z-index: 2; }
+}

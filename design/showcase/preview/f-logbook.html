@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>F · Logbook, with motion</title>
+<link rel="stylesheet" href="screens.css">
+<style>
+  :root { --sage: oklch(0.77 0.09 158); --sage-soft: oklch(0.70 0.08 158); --amber: oklch(0.80 0.11 82); --bar: 3.1rem; --s-bg: #15181b; --s-panel: #181c1f; --s-line: #23272c; --s-line2: #2c3138; --s-text: #949ca4; --s-accent: oklch(0.77 0.09 158); --s-accent2: oklch(0.80 0.11 82); --s-accent-wash: oklch(0.77 0.09 158 / 0.14); --s-term: #0f1113; }
+  html { font-size: 17px; scroll-snap-type: y mandatory; scroll-padding-top: var(--bar); }
+  body { margin: 0; background: #0f1113; color: #949ca4; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.68; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  a { color: inherit; } a:hover { color: #edf0f2; }
+  .mono { font-family: "SF Mono", "JetBrains Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace; }
+  .bar { position: sticky; top: 0; z-index: 5; background: #181c1f; border-bottom: 1px solid #23272c; }
+  .bar-inner { display: flex; align-items: center; gap: 1rem; max-width: 66rem; margin: 0 auto; padding: 0.7rem 1.4rem; font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.74rem; }
+  .bar-path { color: #949ca4; } .bar-sep, .bar-crumb { color: #59616a; }
+  .bar-nav { display: flex; gap: 1rem; margin-left: auto; color: #59616a; }
+  .bar-nav a { color: #59616a; text-decoration: none; }
+  .btn-icon { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 24px; border: 1px solid #23272c; border-radius: 4px; color: #59616a; }
+  .shell { max-width: 66rem; margin: 0 auto; padding: 0 1.4rem 3.2rem; }
+  /* Each snap section fills the screen below the bar, so one entry is on screen at a time and its print plays where you can see it. */
+  .snap { scroll-snap-align: start; min-height: calc(100vh - var(--bar)); box-sizing: border-box; padding-top: 2.4rem; }
+  .prompt { font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.86rem; color: var(--sage); margin: 0 0 1rem; display: flex; align-items: center; }
+  .prompt::before { content: "> "; white-space: pre; }
+  .typed { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: typing 1.1s steps(26) 300ms forwards; }
+  @keyframes typing { to { width: 26ch; } }
+  .caret { display: inline-block; width: 0.5em; height: 1.05em; background: currentColor; margin-left: 0.15em; animation: blink 1.15s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  h1 { font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 2.35rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.18; color: #edf0f2; margin: 0 0 1.4rem; }
+  h2, h3 { font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-weight: 600; letter-spacing: 0.02em; line-height: 1.18; color: #edf0f2; margin: 0; }
+  .lede { font-size: 1.16rem; line-height: 1.4; color: #949ca4; max-width: 44rem; margin: 0 0 3.2rem; text-wrap: pretty; }
+  .meta { font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.74rem; color: #59616a; }
+  .label { font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #59616a; }
+  .status-live { color: var(--sage); } .status-private { color: #59616a; }
+  .p { margin: 0 0 1rem; text-wrap: pretty; }
+  .hard { list-style: none; margin: 0; padding: 0; font-size: 0.86rem; line-height: 1.6; }
+  .hard li { position: relative; padding-left: 1rem; margin-bottom: 0.5rem; }
+  .hard li::before { content: "\2013"; position: absolute; left: 0; color: var(--sage-soft); }
+  .shot { background: #15181b; border: 1px solid #2c3138; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55); }
+  .shot .tag { position: absolute; left: 10px; bottom: 8px; z-index: 2; font-family: "SF Mono", "JetBrains Mono", monospace; font-size: 0.68rem; color: #949ca4; background: rgba(15,17,19,0.8); padding: 3px 7px; border-radius: 3px; }
+  .entry { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 3.2rem; padding: 0 0 3.2rem; }
+  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem; }
+  .small { display: grid; grid-template-columns: 8rem 1fr 14rem; gap: 1rem; padding: 1.4rem 0.7rem; border-bottom: 1px solid #23272c; align-items: start; }
+
+  /* The printing motion. An entry is output being written to the terminal:
+     lines land top to bottom, screens draw down like a frame buffer filling,
+     and a sage scan line marks the edge as it goes. Plays once, on arrival. */
+  [data-enter] [data-i] { --d: calc(var(--i, 0) * 120ms + 120ms); opacity: 0; }
+  [data-enter].in [data-i] { animation: land 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d); }
+  @keyframes land { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  [data-enter] .shot[data-i] { opacity: 1; clip-path: inset(0 0 100% 0); }
+  [data-enter].in .shot[data-i] { animation: draw 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d); }
+  @keyframes draw { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+  [data-enter] .shot[data-i]::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--sage); opacity: 0; z-index: 3; }
+  [data-enter].in .shot[data-i]::after { animation: scan 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d); }
+  @keyframes scan { from { top: 0; opacity: 1; } 90% { opacity: 1; } to { top: 100%; opacity: 0; } }
+  .divider { margin-bottom: 1.8rem; }
+  .divider .rule { display: block; height: 1px; background: #2c3138; transform: scaleX(0); transform-origin: 0 50%; margin-top: 0.7rem; }
+  [data-enter].in .divider .rule { animation: grow 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 60ms both; }
+  @keyframes grow { to { transform: scaleX(1); } }
+  .tier-count { color: var(--sage); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; }
+    .typed { animation: none; width: 26ch; } .caret { animation: none; }
+    [data-enter] [data-i], [data-enter] .shot[data-i] { opacity: 1; clip-path: none; animation: none !important; }
+    .divider .rule { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <span><span class="bar-path">~/dev</span><span class="bar-sep">/</span><span class="bar-crumb">showcase</span></span>
+      <nav class="bar-nav"><a href="#">home</a><a href="#">notebook</a><a href="#">github</a></nav>
+      <span class="btn-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3.5"></circle><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M3 13l1.5-1.5M11.5 4.5L13 3"></path></svg></span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="snap" data-enter>
+      <p class="prompt"><span class="typed">git log --since=2025-09-04</span><span class="caret"></span></p>
+      <h1 data-i style="--i: 8;">A year of building with AI</h1>
+      <p class="lede" data-i style="--i: 10;">Fifteen things I built between September 2025 and September 2026. The big ones get the full story. The rest get a picture and a paragraph, because that is what they were.</p>
+      <p class="meta" data-i style="--i: 12;">total 15 · the long builds, the tools, and the small ones</p>
+    </section>
+
+    <section class="snap" data-enter>
+      <div class="divider"><span class="label" data-i style="--i: 0;">The long builds · <span class="tier-count">5</span></span><span class="rule"></span></div>
+      <article class="entry">
+        <div style="min-width: 0;">
+          <div data-i style="--i: 1; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.7rem;"><span class="meta">drw-------</span><h2 style="font-size: 1.24rem;">boswell/</h2><span class="meta status-private" style="font-size: 0.68rem;">[private]</span></div>
+          <p class="meta" data-i style="--i: 2; margin: 0 0 1rem;">463 commits · Python 3.12 · FastAPI · Postgres + pgvector · Pipecat · Next.js 16</p>
+          <p class="p" data-i style="--i: 3;">Chat assistants forget you between sessions and run on someone else's servers. Boswell keeps a continuously distilled model of one person's life, commitments, relationships, possessions, on hardware they control, and surfaces things at the moment they matter.</p>
+          <p class="label" data-i style="--i: 5; margin: 1.4rem 0 0.7rem;">What was hard</p>
+          <ul class="hard">
+            <li data-i style="--i: 6;">Deciding who a name refers to. The tiered resolver was torn out and rebuilt as a single pure function, and the substrate decision was written down instead of adopting a graph database.</li>
+            <li data-i style="--i: 7;">Making the memory admit what it does not know. Grounding, candor on failure, contradiction crosscheck, and fact supersession each needed their own decision record.</li>
+            <li data-i style="--i: 8;">Getting voice to work end to end: WebRTC through Docker NAT, a relay, barge-in, and client-owned turn ends took 27 commits and four research notes.</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="shot" data-i data-ui="chat" style="--i: 2; aspect-ratio: 16 / 10;"><span class="tag">chat surface · citation cards</span></div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
+            <div class="shot" data-i data-ui="graph" style="--i: 5; aspect-ratio: 4 / 3;"><span class="tag">provenance graph</span></div>
+            <div class="shot" data-i data-ui="term" style="--i: 6; aspect-ratio: 4 / 3;"><span class="tag">just audit-turn</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="snap" data-enter>
+      <article class="entry">
+        <div style="min-width: 0;">
+          <div data-i style="--i: 0; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.7rem;"><span class="meta">drwxr-xr-x</span><h2 style="font-size: 1.24rem;">champ-sage/</h2><span class="meta status-live" style="font-size: 0.68rem;">[public]</span></div>
+          <p class="meta" data-i style="--i: 1; margin: 0 0 1rem;">424 commits · TypeScript · React 19 · RxJS · Overwolf Electron · Whisper · evalite</p>
+          <p class="p" data-i style="--i: 2;">Every League companion app serves pre-computed tier lists that ignore your actual items, augments, and enemy team. Champ Sage is a voice-first coach for players in augment modes who want an answer about the game they are in right now.</p>
+          <p class="label" data-i style="--i: 4; margin: 1.4rem 0 0.7rem;">What was hard</p>
+          <ul class="hard">
+            <li data-i style="--i: 5;">Riot exposes no augment data at all. Reaching the one API that sees augment offers forced a full migration off Tauri onto Overwolf Electron.</li>
+            <li data-i style="--i: 6;">That dependency then broke on roughly every League patch. Four failure modes are documented, and a package guard now serves a corrected manifest at launch.</li>
+            <li data-i style="--i: 7;">The in-game overlay kept going blank or getting stuck. Fixes ran for months across compositor flushes, drag persistence, and renderer survivability.</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="shot" data-i data-ui="overlay" style="--i: 1; aspect-ratio: 16 / 10;"><span class="tag">overlay strip · augment badges</span></div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
+            <div class="shot" data-i data-ui="table" style="--i: 4; aspect-ratio: 4 / 3;"><span class="tag">desktop window · champ select</span></div>
+            <div class="shot" data-i data-ui="dash" style="--i: 5; aspect-ratio: 4 / 3;"><span class="tag">eval dashboard</span></div>
+          </div>
+        </div>
+      </article>
+      <p class="meta" data-i style="--i: 9; margin: 0;">… brief, the-cabinet, and regimen follow in the same shape</p>
+    </section>
+
+    <section class="snap" data-enter>
+      <div class="divider"><span class="label" data-i style="--i: 0;">The tools · <span class="tier-count">6</span></span><span class="rule"></span></div>
+      <div class="pair">
+        <article style="min-width: 0;">
+          <div class="shot" data-i data-ui="reader" style="--i: 1; aspect-ratio: 16 / 10; margin-bottom: 1rem;"><span class="tag">reader · outline rail, Mermaid</span></div>
+          <div data-i style="--i: 3; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem;"><h3 style="font-size: 1rem;">md/</h3><span class="meta status-live" style="font-size: 0.68rem;">[live]</span><span class="meta" style="margin-left: auto;">117 commits</span></div>
+          <p class="p" data-i style="--i: 4; font-size: 0.86rem;">Turn a markdown file into a legible shareable link, faster than a gist and more durable than a pastebin. The second audience is a coding agent that needs to publish and edit docs there as fluidly as it edits local files.</p>
+          <p data-i style="--i: 5; font-size: 0.86rem; margin: 0;"><span class="label">Hard:</span> an API an agent can drive without wasting context, with 409s that name every ambiguous match and its line.</p>
+        </article>
+        <article style="min-width: 0;">
+          <div class="shot" data-i data-ui="table" style="--i: 2; aspect-ratio: 16 / 10; margin-bottom: 1rem;"><span class="tag">rule rail · results table</span></div>
+          <div data-i style="--i: 4; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem;"><h3 style="font-size: 1rem;">pickai/</h3><span class="meta status-live" style="font-size: 0.68rem;">[public]</span><span class="meta" style="margin-left: auto;">93 commits</span></div>
+          <p class="p" data-i style="--i: 5; font-size: 0.86rem;">models.dev lists roughly 2,200 model identities, and most people pick the one name they have heard of. pickai takes a project's hard rules and what matters this week, then returns a short ordered list worth testing, with the reasoning attached.</p>
+          <p data-i style="--i: 6; font-size: 0.86rem; margin: 0;"><span class="label">Hard:</span> joining benchmark scores to catalog IDs mostly fails, which killed the planned built-in quality score.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="snap" data-enter>
+      <div class="pair">
+        <article style="min-width: 0;">
+          <div class="shot" data-i data-ui="dash" style="--i: 0; aspect-ratio: 16 / 10; margin-bottom: 1rem;"><span class="tag">dashboard · project cards, watchman</span></div>
+          <div data-i style="--i: 2; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem;"><h3 style="font-size: 1rem;">costs-portal/</h3><span class="meta status-private" style="font-size: 0.68rem;">[private]</span><span class="meta" style="margin-left: auto;">64 commits</span></div>
+          <p class="p" data-i style="--i: 3; font-size: 0.86rem;">"What did this project cost me this month" used to mean checking five dashboards. This pulls Anthropic, OpenAI, OpenRouter, and the flat-fee SaaS tail into one project-first view on your own machine.</p>
+          <p data-i style="--i: 4; font-size: 0.86rem; margin: 0;"><span class="label">Hard:</span> storing provider admin keys locally without a cloud KMS, and making three billing shapes comparable.</p>
+        </article>
+        <article style="min-width: 0;">
+          <div class="shot" data-i data-ui="phone" style="--i: 1; aspect-ratio: 16 / 10; margin-bottom: 1rem;"><span class="tag">capture tab · recording overlay</span></div>
+          <div data-i style="--i: 3; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem;"><h3 style="font-size: 1rem;">review-kit/</h3><span class="meta status-private" style="font-size: 0.68rem;">[private]</span><span class="meta" style="margin-left: auto;">51 commits</span></div>
+          <p class="p" data-i style="--i: 4; font-size: 0.86rem;">People forget what they did all year and then write a performance review from memory. ReviewKit captures accomplishments by voice or text as they happen, then turns the pile into goal-aligned review content.</p>
+          <p data-i style="--i: 5; font-size: 0.86rem; margin: 0;"><span class="label">Hard:</span> top-scoring models failed to return valid JSON, so the project grew a real eval funnel.</p>
+        </article>
+      </div>
+      <p class="meta" data-i style="--i: 7; margin: 1.4rem 0 0;">… ai-consensus and niftymonkey.dev follow as the same pair of cards</p>
+    </section>
+
+    <section class="snap" data-enter>
+      <div class="divider" style="margin-bottom: 0.7rem;"><span class="label" data-i style="--i: 0;">The small ones · <span class="tier-count">4</span></span><span class="rule"></span></div>
+      <article class="small">
+        <span class="meta" data-i style="--i: 1;">41 commits</span>
+        <div style="min-width: 0;">
+          <div data-i style="--i: 1; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.25rem;"><h3 style="font-size: 1rem;">idea-vault/</h3><span class="meta status-live" style="font-size: 0.68rem;">[live]</span></div>
+          <p class="p" data-i style="--i: 2; font-size: 0.86rem; margin: 0;">App ideas start as a braindump and end as scattered text. This stores them in a structure you can scan, keep updating, and export as a build-ready prompt. The hard part was two encryption schemes with opposite trust assumptions in one app.</p>
+        </div>
+        <div class="shot" data-i data-ui="reader" style="--i: 1; aspect-ratio: 16 / 10;"><span class="tag">refine wizard</span></div>
+      </article>
+      <article class="small">
+        <span class="meta" data-i style="--i: 3;">26 commits</span>
+        <div style="min-width: 0;">
+          <div data-i style="--i: 3; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.25rem;"><h3 style="font-size: 1rem;">session-scribe/</h3><span class="meta status-live" style="font-size: 0.68rem;">[public]</span></div>
+          <p class="p" data-i style="--i: 4; font-size: 0.86rem; margin: 0;">A D&amp;D group finishes a session with a Teams transcript and a dice log and no record anyone wants to read. This turns both into a scene-by-scene narrative recap. A four-hour transcript will not fit one prompt, so generation runs in three passes.</p>
+        </div>
+        <div class="shot" data-i data-ui="dash" style="--i: 3; aspect-ratio: 16 / 10;"><span class="tag">generation in flight</span></div>
+      </article>
+      <article class="small">
+        <span class="meta" data-i style="--i: 5;">20 commits</span>
+        <div style="min-width: 0;">
+          <div data-i style="--i: 5; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.25rem;"><h3 style="font-size: 1rem;">tool-radar/</h3><span class="meta status-live" style="font-size: 0.68rem;">[public]</span></div>
+          <p class="p" data-i style="--i: 6; font-size: 0.86rem; margin: 0;">A hand-kept file of default tools went stale and got deleted. This is a catalog that refreshes itself: a weekly scheduled agent runs a written runbook and opens a PR. There is no UI. The showable artifacts are files.</p>
+        </div>
+        <div class="shot" data-i data-ui="reader" style="--i: 5; aspect-ratio: 16 / 10;"><span class="tag">INDEX.md, rendered</span></div>
+      </article>
+      <article class="small">
+        <span class="meta" data-i style="--i: 7;">15 commits</span>
+        <div style="min-width: 0;">
+          <div data-i style="--i: 7; display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.25rem;"><h3 style="font-size: 1rem;">tts-bake-off/</h3><span class="meta status-live" style="font-size: 0.68rem;">[public]</span></div>
+          <p class="p" data-i style="--i: 8; font-size: 0.86rem; margin: 0;">Picking a text-to-speech voice by reading spec sheets does not work. This renders one line across eight engines, local and cloud, so the choice gets made by ear. The engines cannot share a Python interpreter, so each gets its own warm worker.</p>
+        </div>
+        <div class="shot" data-i data-ui="term" style="--i: 7; aspect-ratio: 16 / 10;"><span class="tag">say.py in a terminal</span></div>
+      </article>
+    </section>
+  </main>
+<script src="screens.js"></script>
+<script src="motion.js"></script>
+</body>
+</html>

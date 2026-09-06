@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>D · Monograph</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="screens.css">
+<style>
+  :root { --terra: #b4552f; --s-bg: #fbfaf7; --s-panel: #f1ede4; --s-line: #e2dccf; --s-line2: #cdc5b4; --s-text: #6b665e; --s-accent: #b4552f; --s-accent2: #8a9a6b; --s-accent-wash: rgba(180,85,47,0.14); --s-term: #2a2622; }
+  html { font-size: 18px; }
+  body { margin: 0; background: #f4f1ea; color: #1c1a17; font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: #1c1a17; } a:hover { color: var(--terra); }
+  body { overflow-x: clip; }
+  .page { max-width: 1440px; margin: 0 auto; }
+  .serif { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-weight: 400; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #6b665e; margin: 0; }
+  .shot { background: #e6e0d4; border: 1px solid #d9d3c7; }
+  .shot .tag { position: absolute; left: 14px; bottom: 12px; z-index: 2; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.06em; color: #6b665e; background: rgba(244,241,234,0.85); padding: 4px 8px; }
+  .rise { animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .wipe { animation: wipe 1100ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  @media (prefers-reduced-motion: reduce) { .rise, .wipe { animation: none; } }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 26px 64px; border-bottom: 1px solid #d9d3c7; }
+  .hero { display: grid; grid-template-columns: 7fr 5fr; gap: 64px; padding: 72px 64px 64px; align-items: center; }
+  .hero h1 { font-size: 124px; line-height: 0.92; letter-spacing: -0.02em; margin: 0 0 32px; }
+  .contents { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 48px; padding: 28px 64px 72px; border-top: 1px solid #d9d3c7; margin: 0 64px; padding-left: 0; padding-right: 0; }
+  .contents div { font-family: "IBM Plex Mono", monospace; font-size: 14px; line-height: 2.1; color: #3d3934; }
+  .contents b { color: var(--terra); font-weight: 400; margin-right: 12px; }
+
+  /* chapter motion: every [data-view] child gets --t; --d shifts its start */
+  .v { --tt: clamp(0, calc((var(--t, 0) - var(--d, 0)) / (1 - var(--d, 0))), 1); }
+  .num { position: absolute; top: 12px; font-size: 300px; line-height: 1; color: #e6e0d4; letter-spacing: -0.04em; user-select: none; transform: translateY(calc((1 - var(--tt)) * 120px)); opacity: var(--tt); }
+  .title { transform: translateY(calc((1 - var(--tt)) * 40px)); opacity: var(--tt); }
+  .lead { transform: translateY(calc((1 - var(--tt)) * 24px)); opacity: var(--tt); }
+  .plate { clip-path: inset(0 calc((1 - var(--tt)) * 100%) 0 0); transform: scale(calc(0.97 + 0.03 * var(--tt))); transform-origin: 0 50%; }
+  .plate.from-right { clip-path: inset(0 0 0 calc((1 - var(--tt)) * 100%)); transform-origin: 100% 50%; }
+  .hard { counter-reset: h; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+  .hard li { counter-increment: h; display: grid; grid-template-columns: 44px 1fr; gap: 12px; font-size: 17px; line-height: 1.5; color: #3d3934; text-wrap: pretty; transform: translateX(calc((1 - var(--tt)) * -24px)); opacity: var(--tt); }
+  .hard li::before { content: counter(h, decimal-leading-zero); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--terra); padding-top: 6px; }
+  article { position: relative; padding: 72px 64px 120px; border-top: 1px solid #d9d3c7; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <span class="eyebrow">Mark Lozano</span>
+    <span class="eyebrow">Sept 2025 → Sept 2026</span>
+    <span class="eyebrow">Fifteen plates</span>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow rise" style="color: var(--terra); margin-bottom: 28px;">A year of building with AI</p>
+      <h1 class="serif rise" style="animation-delay: 80ms;">Fifteen things,<br><em style="color: #6b665e;">one year.</em></h1>
+      <p class="rise" style="font-size: 22px; line-height: 1.45; max-width: 600px; margin: 0; color: #3d3934; animation-delay: 160ms; text-wrap: pretty;">What I made between September 2025 and September 2026, shown as the screens themselves. For each one, what it is and why it was hard.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <div class="shot wipe" data-ui="chat" style="aspect-ratio: 4 / 5; animation-delay: 200ms;"><span class="tag">boswell</span></div>
+      <div class="shot wipe" data-ui="overlay" style="aspect-ratio: 4 / 5; margin-top: 40px; animation-delay: 320ms;"><span class="tag">champ-sage</span></div>
+      <div class="shot wipe" data-ui="game" style="aspect-ratio: 4 / 5; animation-delay: 440ms;"><span class="tag">the-cabinet</span></div>
+      <div class="shot wipe" data-ui="video" style="aspect-ratio: 4 / 5; margin-top: 40px; animation-delay: 560ms;"><span class="tag">brief</span></div>
+    </div>
+  </section>
+
+  <section class="contents">
+    <div><b>01</b>boswell<br><b>02</b>champ-sage<br><b>03</b>brief<br><b>04</b>the-cabinet<br><b>05</b>regimen</div>
+    <div><b>06</b>md<br><b>07</b>pickai<br><b>08</b>ai-consensus<br><b>09</b>niftymonkey.dev<br><b>10</b>costs-portal</div>
+    <div><b>11</b>review-kit<br><b>12</b>idea-vault<br><b>13</b>session-scribe<br><b>14</b>tool-radar<br><b>15</b>tts-bake-off</div>
+  </section>
+
+  <article>
+    <div class="serif num v" data-view style="left: 40px;">01</div>
+    <div style="position: relative; display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: end; margin-bottom: 56px;">
+      <div style="padding-left: 200px;">
+        <p class="eyebrow v lead" data-view style="margin-bottom: 18px;">Private · 463 commits</p>
+        <h2 class="serif v title" data-view style="--d: 0.1; font-size: 84px; line-height: 0.95; letter-spacing: -0.02em; margin: 0;">Boswell</h2>
+      </div>
+      <p class="v lead" data-view style="--d: 0.2; font-size: 24px; line-height: 1.4; margin: 0; color: #3d3934; text-wrap: pretty;">A self-hosted, voice-first personal AI that keeps a continuously distilled model of one person's life, on hardware they control, and surfaces things at the moment they matter.</p>
+    </div>
+    <div class="shot v plate" data-view data-ui="chat" style="aspect-ratio: 21 / 9; width: 100%;"><span class="tag">Plate 1 · the chat surface, citation cards in the margin</span></div>
+    <div style="display: grid; grid-template-columns: 5fr 7fr; gap: 64px; margin-top: 56px; align-items: start;">
+      <div>
+        <p class="eyebrow" style="color: var(--terra); margin-bottom: 24px;">What was hard</p>
+        <ol class="hard">
+          <li class="v" data-view>Deciding who a name refers to. The tiered resolver was torn out and rebuilt as a single pure function, and the substrate decision was written down instead of adopting a graph database.</li>
+          <li class="v" data-view style="--d: 0.15;">Making the memory admit what it does not know. Grounding, candor on failure, contradiction crosscheck, and fact supersession each needed their own decision record.</li>
+          <li class="v" data-view style="--d: 0.3;">Getting voice to work end to end. WebRTC through Docker NAT, a relay, barge-in, and client-owned turn ends took 27 commits and four research notes.</li>
+        </ol>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+        <div class="shot v plate" data-view data-ui="graph" style="aspect-ratio: 4 / 3;"><span class="tag">Plate 2 · provenance graph</span></div>
+        <div class="shot v plate from-right" data-view data-ui="term" style="--d: 0.2; aspect-ratio: 4 / 3; margin-top: 72px;"><span class="tag">Plate 3 · audit-turn</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article>
+    <div class="serif num v" data-view style="right: 40px;">02</div>
+    <div style="position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: end; margin-bottom: 56px;">
+      <p class="v lead" data-view style="--d: 0.2; font-size: 24px; line-height: 1.4; margin: 0; color: #3d3934; text-wrap: pretty;">A voice-first coach for League of Legends augment modes. Every companion app serves pre-computed tier lists that ignore the game you are in. This one answers about the game right now.</p>
+      <div>
+        <p class="eyebrow v lead" data-view style="margin-bottom: 18px;">Public · 424 commits</p>
+        <h2 class="serif v title" data-view style="--d: 0.1; font-size: 84px; line-height: 0.95; letter-spacing: -0.02em; margin: 0;">Champ Sage</h2>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 24px; align-items: end;">
+      <div class="shot v plate" data-view data-ui="overlay" style="aspect-ratio: 16 / 9;"><span class="tag">Plate 4 · overlay strip over a live game</span></div>
+      <div class="shot v plate from-right" data-view data-ui="table" style="--d: 0.2; aspect-ratio: 4 / 5;"><span class="tag">Plate 5 · desktop window, champ select</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 64px; margin-top: 56px; align-items: start;">
+      <ol class="hard" style="max-width: 640px;">
+        <li class="v" data-view>Riot exposes no augment data at all. Reaching the one API that sees augment offers forced a full migration off Tauri onto Overwolf Electron.</li>
+        <li class="v" data-view style="--d: 0.15;">That dependency then broke on roughly every League patch. Four failure modes are documented, and a package guard now serves a corrected manifest at launch.</li>
+        <li class="v" data-view style="--d: 0.3;">The in-game overlay kept going blank or getting stuck. Fixes ran for months across compositor flushes, drag persistence, and renderer survivability.</li>
+      </ol>
+      <div class="shot v plate from-right" data-view data-ui="dash" style="aspect-ratio: 16 / 10;"><span class="tag">Plate 6 · the eval dashboard</span></div>
+    </div>
+  </article>
+
+  <article>
+    <div class="serif num v" data-view style="left: 40px;">03</div>
+    <div style="position: relative; display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: end; margin-bottom: 56px;">
+      <div style="padding-left: 200px;">
+        <p class="eyebrow v lead" data-view style="margin-bottom: 18px;">Live · 234 commits</p>
+        <h2 class="serif v title" data-view style="--d: 0.1; font-size: 84px; line-height: 0.95; letter-spacing: -0.02em; margin: 0;">Brief</h2>
+      </div>
+      <p class="v lead" data-view style="--d: 0.2; font-size: 24px; line-height: 1.4; margin: 0; color: #3d3934; text-wrap: pretty;">Long videos hide whether they are worth watching behind the watching. Brief turns a YouTube link into a timestamped, structured summary, and keeps every brief in a searchable library.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end;">
+      <div class="shot v plate" data-view data-ui="video" style="aspect-ratio: 16 / 10;"><span class="tag">Plate 7 · brief detail, player and chapters</span></div>
+      <div class="shot v plate from-right" data-view data-ui="table" style="--d: 0.2; aspect-ratio: 16 / 10;"><span class="tag">Plate 8 · the library</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 5fr 7fr; gap: 64px; margin-top: 56px; align-items: start;">
+      <div>
+        <p class="eyebrow" style="color: var(--terra); margin-bottom: 24px;">What was hard</p>
+        <ol class="hard">
+          <li class="v" data-view>Adding video frames meant downloading video bytes, which YouTube's terms name directly. The answer was to move that work to the user's machine.</li>
+          <li class="v" data-view style="--d: 0.15;">That pivot turned a standalone CLI into an authenticated thin client: device flow, token refresh, and a server-side LLM gateway with a usage ledger.</li>
+          <li class="v" data-view style="--d: 0.3;">Collections came in as a full vertical slice: schema, API, UI, per-clip summaries, public share pages, and continuous playback.</li>
+        </ol>
+      </div>
+      <div class="shot v plate" data-view data-ui="reader" style="aspect-ratio: 21 / 9;"><span class="tag">Plate 9 · a public collection page</span></div>
+    </div>
+  </article>
+
+  <article>
+    <div class="serif num v" data-view style="right: 40px;">04</div>
+    <div style="position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: end; margin-bottom: 56px;">
+      <p class="v lead" data-view style="--d: 0.2; font-size: 24px; line-height: 1.4; margin: 0; color: #3d3934; text-wrap: pretty;">One repo for every game I make, plus a launcher, each game keeping its own stack. Two are live: The Hungry Grave and Housewarming.</p>
+      <div>
+        <p class="eyebrow v lead" data-view style="margin-bottom: 18px;">Live · 224 commits</p>
+        <h2 class="serif v title" data-view style="--d: 0.1; font-size: 84px; line-height: 0.95; letter-spacing: -0.02em; margin: 0;">The Cabinet</h2>
+      </div>
+    </div>
+    <div class="shot v plate from-right" data-view data-ui="game" style="aspect-ratio: 21 / 9; width: 100%;"><span class="tag">Plate 10 · The Hungry Grave at full weapon levels</span></div>
+    <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 64px; margin-top: 56px; align-items: start;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+        <div class="shot v plate" data-view data-ui="table" style="aspect-ratio: 4 / 3; margin-top: 72px;"><span class="tag">Plate 11 · #/runs</span></div>
+        <div class="shot v plate from-right" data-view data-ui="term" style="--d: 0.2; aspect-ratio: 4 / 3;"><span class="tag">Plate 12 · measure.ts report</span></div>
+      </div>
+      <ol class="hard">
+        <li class="v" data-view>Proving a recorded run is the real run. A tape format, a witness fold, always-on invariants and a refusal rule took about twenty decision records.</li>
+        <li class="v" data-view style="--d: 0.15;">Breaking the game into named modules without changing behavior: a 31-commit refactor plus a written proof that a 259-file change moved nothing.</li>
+        <li class="v" data-view style="--d: 0.3;">Keeping the launcher from importing game code. The answer is an iframe driven by an experimental PixiJS DOMContainer.</li>
+      </ol>
+    </div>
+  </article>
+
+  <div style="padding: 40px 64px 96px; border-top: 1px solid #d9d3c7;">
+    <p class="eyebrow">Plates 05 through 15 continue in the same rhythm, sides alternating</p>
+  </div>
+</div>
+<script src="screens.js"></script>
+<script src="motion.js"></script>
+</body>
+</html>

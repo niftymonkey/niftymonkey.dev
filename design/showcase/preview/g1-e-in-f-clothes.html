@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>G1 · E in F's clothes</title>
+<link rel="stylesheet" href="screens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  .page { max-width: 1440px; margin: 0 auto; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px 56px 0; min-height: calc(100vh - var(--bar)); box-sizing: border-box; align-items: center; scroll-snap-align: start; }
+  .fan { height: 620px; }
+  .scene { scroll-snap-align: start; min-height: 100vh; display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: center; padding: 80px 56px; box-sizing: border-box; }
+  .scene.flip { grid-template-columns: 7fr 5fr; }
+  .scene.flip .words { order: 2; }
+  .stack { height: 640px; }
+  .outro { scroll-snap-align: start; min-height: 100vh; box-sizing: border-box; padding: 120px 56px; display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: start; }
+  .names { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 32px; font-family: var(--mono); font-size: 0.86rem; color: var(--ink-soft); }
+  .names b { color: var(--sage); font-weight: 400; margin-right: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="bar">
+    <div class="bar-inner wide">
+      <span><span class="bar-path">~/dev</span><span class="bar-sep">/</span><span class="bar-crumb">showcase</span></span>
+      <nav class="bar-nav"><a href="#">home</a><a href="#">notebook</a><a href="#">github</a></nav>
+      <span class="btn-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3.5"></circle><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M3 13l1.5-1.5M11.5 4.5L13 3"></path></svg></span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="prompt rise"><span class="typed">git log --since=2025-09-04</span><span class="caret"></span></p>
+      <h1 class="huge rise" style="margin: 0; animation-delay: 80ms;">One year.</h1>
+      <h1 class="huge rise" style="margin: 0 0 1.4rem; color: var(--sage); animation-delay: 160ms;">Fifteen builds.</h1>
+      <p class="lede rise" style="margin: 0; animation-delay: 240ms;">Real software, real screens, and the part of each one that fought back.</p>
+    </div>
+    <div class="fan">
+      <div class="shot" data-ui="dash" style="--r: -7deg; left: 0; top: 140px; width: 62%; aspect-ratio: 16 / 10; animation-delay: 300ms;"><span class="tag">costs-portal</span></div>
+      <div class="shot" data-ui="reader" style="--r: -3deg; left: 12%; top: 70px; width: 62%; aspect-ratio: 16 / 10; animation-delay: 420ms;"><span class="tag">md</span></div>
+      <div class="shot live" data-ui="chat" style="--r: 2deg; left: 26%; top: 0; width: 66%; aspect-ratio: 16 / 10; animation-delay: 540ms;"><span class="tag">boswell</span></div>
+      <div class="shot" data-ui="phone" style="--r: 6deg; left: 6%; top: 330px; width: 26%; aspect-ratio: 9 / 16; animation-delay: 660ms;"><span class="tag">review-kit</span></div>
+      <div class="shot" data-ui="game" style="--r: -4deg; left: 52%; top: 360px; width: 44%; aspect-ratio: 16 / 10; animation-delay: 780ms;"><span class="tag">the-cabinet</span></div>
+    </div>
+  </section>
+
+  <section class="scene" data-enter>
+    <div class="words">
+      <p class="count" data-i style="--i: 0; margin: 0 0 1rem;">01 / 15</p>
+      <h2 class="big" data-i style="--i: 1; margin: 0 0 1.2rem;">boswell/</h2>
+      <p class="lede" data-i style="--i: 2; margin: 0 0 1rem;">A self-hosted, voice-first personal AI that keeps a continuously distilled model of one person's life, on hardware they control.</p>
+      <p class="meta" data-i style="--i: 3; margin: 0 0 1.4rem;">drw------- · private · 463 commits · Python · FastAPI · pgvector · Pipecat · Next.js 16</p>
+      <ul class="hard big-list">
+        <li data-i style="--i: 8;">Deciding who a name refers to. The tiered resolver was torn out and rebuilt as a single pure function.</li>
+        <li data-i style="--i: 9;">Making the memory admit what it does not know. Grounding, candor, contradiction crosscheck, and supersession each got a decision record.</li>
+        <li data-i style="--i: 10;">Voice end to end. WebRTC through Docker NAT, a relay, barge-in, and client-owned turn ends.</li>
+      </ul>
+    </div>
+    <div class="stack">
+      <div class="shot live" data-k data-ui="chat" style="--k: 0; --r: -1.5deg; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 10;"><span class="tag">chat surface · citation cards in the margin</span></div>
+      <div class="shot" data-k data-ui="term" style="--k: 1; --r: -3deg; left: 2%; bottom: 0; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">just audit-turn</span></div>
+      <div class="shot" data-k data-ui="graph" style="--k: 2; --r: 2.5deg; right: 0; bottom: 20px; width: 46%; aspect-ratio: 4 / 3;"><span class="tag">provenance graph</span></div>
+    </div>
+  </section>
+
+  <section class="scene flip" data-enter>
+    <div class="words">
+      <p class="count" data-i style="--i: 0; margin: 0 0 1rem;">02 / 15</p>
+      <h2 class="big" data-i style="--i: 1; margin: 0 0 1.2rem;">champ-sage/</h2>
+      <p class="lede" data-i style="--i: 2; margin: 0 0 1rem;">A voice-first coach for League augment modes. It answers about the game you are in right now, not a tier list.</p>
+      <p class="meta" data-i style="--i: 3; margin: 0 0 1.4rem;">drwxr-xr-x · public · 424 commits · TypeScript · React 19 · Overwolf Electron · Whisper · evalite</p>
+      <ul class="hard big-list">
+        <li data-i style="--i: 8;">Riot exposes no augment data at all. Reaching the one API that sees augment offers forced a full migration off Tauri onto Overwolf Electron.</li>
+        <li data-i style="--i: 9;">That dependency broke on roughly every League patch. A package guard now serves a corrected manifest at launch.</li>
+        <li data-i style="--i: 10;">The in-game overlay kept going blank or getting stuck. Fixes ran for months.</li>
+      </ul>
+    </div>
+    <div class="stack">
+      <div class="shot live" data-k data-ui="overlay" style="--k: 0; --r: 1deg; left: 0; top: 0; width: 100%; aspect-ratio: 21 / 9;"><span class="tag">overlay strip over a live game</span></div>
+      <div class="shot" data-k data-ui="table" style="--k: 1; --r: -2.5deg; left: 4%; bottom: 0; width: 44%; aspect-ratio: 4 / 3;"><span class="tag">desktop window · champ select</span></div>
+      <div class="shot" data-k data-ui="dash" style="--k: 2; --r: 2deg; right: 2%; bottom: 40px; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">eval dashboard</span></div>
+    </div>
+  </section>
+
+  <section class="scene" data-enter>
+    <div class="words">
+      <p class="count" data-i style="--i: 0; margin: 0 0 1rem;">03 / 15</p>
+      <h2 class="big" data-i style="--i: 1; margin: 0 0 1.2rem;">brief/</h2>
+      <p class="lede" data-i style="--i: 2; margin: 0 0 1rem;">A YouTube link becomes a timestamped, structured summary, so you can decide to watch now, later, or never.</p>
+      <p class="meta" data-i style="--i: 3; margin: 0 0 1.4rem;">drwxr-xr-x · live · 234 commits · Next.js 16 · Vercel Postgres · WorkOS · CLI · Chrome extension</p>
+      <ul class="hard big-list">
+        <li data-i style="--i: 8;">Video frames meant downloading video bytes, which YouTube's terms name directly. That work moved to the user's machine.</li>
+        <li data-i style="--i: 9;">The CLI became an authenticated thin client: device flow, token refresh, a server-side LLM gateway with a usage ledger.</li>
+        <li data-i style="--i: 10;">Collections landed as a full vertical slice, from schema to public share pages and continuous playback.</li>
+      </ul>
+    </div>
+    <div class="stack">
+      <div class="shot live" data-k data-ui="video" style="--k: 0; --r: -1deg; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 10;"><span class="tag">brief detail · player, chapters, timestamps</span></div>
+      <div class="shot" data-k data-ui="table" style="--k: 1; --r: -3deg; left: 2%; bottom: 0; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">library · search and tags</span></div>
+      <div class="shot" data-k data-ui="reader" style="--k: 2; --r: 2.5deg; right: 0; bottom: 20px; width: 46%; aspect-ratio: 4 / 3;"><span class="tag">public collection page</span></div>
+    </div>
+  </section>
+
+  <section class="scene flip" data-enter>
+    <div class="words">
+      <p class="count" data-i style="--i: 0; margin: 0 0 1rem;">04 / 15</p>
+      <h2 class="big" data-i style="--i: 1; margin: 0 0 1.2rem;">the-cabinet/</h2>
+      <p class="lede" data-i style="--i: 2; margin: 0 0 1rem;">One repo for every game I make, each with its own stack. Two are live: The Hungry Grave and Housewarming.</p>
+      <p class="meta" data-i style="--i: 3; margin: 0 0 1.4rem;">drwxr-xr-x · live · 224 commits · TypeScript · PixiJS 8 · Vite · React 19 · Upstash Redis</p>
+      <ul class="hard big-list">
+        <li data-i style="--i: 8;">Proving a recorded run is the real run. A tape format, a witness fold, and a refusal rule took about twenty decision records.</li>
+        <li data-i style="--i: 9;">Breaking the game into named modules without changing behavior: a 31-commit refactor with a written proof that nothing moved.</li>
+        <li data-i style="--i: 10;">Keeping the launcher from importing game code. The answer is an iframe driven by an experimental PixiJS DOMContainer.</li>
+      </ul>
+    </div>
+    <div class="stack">
+      <div class="shot live" data-k data-ui="game" style="--k: 0; --r: 1.5deg; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 10;"><span class="tag">the hungry grave · full weapon levels</span></div>
+      <div class="shot" data-k data-ui="table" style="--k: 1; --r: -2deg; left: 4%; bottom: 0; width: 44%; aspect-ratio: 4 / 3;"><span class="tag">#/runs · kept runs</span></div>
+      <div class="shot" data-k data-ui="term" style="--k: 2; --r: 2.5deg; right: 2%; bottom: 40px; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">measure.ts · headless report</span></div>
+    </div>
+  </section>
+
+  <section class="outro" data-enter>
+    <div>
+      <p class="count" data-i style="--i: 0; margin: 0 0 1rem;">05 – 15</p>
+      <h2 class="big" data-i style="--i: 1;">Eleven more.</h2>
+    </div>
+    <div class="names" data-i style="--i: 2;">
+      <span><b>05</b>regimen</span><span><b>06</b>md</span><span><b>07</b>pickai</span>
+      <span><b>08</b>ai-consensus</span><span><b>09</b>niftymonkey.dev</span><span><b>10</b>costs-portal</span>
+      <span><b>11</b>review-kit</span><span><b>12</b>idea-vault</span><span><b>13</b>session-scribe</span>
+      <span><b>14</b>tool-radar</span><span><b>15</b>tts-bake-off</span>
+    </div>
+  </section>
+</div>
+<script src="screens.js"></script>
+<script src="motion.js"></script>
+</body>
+</html>

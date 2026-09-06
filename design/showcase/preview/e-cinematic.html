@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>E · Cinematic</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="screens.css">
+<style>
+  :root { --coral: oklch(0.72 0.19 35); --s-bg: #141418; --s-panel: #1c1c22; --s-line: #2a2a32; --s-line2: #3a3a44; --s-text: #c9c9d0; --s-accent: oklch(0.72 0.19 35); --s-accent2: #e3b341; --s-accent-wash: oklch(0.72 0.19 35 / 0.18); --s-term: #0e0e11; }
+  html { font-size: 18px; }
+  body { margin: 0; background: #0a0a0c; color: #f2f2f0; font-family: Manrope, "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: #f2f2f0; } a:hover { color: var(--coral); }
+  html { scroll-snap-type: y mandatory; }
+  body { overflow-x: clip; }
+  header, .scene, .outro { scroll-snap-align: start; }
+  .page { max-width: 1440px; margin: 0 auto; }
+  .display { font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-variation-settings: "wdth" 112; font-weight: 800; letter-spacing: -0.03em; line-height: 0.9; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; }
+  .accent { color: var(--coral); }
+  .shot { background: #17171b; border: 1px solid #2a2a30; border-radius: 12px; box-shadow: 0 20px 50px -24px rgba(0,0,0,0.85); }
+  .glow { box-shadow: 0 0 0 1px oklch(0.72 0.19 35 / 0.5), 0 24px 60px -28px oklch(0.72 0.19 35 / 0.55); }
+  .shot .tag { position: absolute; left: 14px; bottom: 12px; z-index: 2; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.06em; color: #9a9aa3; background: rgba(10,10,12,0.7); padding: 4px 8px; border-radius: 4px; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 28px 56px; }
+  .hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 56px 56px 0; min-height: 720px; align-items: center; }
+  .drop { animation: drop 1100ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .rise { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+  @keyframes drop { from { opacity: 0; transform: translateY(-60px) rotate(var(--r, 0deg)) scale(0.94); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+  @media (prefers-reduced-motion: reduce) { .drop, .rise { animation: none; } }
+  .fan { position: relative; height: 620px; }
+  .fan .shot { position: absolute; }
+
+  .scene { position: relative; }
+  .pin { min-height: 100vh; display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: center; padding: 80px 56px; box-sizing: border-box; }
+  .scene.flip .pin { grid-template-columns: 7fr 5fr; }
+  .scene.flip .pin .words { order: 2; }
+  /* before entry: hidden. on entry: the hero's choreography, staggered. */
+  .scene .words > *, .scene .hard li, .scene .stack .shot { opacity: 0; }
+  .scene.in .words > * { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .scene.in .words > :nth-child(1) { animation-delay: 0ms; }
+  .scene.in .words > :nth-child(2) { animation-delay: 80ms; }
+  .scene.in .words > :nth-child(3) { animation-delay: 160ms; }
+  .scene.in .words > :nth-child(4) { animation-delay: 240ms; }
+  .scene .hard { opacity: 1; animation: none !important; }
+  .scene.in .hard li { animation: slide 800ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .scene.in .hard li:nth-child(1) { animation-delay: 760ms; }
+  .scene.in .hard li:nth-child(2) { animation-delay: 880ms; }
+  .scene.in .hard li:nth-child(3) { animation-delay: 1000ms; }
+  @keyframes slide { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+  .hard { list-style: none; margin: 32px 0 0; padding: 0; }
+  .hard li { padding: 16px 0; border-top: 1px solid #2a2a30; font-size: 17px; line-height: 1.4; font-weight: 500; color: #d9d9d6; display: grid; grid-template-columns: 28px 1fr; gap: 12px; text-wrap: pretty; }
+  .hard li::before { content: ""; width: 16px; height: 3px; background: var(--coral); margin-top: 10px; }
+  .stack { position: relative; height: 640px; }
+  .stack .shot { position: absolute; transform: rotate(var(--r)); }
+  .scene.in .stack .shot { animation: drop 1100ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .scene.in .stack .shot:nth-child(1) { animation-delay: 300ms; }
+  .scene.in .stack .shot:nth-child(2) { animation-delay: 450ms; }
+  .scene.in .stack .shot:nth-child(3) { animation-delay: 600ms; }
+  @media (prefers-reduced-motion: reduce) { .scene .words > *, .scene .hard li, .scene .stack .shot { opacity: 1; animation: none !important; } }
+
+  .outro { min-height: 100vh; box-sizing: border-box; padding: 120px 56px 140px; display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: start; }
+  .names { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 32px; font-size: 15px; color: #b3b3b8; }
+  .names span b { color: var(--coral); font-weight: 500; margin-right: 10px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <span class="mono" style="font-size: 13px; color: #8a8a93;">niftymonkey</span>
+    <nav class="mono" style="display: flex; gap: 32px; font-size: 13px;"><a href="#" style="color: #8a8a93; text-decoration: none;">the year</a><a href="#" style="color: #8a8a93; text-decoration: none;">fifteen builds</a><a href="#" style="color: #8a8a93; text-decoration: none;">github</a></nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="mono rise" style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a8a93; margin: 0 0 32px;">Sept 2025 → Sept 2026 · built with AI</p>
+      <h1 class="display rise" style="font-size: 140px; margin: 0; animation-delay: 80ms;">One year.</h1>
+      <h1 class="display rise accent" style="font-size: 140px; margin: 0 0 36px; animation-delay: 160ms;">Fifteen builds.</h1>
+      <p class="rise" style="font-size: 22px; line-height: 1.45; max-width: 520px; color: #b3b3b8; margin: 0; animation-delay: 240ms; text-wrap: pretty;">Real software, real screens, and the part of each one that fought back.</p>
+    </div>
+    <div class="fan">
+      <div class="shot drop" data-ui="dash" style="--r: -7deg; left: 0; top: 140px; width: 62%; aspect-ratio: 16 / 10; animation-delay: 300ms;"><span class="tag">costs-portal</span></div>
+      <div class="shot drop" data-ui="reader" style="--r: -3deg; left: 12%; top: 70px; width: 62%; aspect-ratio: 16 / 10; animation-delay: 420ms;"><span class="tag">md</span></div>
+      <div class="shot drop glow" data-ui="chat" style="--r: 2deg; left: 26%; top: 0; width: 66%; aspect-ratio: 16 / 10; animation-delay: 540ms;"><span class="tag">boswell</span></div>
+      <div class="shot drop" data-ui="phone" style="--r: 6deg; left: 6%; top: 330px; width: 26%; aspect-ratio: 9 / 16; animation-delay: 660ms;"><span class="tag">review-kit</span></div>
+      <div class="shot drop" data-ui="game" style="--r: -4deg; left: 52%; top: 360px; width: 44%; aspect-ratio: 16 / 10; animation-delay: 780ms;"><span class="tag">the-cabinet</span></div>
+    </div>
+  </section>
+
+  <section class="scene" data-enter>
+    <div class="pin">
+      <div class="words">
+        <p class="mono accent idx" style="font-size: 14px; letter-spacing: 0.12em; margin: 0 0 20px;">01 / 15</p>
+        <h2 class="display" style="font-size: 104px; margin: 0 0 24px;">Boswell</h2>
+        <p style="font-size: 21px; line-height: 1.4; color: #b3b3b8; margin: 0 0 24px; text-wrap: pretty;">A self-hosted, voice-first personal AI that keeps a continuously distilled model of one person's life, on hardware they control.</p>
+        <p class="mono" style="font-size: 13px; color: #6f6f78; margin: 0;">private · 463 commits · Python · FastAPI · pgvector · Pipecat · Next.js 16</p>
+        <ul class="hard">
+          <li>Deciding who a name refers to. The tiered resolver was torn out and rebuilt as a single pure function.</li>
+          <li>Making the memory admit what it does not know. Grounding, candor, contradiction crosscheck, and supersession each got a decision record.</li>
+          <li>Voice end to end. WebRTC through Docker NAT, a relay, barge-in, and client-owned turn ends.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="shot glow" data-ui="chat" style="--r: -1.5deg; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 10;"><span class="tag">chat surface · citation cards in the margin</span></div>
+        <div class="shot" data-ui="term" style="--r: -3deg; left: 2%; bottom: 0; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">just audit-turn</span></div>
+        <div class="shot" data-ui="graph" style="--r: 2.5deg; right: 0; bottom: 20px; width: 46%; aspect-ratio: 4 / 3;"><span class="tag">provenance graph</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene flip" data-enter>
+    <div class="pin">
+      <div class="words">
+        <p class="mono accent idx" style="font-size: 14px; letter-spacing: 0.12em; margin: 0 0 20px;">02 / 15</p>
+        <h2 class="display" style="font-size: 104px; margin: 0 0 24px;">Champ Sage</h2>
+        <p style="font-size: 21px; line-height: 1.4; color: #b3b3b8; margin: 0 0 24px; text-wrap: pretty;">A voice-first coach for League augment modes. It answers about the game you are in right now, not a tier list.</p>
+        <p class="mono" style="font-size: 13px; color: #6f6f78; margin: 0;">public · 424 commits · TypeScript · React 19 · Overwolf Electron · Whisper · evalite</p>
+        <ul class="hard">
+          <li>Riot exposes no augment data at all. Reaching the one API that sees augment offers forced a full migration off Tauri onto Overwolf Electron.</li>
+          <li>That dependency broke on roughly every League patch. A package guard now serves a corrected manifest at launch.</li>
+          <li>The in-game overlay kept going blank or getting stuck. Fixes ran for months.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="shot glow" data-ui="overlay" style="--r: 1deg; left: 0; top: 0; width: 100%; aspect-ratio: 21 / 9;"><span class="tag">overlay strip over a live game</span></div>
+        <div class="shot" data-ui="table" style="--r: -2.5deg; left: 4%; bottom: 0; width: 44%; aspect-ratio: 4 / 3;"><span class="tag">desktop window · champ select</span></div>
+        <div class="shot" data-ui="dash" style="--r: 2deg; right: 2%; bottom: 40px; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">eval dashboard</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene" data-enter>
+    <div class="pin">
+      <div class="words">
+        <p class="mono accent idx" style="font-size: 14px; letter-spacing: 0.12em; margin: 0 0 20px;">03 / 15</p>
+        <h2 class="display" style="font-size: 104px; margin: 0 0 24px;">Brief</h2>
+        <p style="font-size: 21px; line-height: 1.4; color: #b3b3b8; margin: 0 0 24px; text-wrap: pretty;">A YouTube link becomes a timestamped, structured summary, so you can decide to watch now, later, or never.</p>
+        <p class="mono" style="font-size: 13px; color: #6f6f78; margin: 0;">live · 234 commits · Next.js 16 · Vercel Postgres · WorkOS · CLI · Chrome extension</p>
+        <ul class="hard">
+          <li>Video frames meant downloading video bytes, which YouTube's terms name directly. That work moved to the user's machine.</li>
+          <li>The CLI became an authenticated thin client: device flow, token refresh, a server-side LLM gateway with a usage ledger.</li>
+          <li>Collections landed as a full vertical slice, from schema to public share pages and continuous playback.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="shot glow" data-ui="video" style="--r: -1deg; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 10;"><span class="tag">brief detail · player, chapters, timestamps</span></div>
+        <div class="shot" data-ui="table" style="--r: -3deg; left: 2%; bottom: 0; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">library · search and tags</span></div>
+        <div class="shot" data-ui="reader" style="--r: 2.5deg; right: 0; bottom: 20px; width: 46%; aspect-ratio: 4 / 3;"><span class="tag">public collection page</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene flip" data-enter>
+    <div class="pin">
+      <div class="words">
+        <p class="mono accent idx" style="font-size: 14px; letter-spacing: 0.12em; margin: 0 0 20px;">04 / 15</p>
+        <h2 class="display" style="font-size: 104px; margin: 0 0 24px;">The Cabinet</h2>
+        <p style="font-size: 21px; line-height: 1.4; color: #b3b3b8; margin: 0 0 24px; text-wrap: pretty;">One repo for every game I make, each with its own stack. Two are live: The Hungry Grave and Housewarming.</p>
+        <p class="mono" style="font-size: 13px; color: #6f6f78; margin: 0;">live · 224 commits · TypeScript · PixiJS 8 · Vite · React 19 · Upstash Redis</p>
+        <ul class="hard">
+          <li>Proving a recorded run is the real run. A tape format, a witness fold, and a refusal rule took about twenty decision records.</li>
+          <li>Breaking the game into named modules without changing behavior: a 31-commit refactor with a written proof that nothing moved.</li>
+          <li>Keeping the launcher from importing game code. The answer is an iframe driven by an experimental PixiJS DOMContainer.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="shot glow" data-ui="game" style="--r: 1.5deg; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 10;"><span class="tag">the hungry grave · full weapon levels</span></div>
+        <div class="shot" data-ui="table" style="--r: -2deg; left: 4%; bottom: 0; width: 44%; aspect-ratio: 4 / 3;"><span class="tag">#/runs · kept runs</span></div>
+        <div class="shot" data-ui="term" style="--r: 2.5deg; right: 2%; bottom: 40px; width: 42%; aspect-ratio: 4 / 3;"><span class="tag">measure.ts · headless report</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="outro">
+    <div>
+      <p class="mono accent" style="font-size: 14px; letter-spacing: 0.12em; margin: 0 0 20px;">05 – 15</p>
+      <h2 class="display" style="font-size: 72px; margin: 0;">Eleven more.</h2>
+    </div>
+    <div class="names">
+      <span><b>05</b>regimen</span><span><b>06</b>md</span><span><b>07</b>pickai</span>
+      <span><b>08</b>ai-consensus</span><span><b>09</b>niftymonkey.dev</span><span><b>10</b>costs-portal</span>
+      <span><b>11</b>review-kit</span><span><b>12</b>idea-vault</span><span><b>13</b>session-scribe</span>
+      <span><b>14</b>tool-radar</span><span><b>15</b>tts-bake-off</span>
+    </div>
+  </section>
+</div>
+<script src="screens.js"></script>
+<script src="motion.js"></script>
+</body>
+</html>

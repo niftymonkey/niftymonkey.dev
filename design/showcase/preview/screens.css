@@ -1,0 +1,43 @@
+/* Fake app screens. Colors come from --s-* vars set by each page. */
+.shot { position: relative; overflow: hidden; }
+.shot .ui { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--s-bg); }
+.ui .wbar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--s-line); background: var(--s-panel); }
+.ui .wbar i { width: 8px; height: 8px; border-radius: 50%; background: var(--s-line2); }
+.ui .wbar b { flex: 1; height: 8px; margin-left: 10px; border-radius: 4px; background: var(--s-line); max-width: 40%; }
+.ui .row { display: flex; flex: 1; min-height: 0; }
+.ui .col { display: flex; flex-direction: column; gap: 5%; padding: 5%; min-width: 0; min-height: 0; }
+.ui .ln { display: block; height: 7px; border-radius: 3px; background: var(--s-text); opacity: 0.55; }
+.ui .ln.sm { height: 5px; }
+.ui .ln.dim { opacity: 0.3; }
+.ui .ln.acc { background: var(--s-accent); opacity: 0.95; }
+.ui .ln.warn { background: var(--s-accent2); opacity: 0.9; }
+.ui .msg { display: flex; flex-direction: column; gap: 5px; padding: 4%; border-radius: 8px; background: var(--s-panel); max-width: 78%; }
+.ui .msg.r { align-self: flex-end; background: var(--s-accent-wash); }
+.ui .input { margin-top: auto; height: 10%; border: 1px solid var(--s-line2); border-radius: 8px; }
+.ui .card { display: flex; flex-direction: column; gap: 5px; padding: 6%; border: 1px solid var(--s-line); border-radius: 6px; background: var(--s-panel); }
+.ui .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3%; }
+.ui .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3%; margin-top: 4%; }
+.ui .fill { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ui .term { flex: 1; background: var(--s-term); padding: 5% 6%; gap: 4%; justify-content: flex-start; }
+.ui .cursor { display: inline-block; width: 6px; height: 10px; background: var(--s-accent); }
+.ui .tr { display: flex; gap: 3%; align-items: center; padding: 2% 0; border-bottom: 1px solid var(--s-line); }
+.ui .tr.head { border-bottom-color: var(--s-line2); }
+.ui .bar { height: 5px; border-radius: 3px; background: var(--s-accent); opacity: 0.8; }
+.ui .chip { height: 10px; border-radius: 999px; border: 1px solid var(--s-line2); }
+.ui .chip.on { background: var(--s-accent-wash); border-color: var(--s-accent); }
+.ui .game { flex: 1; position: relative; background: var(--s-term); justify-content: flex-end; padding: 0; }
+.ui .spark { position: absolute; width: 4%; height: 2%; border-radius: 2px; background: var(--s-accent); opacity: 0.8; }
+.ui .grave { position: absolute; left: 44%; bottom: 14%; width: 12%; height: 6%; border-radius: 3px 3px 0 0; background: var(--s-text); opacity: 0.8; }
+.ui .hud { display: flex; gap: 4%; align-items: center; padding: 3% 4%; background: var(--s-panel); border-top: 1px solid var(--s-line); }
+.ui .strip { display: flex; gap: 3%; align-items: center; margin: 6%; padding: 3% 4%; border-radius: 8px; background: var(--s-panel); border: 1px solid var(--s-line2); width: 70%; box-sizing: border-box; }
+.ui .badge { width: 9%; aspect-ratio: 1; border-radius: 6px; background: var(--s-line2); flex: none; }
+.ui .badge.on { background: var(--s-accent); }
+.ui .phone { flex: 1; align-items: center; justify-content: center; gap: 6%; padding: 10% 12%; }
+.ui .phead { width: 100%; }
+.ui .mic { width: 34%; aspect-ratio: 1; border-radius: 50%; background: var(--s-accent); box-shadow: 0 0 0 10px var(--s-accent-wash); }
+.ui .waves { display: flex; gap: 3%; align-items: center; height: 14%; width: 100%; }
+.ui .wave { flex: 1; border-radius: 2px; background: var(--s-text); opacity: 0.6; }
+.ui .code { padding: 5%; border-radius: 6px; background: var(--s-term); display: flex; flex-direction: column; gap: 5px; }
+.ui .player { aspect-ratio: 16 / 9; border-radius: 6px; background: var(--s-term); position: relative; }
+.ui .prog { position: absolute; left: 4%; right: 4%; bottom: 6%; height: 4px; border-radius: 2px; background: var(--s-line2); }
+.ui .prog i { display: block; height: 100%; border-radius: 2px; background: var(--s-accent); }
