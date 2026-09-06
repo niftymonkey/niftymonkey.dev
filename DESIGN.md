@@ -143,7 +143,7 @@ A lab notebook for software, rendered as a terminal. The chrome is monospace: th
 
 The system is quiet on purpose. Its reader is an experienced engineer who trusts craft and distrusts polish, and who will bounce off an animated statistic. Delight lives in precision: the measure is right on every screen, a footnote resolves without moving the page, the reviewed date is written in the same voice as the prose. Nothing loads from a font CDN; both families are system stacks, so there is nothing to rot and nothing to flash.
 
-This system rejects, by name: startup case study pages with metric callouts and testimonials, AI hype posts with counter animations and sparkle icons, GitHub profile READMEs with badge rows and stats widgets, and anything metrics-driven or attention-grabbing (fade-in on scroll, hover parallax, ambient motion). If a choice is recognizably of its year, it is wrong.
+This system rejects, by name: startup case study pages with metric callouts and testimonials, AI hype posts with counter animations and sparkle icons, GitHub profile READMEs with badge rows and stats widgets, and anything metrics-driven (animated statistics, counters, tickers). Motion is allowed when it has a job; see section 7.
 
 **Key Characteristics:**
 - Mono carries chrome and titles; sans carries the reading load.
@@ -151,7 +151,7 @@ This system rejects, by name: startup case study pages with metric callouts and 
 - One sage accent, two jobs (kind and live), never used for decoration.
 - Flat surfaces. Hairline borders and three surface tints make edges; shadow is a dark-mode aid only.
 - Corners are barely there (2 to 8px). This is paper and terminal, not a rounded consumer app.
-- Motion is almost none: a blinking caret, a hover that settles. No choreography.
+- Two motions, each with a job: words print, screens drop. They play once, on arrival. Hover changes color only.
 - A calm, generous vertical rhythm on a 0.25rem to 3.2rem scale.
 
 ## 2. Colors
@@ -278,14 +278,14 @@ None exist on the site today. If one is needed, it follows the button: transpare
 - **Do** reserve sage for kind labels and live state: the prompt, the current section, a re-review mark, an active toggle, the `[live]` status.
 - **Do** write status as a directory listing writes it: `drwxr-xr-x` for live, `drwxr--r--` for beta, `drw-------` for in development.
 - **Do** show real screens and real decision records. The work is the proof.
-- **Do** respect `prefers-reduced-motion`: the caret stops and smooth scroll turns off.
+- **Do** respect `prefers-reduced-motion`: the caret stops, arrival motion is skipped, smooth scroll and scroll snapping turn off.
 - **Do** meet WCAG 2.2 AA: 4.5:1 on text, a visible 2px sage focus ring, keyboard reach to everything, and alt text on every screenshot that says what the screen shows.
 
 ### Don't:
 - **Don't** build a startup case study page: no problem, solution, results layout, no metric callouts, no testimonials.
 - **Don't** build an AI hype post: no "I built 15 apps with AI!", no counter animations, no sparkle icons, no tweet-thread tone.
 - **Don't** build a GitHub profile README: no badge rows, no pinned repo cards, no stats widgets.
-- **Don't** add anything metrics-driven or attention-grabbing: no animated statistics, no fade-in on scroll, no hover parallax, no ambient motion.
+- **Don't** add anything metrics-driven: no animated statistics, no counters, no tickers or marquees. Motion without a job (ambient drift, hover parallax) is decoration and is cut.
 - **Don't** add share buttons, reactions, view counts, email capture, subscribe modals, or comment sections.
 - **Don't** use `#000` or `#fff` on the ground or as ink.
 - **Don't** use sage as a heading color, a fill at rest, a gradient, or a decoration.
@@ -293,6 +293,21 @@ None exist on the site today. If one is needed, it follows the button: transpare
 - **Don't** use gradient text, glassmorphism, or a hero-metric block.
 - **Don't** load a webfont. Both families are system stacks by design.
 - **Don't** put a sans heading anywhere, or track a heading negatively.
-- **Don't** animate layout properties. Hover changes background, color, and border in 120ms, and nothing moves.
+- **Don't** move anything on hover. Hover changes background, color, and border in 120ms. Arrival motion (section 7) is the only choreography.
 - **Don't** nest cards, and don't reach for a card when a row or plain flow would do.
 - **Don't** make anything that reads as visibly 2026.
+
+## 7. Motion
+
+Two motions, and each one means something. Both play once, when their section arrives on screen, and never again. Both are skipped under `prefers-reduced-motion`.
+
+**Words print.** Text is output being written to the terminal. Lines land top to bottom, each about 110ms after the last, with a small rise (8px) and a fade. The prompt line types itself on load and keeps its blinking caret. Tier rules draw from left to right.
+
+**Screens drop.** A screenshot is an object set down on the desk. It drops in from slightly above (about 60px), settles into a small rest tilt (1 to 3 degrees), and stops. In a stack, screens land one after another, about 150ms apart, the live one first. A screen that stands alone may instead draw in from the top with a 2px sage scan line at the edge, the frame buffer filling.
+
+**The live screen.** In any stack, one screen is the one being talked about. It carries a sage hairline and a soft sage glow. This is the accent's live job, not decoration: it names which screen the words are about.
+
+**Sections arrive.** The showcase scrolls section to section with scroll snapping (mandatory on wide screens, proximity below 900px), so a section's motion plays where the reader can see all of it.
+
+**Named rules.** The No Loop Rule: nothing repeats, nothing tickers, nothing drifts. The One Arrival Rule: a section plays its motion once; scrolling back does not replay it. The Hover Rule: hover changes color and border only, and nothing moves.
+

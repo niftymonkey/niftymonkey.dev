@@ -39,7 +39,7 @@ Emotional goals: trust, recognition ("this person builds the way I want to"), an
 - Startup case study pages: problem, solution, results, metric callouts, testimonials.
 - AI hype posts: "I built 15 apps with AI!", counter animations, sparkle icons, tweet-thread tone.
 - GitHub profile READMEs: badge rows, pinned repo cards, stats widgets.
-- Anything metrics-driven or attention-grabbing: animated statistics, fade-in on scroll, hover parallax, ambient motion.
+- Anything metrics-driven: animated statistics, counters, progress rings. Motion is welcome when it has a job (see Design Principles); motion as decoration is not.
 - Anything recognizably of its year. If a choice is visibly 2026, it is wrong.
 - Share buttons, reactions, view counts, email capture, subscribe modals, comment sections.
 
@@ -50,6 +50,7 @@ Emotional goals: trust, recognition ("this person builds the way I want to"), an
 3. **A person talking, never a brochure.** Copy is written the way the author would say it out loud to a colleague. No superlatives, no hype, no absolutes.
 4. **Quietly crafted, not decorated.** Delight lives in the precision and the voice. If it draws attention to the container instead of the contents, cut it.
 5. **Timeless over fashionable.** Choose what will still read well in ten years. Nothing to rot, nothing to date.
+6. **Motion has a job.** Two motions exist and each means something: words print like terminal output, and screens drop into place like objects on a desk. Both play once, on arrival, and stop under prefers-reduced-motion. Nothing loops, nothing tickers, nothing moves on hover beyond color.
 
 ## Accessibility & Inclusion
 
@@ -57,4 +58,4 @@ WCAG 2.2 AA. Contrast of at least 4.5:1 on text, keyboard access to everything, 
 
 ## Design Read
 
-For the taste skill, in its own vocabulary: minimalist, terminal-native, trust-first, editorial-quiet. Low motion, moderate density, low variance from the existing site.
+For the taste skill, in its own vocabulary: minimalist, terminal-native, trust-first, editorial-quiet. Purposeful motion, moderate density, low variance from the existing site.
