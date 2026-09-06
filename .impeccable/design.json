@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T00:00:00-06:00",
+  "title": "Design System: niftymonkey.dev",
+  "extensions": {
+    "colorMeta": {
+      "signal-sage": { "role": "primary", "displayName": "Signal Sage", "canonical": "oklch(0.77 0.09 158)", "tonalRamp": ["oklch(0.15 0.04 158)", "oklch(0.26 0.06 158)", "oklch(0.38 0.08 158)", "oklch(0.48 0.09 158)", "oklch(0.60 0.09 158)", "oklch(0.70 0.08 158)", "oklch(0.77 0.09 158)", "oklch(0.95 0.03 158)"] },
+      "signal-sage-soft": { "role": "primary", "displayName": "Signal Sage Soft", "canonical": "oklch(0.70 0.08 158)", "tonalRamp": ["oklch(0.15 0.04 158)", "oklch(0.26 0.06 158)", "oklch(0.38 0.08 158)", "oklch(0.48 0.09 158)", "oklch(0.60 0.09 158)", "oklch(0.70 0.08 158)", "oklch(0.82 0.07 158)", "oklch(0.95 0.03 158)"] },
+      "signal-sage-wash": { "role": "primary", "displayName": "Sage Wash", "canonical": "oklch(0.77 0.09 158 / 0.10)", "tonalRamp": ["oklch(0.77 0.09 158 / 0.04)", "oklch(0.77 0.09 158 / 0.08)", "oklch(0.77 0.09 158 / 0.10)", "oklch(0.77 0.09 158 / 0.13)", "oklch(0.77 0.09 158 / 0.16)", "oklch(0.77 0.09 158 / 0.22)", "oklch(0.77 0.09 158 / 0.30)", "oklch(0.77 0.09 158 / 0.40)"] },
+      "status-high": { "role": "tertiary", "displayName": "Status High", "canonical": "oklch(0.78 0.10 158)", "tonalRamp": ["oklch(0.15 0.05 158)", "oklch(0.26 0.07 158)", "oklch(0.36 0.09 158)", "oklch(0.46 0.10 158)", "oklch(0.58 0.10 158)", "oklch(0.68 0.10 158)", "oklch(0.78 0.10 158)", "oklch(0.95 0.03 158)"] },
+      "status-medium": { "role": "tertiary", "displayName": "Status Medium", "canonical": "oklch(0.80 0.11 82)", "tonalRamp": ["oklch(0.15 0.05 82)", "oklch(0.26 0.08 82)", "oklch(0.38 0.10 82)", "oklch(0.52 0.11 82)", "oklch(0.62 0.11 82)", "oklch(0.72 0.11 82)", "oklch(0.80 0.11 82)", "oklch(0.95 0.04 82)"] },
+      "status-contested": { "role": "tertiary", "displayName": "Status Contested", "canonical": "oklch(0.72 0.13 32)", "tonalRamp": ["oklch(0.15 0.06 32)", "oklch(0.26 0.09 32)", "oklch(0.38 0.12 32)", "oklch(0.52 0.13 32)", "oklch(0.62 0.13 32)", "oklch(0.72 0.13 32)", "oklch(0.84 0.09 32)", "oklch(0.95 0.03 32)"] },
+      "terminal-ground": { "role": "neutral", "displayName": "Terminal Ground", "canonical": "#0f1113", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "raised-sheet": { "role": "neutral", "displayName": "Raised Sheet", "canonical": "#15181b", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "title-bar": { "role": "neutral", "displayName": "Title Bar", "canonical": "#181c1f", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "ink-strong": { "role": "neutral", "displayName": "Ink Strong", "canonical": "#edf0f2", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#949ca4", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "ink-faint": { "role": "neutral", "displayName": "Ink Faint", "canonical": "#59616a", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#23272c", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "hairline-strong": { "role": "neutral", "displayName": "Hairline Strong", "canonical": "#2c3138", "tonalRamp": ["#0f1113", "#15181b", "#181c1f", "#23272c", "#2c3138", "#59616a", "#949ca4", "#edf0f2"] },
+      "paper-ground-light": { "role": "neutral", "displayName": "Paper Ground (light)", "canonical": "#f6f7f7", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "raised-sheet-light": { "role": "neutral", "displayName": "Raised Sheet (light)", "canonical": "#ffffff", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "title-bar-light": { "role": "neutral", "displayName": "Title Bar (light)", "canonical": "#eef1f1", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "ink-strong-light": { "role": "neutral", "displayName": "Ink Strong (light)", "canonical": "#14181b", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "ink-soft-light": { "role": "neutral", "displayName": "Ink Soft (light)", "canonical": "#4c545c", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "ink-faint-light": { "role": "neutral", "displayName": "Ink Faint (light)", "canonical": "#7b838c", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "hairline-light": { "role": "neutral", "displayName": "Hairline (light)", "canonical": "#e4e7e9", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "hairline-strong-light": { "role": "neutral", "displayName": "Hairline Strong (light)", "canonical": "#d3d8db", "tonalRamp": ["#14181b", "#4c545c", "#7b838c", "#d3d8db", "#e4e7e9", "#eef1f1", "#f6f7f7", "#ffffff"] },
+      "signal-sage-light": { "role": "primary", "displayName": "Signal Sage (light)", "canonical": "oklch(0.48 0.09 158)", "tonalRamp": ["oklch(0.15 0.04 158)", "oklch(0.26 0.06 158)", "oklch(0.38 0.08 158)", "oklch(0.48 0.09 158)", "oklch(0.60 0.09 158)", "oklch(0.70 0.08 158)", "oklch(0.77 0.09 158)", "oklch(0.95 0.03 158)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The masthead h1 of a surface. Mono, semibold, tracked at 0.02em." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (h2). Mono." },
+      "title": { "displayName": "Title", "purpose": "Entry, card, and listing-row titles (h3). Mono, balanced wrap." },
+      "lead": { "displayName": "Lead", "purpose": "Deks and standfirsts. Sans, 44rem max." },
+      "body": { "displayName": "Body", "purpose": "Long-form reading in the 42rem column. Sans." },
+      "small": { "displayName": "Small", "purpose": "Captions, row descriptions, comment lines. Sans." },
+      "meta": { "displayName": "Meta", "purpose": "Dates, kinds, nav links, the title-bar path. Mono." },
+      "label": { "displayName": "Label", "purpose": "Uppercase column heads, eyebrows, pill buttons, dividers. Mono, tracked 0.14em." }
+    },
+    "shadows": [
+      { "name": "shadow-card", "value": "0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55)", "purpose": "A raised sheet or figure on the dark terminal ground. Ambient. Set to none in the light palette." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.2, 0, 0, 1)", "purpose": "The only easing. Used for hover color, background, and border." },
+      { "name": "dur-fast", "value": "120ms", "purpose": "Hover transitions." },
+      { "name": "dur-base", "value": "180ms", "purpose": "Anything slower than a hover, such as a disclosure chevron." },
+      { "name": "caret-blink", "value": "1.15s steps(1) infinite", "purpose": "The prompt caret, the one recurring flourish. Stops under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "640px" },
+      { "name": "rail", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Prompt Line",
+      "kind": "custom",
+      "refersTo": "prompt-line",
+      "description": "The mono command line that opens every surface. Sage sigil, sage command, optional blinking caret when the prompt is live.",
+      "html": "<p class=\"ds-prompt\">ls -la ./projects/<span class=\"ds-caret\"></span></p>",
+      "css": ".ds-prompt { font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.86rem; color: var(--accent, oklch(0.77 0.09 158)); margin: 0; } .ds-prompt::before { content: '> '; } .ds-caret { display: inline-block; width: 0.5em; height: 1.05em; background: currentColor; margin-left: 0.12em; vertical-align: -0.16em; animation: ds-blink 1.15s steps(1) infinite; } @keyframes ds-blink { 50% { opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-caret { animation: none; } }"
+    },
+    {
+      "name": "Terminal Bar",
+      "kind": "nav",
+      "refersTo": "terminal-bar",
+      "description": "Sticky masthead on every surface: mono path on the left, mono nav links and controls on the right.",
+      "html": "<header class=\"ds-bar\"><span class=\"ds-bar__path\">~/dev</span><nav class=\"ds-bar__nav\"><a href=\"#\">notebook</a><a href=\"#\">philosophy</a></nav></header>",
+      "css": ".ds-bar { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 1.4rem; background: var(--surface-panel, #181c1f); border-bottom: 1px solid var(--border, #23272c); font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.74rem; } .ds-bar__path { color: var(--text-soft, #949ca4); } .ds-bar__nav { display: flex; gap: 1rem; margin-left: auto; } .ds-bar__nav a { color: var(--text-faint, #59616a); text-decoration: none; transition: color 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-bar__nav a:hover { color: var(--text-strong, #edf0f2); } .ds-bar__nav a:focus-visible { outline: 2px solid var(--accent, oklch(0.77 0.09 158)); outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Pill Button",
+      "kind": "button",
+      "refersTo": "button-pill",
+      "description": "A labelled toggle in terminal chrome. Transparent until touched; sage only when it is on.",
+      "html": "<button class=\"ds-btn-pill\">contents</button> <button class=\"ds-btn-pill is-active\">contents</button>",
+      "css": ".ds-btn-pill { font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint, #59616a); background: transparent; border: 1px solid var(--border, #23272c); border-radius: 999px; padding: 0.25rem 0.7rem; cursor: pointer; transition: background 120ms cubic-bezier(0.2, 0, 0, 1), color 120ms cubic-bezier(0.2, 0, 0, 1), border-color 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-btn-pill:hover { color: var(--text-strong, #edf0f2); background: var(--surface-panel, #181c1f); border-color: var(--border-strong, #2c3138); } .ds-btn-pill:focus-visible { outline: 2px solid var(--accent, oklch(0.77 0.09 158)); outline-offset: 2px; } .ds-btn-pill.is-active { color: var(--accent, oklch(0.77 0.09 158)); border-color: var(--accent, oklch(0.77 0.09 158)); background: var(--accent-bg, oklch(0.77 0.09 158 / 0.10)); }"
+    },
+    {
+      "name": "Link Button",
+      "kind": "button",
+      "refersTo": "link-button",
+      "description": "The read-more affordance. A hairline-bordered mono link, 8px radius.",
+      "html": "<a class=\"ds-link\" href=\"#\">read the full philosophy &rarr;</a>",
+      "css": ".ds-link { display: inline-block; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.74rem; color: var(--text-soft, #949ca4); text-decoration: none; border: 1px solid var(--border, #23272c); border-radius: 8px; padding: 0.5rem 1rem; transition: background 120ms cubic-bezier(0.2, 0, 0, 1), color 120ms cubic-bezier(0.2, 0, 0, 1), border-color 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-link:hover { color: var(--text-strong, #edf0f2); background: var(--surface-panel, #181c1f); border-color: var(--border-strong, #2c3138); } .ds-link:focus-visible { outline: 2px solid var(--accent, oklch(0.77 0.09 158)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Listing Row",
+      "kind": "custom",
+      "refersTo": "listing-row",
+      "description": "One line of the ls -la project listing. Mono gutter, mono name with sage status, sans description, mono tech line. The whole row is the link.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row__perms\">drwxr-xr-x</span><span><span class=\"ds-row__head\"><span class=\"ds-row__name\">brief</span><span class=\"ds-row__status\">[live]</span></span><span class=\"ds-row__desc\">Timestamped, AI-powered summaries from YouTube videos.</span><span class=\"ds-row__tech\">Next.js  ·  Postgres  ·  AI SDK</span></span></a>",
+      "css": ".ds-row { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding: 1.4rem 0.7rem; border-bottom: 1px solid var(--border, #23272c); text-decoration: none; color: inherit; transition: background 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-row:hover { background: var(--surface-panel, #181c1f); } .ds-row:focus-visible { outline: 2px solid var(--accent, oklch(0.77 0.09 158)); outline-offset: 2px; } .ds-row__perms { font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.74rem; color: var(--text-faint, #59616a); } .ds-row__head { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem; } .ds-row__name { font-family: var(--font-mono, ui-monospace, monospace); font-size: 1rem; font-weight: 600; color: var(--text-strong, #edf0f2); letter-spacing: 0.02em; } .ds-row__name::after { content: '/'; color: var(--text-faint, #59616a); } .ds-row__status { margin-left: auto; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.68rem; color: var(--accent, oklch(0.77 0.09 158)); } .ds-row__desc { display: block; font-family: system-ui, sans-serif; font-size: 0.86rem; color: var(--text-soft, #949ca4); margin: 0 0 0.7rem; } .ds-row__tech { display: block; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.68rem; color: var(--text-faint, #59616a); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A raised sheet with a hairline edge. Mono sage title, sans lead, a rule, then a list. Used only when each item is a discrete object.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card__title\">Open source as trust</h3><p class=\"ds-card__lead\">When software makes claims about privacy, users should be able to verify them.</p><hr class=\"ds-card__rule\"><ul class=\"ds-card__list\"><li>Publish the source</li><li>Document the threat model</li></ul></div>",
+      "css": ".ds-card { background: var(--surface-card, #15181b); border: 1px solid var(--border, #23272c); border-radius: 8px; padding: 1.4rem; box-shadow: var(--shadow-card, 0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55)); } .ds-card__title { font-family: var(--font-mono, ui-monospace, monospace); font-size: 1rem; font-weight: 600; color: var(--accent, oklch(0.77 0.09 158)); margin: 0 0 0.7rem; letter-spacing: 0.02em; } .ds-card__lead { font-family: system-ui, sans-serif; font-size: 0.86rem; color: var(--text-soft, #949ca4); margin: 0 0 1rem; } .ds-card__rule { border: 0; border-top: 1px solid var(--border, #23272c); margin: 0 0 1rem; } .ds-card__list { list-style: none; margin: 0; padding: 0; font-family: system-ui, sans-serif; font-size: 0.86rem; color: var(--text-soft, #949ca4); } .ds-card__list li { position: relative; padding-left: 1rem; margin-bottom: 0.5rem; } .ds-card__list li::before { content: '\\2013'; position: absolute; left: 0; color: var(--accent-soft, oklch(0.70 0.08 158)); }"
+    },
+    {
+      "name": "Core Question Callout",
+      "kind": "custom",
+      "refersTo": "callout-question",
+      "description": "The one accent-tinted container. Sage hairline, sage wash, sage uppercase label, sans question in strong ink. At most one per surface.",
+      "html": "<div class=\"ds-question\"><p class=\"ds-question__label\">the question</p><p class=\"ds-question__text\">How do you know the software does what it claims?</p></div>",
+      "css": ".ds-question { border: 1px solid var(--accent, oklch(0.77 0.09 158)); background: var(--accent-bg, oklch(0.77 0.09 158 / 0.10)); border-radius: 8px; padding: 1.4rem; } .ds-question__label { font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent, oklch(0.77 0.09 158)); margin: 0 0 0.5rem; } .ds-question__text { font-family: system-ui, sans-serif; font-size: 1.2rem; color: var(--text-strong, #edf0f2); margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Logbook",
+    "overview": "A lab notebook for software, rendered as a terminal. The chrome is monospace: the sticky title bar, the prompt line that opens every surface, every label, date, and heading. The reading is system sans: anything a person reads for minutes. Dark is the native ground and light is a first-class peer, never a fallback. One accent, a muted sage, has exactly two jobs: naming a thing's kind, and marking what is live right now (the prompt, the current section, a re-review mark). It is a signal, never decoration.\n\nThe system is quiet on purpose. Its reader is an experienced engineer who trusts craft and distrusts polish, and who will bounce off an animated statistic. Delight lives in precision: the measure is right on every screen, a footnote resolves without moving the page, the reviewed date is written in the same voice as the prose. Nothing loads from a font CDN; both families are system stacks, so there is nothing to rot and nothing to flash.\n\nThis system rejects, by name: startup case study pages with metric callouts and testimonials, AI hype posts with counter animations and sparkle icons, GitHub profile READMEs with badge rows and stats widgets, and anything metrics-driven or attention-grabbing (fade-in on scroll, hover parallax, ambient motion). If a choice is recognizably of its year, it is wrong.",
+    "keyCharacteristics": [
+      "Mono carries chrome and titles; sans carries the reading load.",
+      "Dark-native, light as an equal. Both palettes are hand-set, not inverted.",
+      "One sage accent, two jobs (kind and live), never used for decoration.",
+      "Flat surfaces. Hairline borders and three surface tints make edges; shadow is a dark-mode aid only.",
+      "Corners are barely there (2 to 8px). This is paper and terminal, not a rounded consumer app.",
+      "Motion is almost none: a blinking caret, a hover that settles. No choreography.",
+      "A calm, generous vertical rhythm on a 0.25rem to 3.2rem scale."
+    ],
+    "rules": [
+      { "name": "The Two Jobs Rule", "body": "Sage names a kind or marks what is live. It does nothing else. If a sage element is neither a label of kind nor the current or active thing, it is wrong.", "section": "colors" },
+      { "name": "The No Pure Rule", "body": "Never #000 or #fff as text or ground. Every neutral is tinted. The one exception is the light raised sheet, which is paper white on purpose.", "section": "colors" },
+      { "name": "The Hand-Set Peer Rule", "body": "Light mode is its own palette, chosen by hand. Never derive it by inverting or filtering the dark one.", "section": "colors" },
+      { "name": "The Mono Heading Rule", "body": "Every heading is mono, semibold, and tracked at or slightly above zero. A sans heading or a negatively tracked heading breaks the terminal frame.", "section": "typography" },
+      { "name": "The Prompt Rule", "body": "Every surface opens with a prompt line: > in sage, then a command in mono small. The command names what the surface is. A live prompt may carry a blinking caret; a prompt that is a label may not.", "section": "typography" },
+      { "name": "The Seventy Rule", "body": "Body prose never exceeds the 42rem reading column. Wider text is chrome, a table, or a figure, not prose.", "section": "typography" },
+      { "name": "The Borders Make Edges Rule", "body": "If an element needs an edge, give it a hairline. If a hairline is not enough in the dark, the card shadow may help. Nothing else lifts.", "section": "elevation" },
+      { "name": "The No Glass Rule", "body": "No backdrop blur, no glassmorphism. The title bar's saturate(1.2) filter is the only backdrop effect and it is not a blur.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do open every surface with a prompt line in sage (> whoami), and put the blinking caret only on a prompt that is live.",
+      "Do set every heading in mono at weight 600 with tracking at or above zero.",
+      "Do keep body prose in the 42rem reading column and use sans for anything read for minutes.",
+      "Do hand-set both palettes. Dark ground #0f1113, light ground #f6f7f7, and never derive one from the other.",
+      "Do make edges with 1px hairlines and the three surface tints. Reach for the dark-only card shadow when a hairline vanishes, and for nothing else.",
+      "Do reserve sage for kind labels and live state: the prompt, the current section, a re-review mark, an active toggle, the [live] status.",
+      "Do write status as a directory listing writes it: drwxr-xr-x for live, drwxr--r-- for beta, drw------- for in development.",
+      "Do show real screens and real decision records. The work is the proof.",
+      "Do respect prefers-reduced-motion: the caret stops and smooth scroll turns off.",
+      "Do meet WCAG 2.2 AA: 4.5:1 on text, a visible 2px sage focus ring, keyboard reach to everything, and alt text on every screenshot that says what the screen shows."
+    ],
+    "donts": [
+      "Don't build a startup case study page: no problem, solution, results layout, no metric callouts, no testimonials.",
+      "Don't build an AI hype post: no \"I built 15 apps with AI!\", no counter animations, no sparkle icons, no tweet-thread tone.",
+      "Don't build a GitHub profile README: no badge rows, no pinned repo cards, no stats widgets.",
+      "Don't add anything metrics-driven or attention-grabbing: no animated statistics, no fade-in on scroll, no hover parallax, no ambient motion.",
+      "Don't add share buttons, reactions, view counts, email capture, subscribe modals, or comment sections.",
+      "Don't use #000 or #fff on the ground or as ink.",
+      "Don't use sage as a heading color, a fill at rest, a gradient, or a decoration.",
+      "Don't use a colored border-left wider than 1px on a card, list item, callout, or alert. The 2px sage edge on the contents rail's active link is the only exception, and it is a rail marker.",
+      "Don't use gradient text, glassmorphism, or a hero-metric block.",
+      "Don't load a webfont. Both families are system stacks by design.",
+      "Don't put a sans heading anywhere, or track a heading negatively.",
+      "Don't animate layout properties. Hover changes background, color, and border in 120ms, and nothing moves.",
+      "Don't nest cards, and don't reach for a card when a row or plain flow would do.",
+      "Don't make anything that reads as visibly 2026."
+    ]
+  }
+}
