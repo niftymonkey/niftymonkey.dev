@@ -307,7 +307,7 @@ Two motions, and each one means something. Both play once, when their section ar
 
 **The live screen.** In any stack, one screen is the one being talked about. It carries a sage hairline and a soft sage glow. This is the accent's live job, not decoration: it names which screen the words are about.
 
-**Sections arrive.** The showcase scrolls section to section with scroll snapping (mandatory on wide screens, proximity below 900px), so a section's motion plays where the reader can see all of it.
+**Sections arrive.** The showcase scrolls section to section with proximity scroll snapping at every width, so a section lands where the reader can see all of it and the page never fights the wheel. Mandatory snap is out: sections can run taller than a laptop viewport, and mandatory snap then jumps past their bottom.
 
 **Named rules.** The No Loop Rule: nothing repeats, nothing tickers, nothing drifts. The One Arrival Rule: a section plays its motion once; scrolling back does not replay it. The Hover Rule: hover changes color and border only, and nothing moves.
 
