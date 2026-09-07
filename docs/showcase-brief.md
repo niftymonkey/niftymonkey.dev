@@ -78,13 +78,13 @@ The live screen is the first item under "What to show" in the content doc unless
 2. costs-portal dashboard, Desktop
 3. md reader, Desktop
 4. review-kit capture, Phone
-5. The Hungry Grave in play, Phone if the game is portrait, else Desktop
+5. The Hungry Grave in play, Desktop (the game fills the window; checked 2026-09-06)
 
 **Long builds:**
 - boswell: chat with citation cards (Desktop, live); `just audit-turn` render (Detail); provenance graph (Detail)
 - champ-sage: overlay strip over a live game (Strip, live); desktop window in champ select (Detail); eval dashboard (Detail)
-- brief: brief detail page with player and chapters (Desktop, live); library with filters (Detail); public collection page (Detail)
-- the-cabinet: The Hungry Grave at full weapon levels (Phone or Desktop, live, see above); Housewarming (Detail); the replay route with a tape at a chosen tick (Detail)
+- brief: brief detail page with player and chapters (Desktop, live); library with filters (Detail); the `brief` CLI, rendered from text (Detail). Collections are out: not on production (Mark, 2026-09-06).
+- the-cabinet: The Hungry Grave at full weapon levels (Desktop, live); Housewarming (Detail); the replay route with a tape at a chosen tick (Detail)
 - regimen: `regimen rollup` render (Desktop, live); `regimen status` render (Detail); a Grafana dashboard (Detail)
 
 **Tools (two of the three in the doc; the third is dropped):**
@@ -93,12 +93,12 @@ The live screen is the first item under "What to show" in the content doc unless
 - ai-consensus: a run in progress (Desktop, live); rounds panel (Detail). Dropped: the model picker.
 - niftymonkey.dev: the homepage listing (Desktop, live); a notebook entry (Detail). Dropped: the philosophy page.
 - costs-portal: dashboard with watchman (Desktop, live); project detail (Detail). Dropped: onboarding.
-- review-kit: results cards by goal (Desktop, from the eval or a tablet capture); capture with waveform (Phone, live). Dropped: the eval tables.
+- review-kit: the landing page (Desktop); capture with waveform (Phone, live). Dropped: results cards (portrait only, no Desktop-shaped capture exists) and the eval tables.
 
 **Small ones (one each):**
 - idea-vault: refine wizard mid-flow (Desktop)
 - session-scribe: generation in flight (Desktop)
-- tool-radar: INDEX.md rendered (Desktop)
+- tool-radar: the Tool Radar artifact, Radar view (Desktop)
 - tts-bake-off: `say.py` in a terminal, rendered (Desktop)
 
 Who captures what is decided in the capture checklist (plan step 4), not here.
@@ -158,6 +158,5 @@ The impeccable checks (design laws, brand register, slop tests) run against the 
 
 ## 12. Open questions for the build
 
-- Whether The Hungry Grave is portrait. Decide at capture; it sets the frame in the fan and in the-cabinet's stack.
 - Whether the fan's five screens are lazy or eager. Eager is right if the hero must finish its motion without a late image popping in.
 - How the terminal renders are produced (static SVG, or HTML with the site's mono). Either is fine; SVG is cheaper to ship.
