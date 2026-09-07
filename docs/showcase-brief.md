@@ -140,6 +140,17 @@ Who captures what is decided in the capture checklist (plan step 4), not here.
 - impeccable `spatial-design.md` for the stack geometry on narrow screens.
 - DESIGN.md section 7 for the two motions and the live screen.
 
+### Lessons from the preview build
+
+Learned while building the nine directions. Each one cost time once.
+
+- `position: sticky` dies inside any ancestor with `overflow: hidden`. Use `overflow-x: clip` on body instead.
+- Inline `style` positions beat media-query rules, which forced `!important` in the preview's mobile rules. Card positions go in CSS classes in the build, not inline styles.
+- A grid item whose only children are absolutely positioned, with `margin: 0 auto`, collapses to zero width. Give it `width: 100%`.
+- The fake-screen CSS (`screens.css`) uses `.row`, `.col`, `.card`, `.chip`, `.bar`. Page classes must not reuse those names. In the build the fake screens go away entirely.
+- Percentage `gap` inside the fake screens resolves to zero when the column's height goes indefinite.
+- Five tall artboards on a Claude Design canvas crashed the phone browser. Plain local HTML pages served with `python3 -m http.server` are the review medium.
+
 ## 11. Findings from the shape review of G2
 
 The impeccable checks (design laws, brand register, slop tests) run against the G2 preview and its CSS. Each is marked applied (already folded into this brief) or a call for Mark.
