@@ -106,7 +106,7 @@ export const fan: FanScreen[] = [
     alt: 'The ReviewKit recording overlay: a waveform, a timer, and the live transcript',
     tag: 'review-kit',
     frame: 'phone',
-    tilt: 3,
+    tilt: -3,
   },
   {
     src: '/showcase/the-cabinet/hungry-grave.png',

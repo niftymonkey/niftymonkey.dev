@@ -70,15 +70,17 @@
   font-size: var(--fs-small);
 }
 
-/* A long build's name. Fluid, so "champ-sage/" never breaks at its hyphen. */
+/* A long build's name, always on one line. Sized from the text column: the
+   longest name, "the-cabinet/", is twelve mono characters at about 0.6em
+   each, so 12.8cqw fills the column and no more. Same size on every scene. */
 .sc-name {
   font-family: var(--font-mono);
-  font-size: clamp(2rem, 5.2vw, 4.6rem);
+  font-size: clamp(1.6rem, 12.8cqw, 4.6rem);
   font-weight: var(--fw-semibold);
   line-height: 1.02;
   letter-spacing: 0.01em;
   color: var(--text-strong);
-  text-wrap: balance;
+  white-space: nowrap;
   margin: 0 0 var(--space-4);
 }
 
@@ -184,7 +186,7 @@
 .sc-fan .sc-shot:nth-child(1) { left: 0; top: 18%; width: 60%; }
 .sc-fan .sc-shot:nth-child(2) { left: 12%; top: 8%; width: 60%; }
 .sc-fan .sc-shot:nth-child(3) { left: 28%; top: 0; width: 64%; }
-.sc-fan .sc-shot:nth-child(4) { left: 2%; top: 46%; width: 21%; }
+.sc-fan .sc-shot:nth-child(4) { left: 12%; top: 46%; width: 21%; }
 .sc-fan .sc-shot:nth-child(5) { left: 54%; top: 42%; width: 42%; }
 
 /* ---- screens ---- */
@@ -277,6 +279,7 @@
 
 .sc-scene__text {
   min-width: 0;
+  container-type: inline-size;
 }
 
 /* Scenes alternate sides so five in a row do not read as one template. */
@@ -352,6 +355,7 @@
   color: var(--text-strong);
   letter-spacing: var(--ls-normal);
   line-height: var(--lh-tight);
+  white-space: nowrap;
   margin: 0;
 }
 
@@ -541,10 +545,6 @@
     font-size: 1.05rem;
   }
 
-  .sc-name {
-    font-size: clamp(2rem, 9vw, 3.2rem);
-  }
-
   .sc-fan {
     max-width: 32rem;
     height: min(80vw, 27rem);
@@ -554,7 +554,7 @@
   .sc-fan .sc-shot:nth-child(1) { left: 0; top: 24%; width: 66%; }
   .sc-fan .sc-shot:nth-child(2) { left: 10%; top: 12%; width: 66%; }
   .sc-fan .sc-shot:nth-child(3) { left: 30%; top: 0; width: 70%; }
-  .sc-fan .sc-shot:nth-child(4) { left: 2%; top: 48%; width: 20%; }
+  .sc-fan .sc-shot:nth-child(4) { left: 12%; top: 48%; width: 20%; }
   .sc-fan .sc-shot:nth-child(5) { left: 50%; top: 46%; width: 48%; }
 
   .sc-scene,
