@@ -125,6 +125,8 @@ Who captures what is decided in the capture checklist (plan step 4), not here.
 
 ## 9. Content
 
+- The hard parts are out (Mark, 2026-09-29, after seeing the built page with and without them): no "What was hard" list on a long build, no "Hard:" line on a tool, no folded hard sentence on a small one. Each entry is the problem paragraph and its screens. The lines below that mention hard parts predate this.
+
 - Title: `A year of building with AI`. Lede: `What I built between September 2025 and September 2026. The big ones get the full story. The rest get a picture and a paragraph, because that is what they were.` The count lives in the `total 15` line only; the lede does not restate it.
 - Small text uses the site's tokens as the system says. Ink Faint itself gets lifted to pass AA in the build. See finding 2.
 - Tier dividers: `The long builds · 5`, `The tools · 6`, `The small ones · 4`.

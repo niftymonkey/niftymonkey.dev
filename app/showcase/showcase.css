@@ -119,31 +119,6 @@
   color: var(--text-faint);
 }
 
-.sc-hard {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: var(--fs-small);
-  line-height: 1.6;
-}
-
-.sc-hard li {
-  position: relative;
-  padding-left: var(--space-4);
-  margin-bottom: var(--space-2);
-}
-
-.sc-hard li::before {
-  content: '\2013';
-  position: absolute;
-  left: 0;
-  color: var(--accent-soft);
-}
-
-.sc-hard-label {
-  margin: var(--space-5) 0 var(--space-3);
-}
-
 /* ---- hero ---- */
 
 .sc-hero {
@@ -399,11 +374,6 @@
 
 .sc-head .sc-meta {
   margin-left: auto;
-}
-
-.sc-hard-line {
-  font-size: var(--fs-small);
-  margin: 0;
 }
 
 /* ---- the small ones: one section of four rows ---- */

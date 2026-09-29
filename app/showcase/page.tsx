@@ -10,7 +10,7 @@ import { Shot } from './Shot';
 
 const title = 'A year of building with AI';
 const description =
-  'Fifteen working projects built with AI between September 2025 and September 2026, with pictures and the hard parts named.';
+  'Fifteen working projects built with AI between September 2025 and September 2026, each with its real screens.';
 
 export const metadata: Metadata = {
   title: `${title} · niftymonkey.dev`,
@@ -124,16 +124,6 @@ function Scene({
           <p className="sc-p" data-i="" style={at(base + 3)}>
             {entry.problem}
           </p>
-          <p className="sc-label sc-hard-label" data-i="" style={at(base + 5)}>
-            What was hard
-          </p>
-          <ul className="sc-hard">
-            {entry.hard.map((item, j) => (
-              <li key={j} data-i="" style={at(base + 6 + j)}>
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
         <div className="sc-stack">
           {entry.screens.map((screen, j) => (
@@ -181,9 +171,6 @@ function Pair({ pair, divider }: { pair: Entry[]; divider: boolean }) {
             </div>
             <p className="sc-p sc-p--small" data-i="" style={at(4 + a)}>
               {entry.problem}
-            </p>
-            <p className="sc-hard-line" data-i="" style={at(5 + a)}>
-              <span className="sc-label">Hard:</span> {entry.hard[0]}
             </p>
           </article>
         ))}

@@ -1,7 +1,7 @@
 /**
  * The showcase: fifteen projects built with AI between 2025-09-04 and
- * 2026-09-04, in three tiers. Copy comes from docs/showcase.md, tightened to
- * the lengths the page uses. Screens come from public/showcase/<project>/;
+ * 2026-09-04, in three tiers. Copy comes from docs/showcase.md: each entry's
+ * problem paragraph, tightened to the length the page uses. Screens come from public/showcase/<project>/;
  * terminal output is rendered from text rather than captured.
  */
 
@@ -57,8 +57,6 @@ export interface Entry {
   /** The long builds show their stack in the meta line. */
   stack?: string[];
   problem: string;
-  /** Three items for a long build, one for a tool, none for a small one. */
-  hard: string[];
   screens: Screen[];
 }
 
@@ -126,11 +124,6 @@ export const entries: Entry[] = [
     stack: ['Python 3.12', 'FastAPI', 'pgvector', 'Pipecat', 'Next.js 16'],
     problem:
       "Chat assistants forget you between sessions and run on someone else's servers. Boswell keeps a continuously distilled model of one person's life, on hardware they control, and surfaces things at the moment they matter.",
-    hard: [
-      'Deciding who a name refers to. The tiered resolver was torn out and rebuilt as a single pure function, and the substrate decision was written down.',
-      'Making the memory admit what it does not know. Grounding, candor on failure, contradiction crosscheck, and fact supersession each needed their own decision record.',
-      'Getting voice to work end to end: WebRTC through Docker NAT, a relay, barge-in, and client-owned turn ends took 27 commits and four research notes.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -203,11 +196,6 @@ export const entries: Entry[] = [
     stack: ['TypeScript', 'React 19', 'RxJS', 'Overwolf Electron', 'Whisper', 'evalite'],
     problem:
       'Every League companion app serves pre-computed tier lists that ignore your actual items, augments, and enemy team. Champ Sage is a voice-first coach for the game you are in right now.',
-    hard: [
-      'Riot exposes no augment data at all. Reaching the one API that sees augment offers forced a full migration off Tauri onto Overwolf Electron.',
-      'That dependency then broke on roughly every League patch. A package guard now serves a corrected manifest at launch.',
-      'The in-game overlay kept going blank or getting stuck. Fixes ran for months across compositor flushes, drag persistence, and renderer survivability.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -246,11 +234,6 @@ export const entries: Entry[] = [
     stack: ['Next.js 16', 'React 19', 'Vercel', 'WorkOS', 'AI SDK'],
     problem:
       'Long videos hide whether they are worth watching behind the watching. Brief turns a YouTube link into a timestamped, structured summary so you can decide to watch now, later, or never, and keeps every brief in a searchable library.',
-    hard: [
-      "Reading video frames meant downloading video bytes, which YouTube's terms name directly and its anti-bot enforcement blocks from datacenter IPs. The answer was to move that work to the user's machine.",
-      'That pivot turned a standalone CLI into an authenticated thin client: device-flow login, token refresh, and a server-side LLM gateway with a usage ledger, about 30 commits plus several rounds of auth fixes.',
-      'Collections came in as a full vertical slice: schema and constraints, API, UI, per-clip AI summaries, public share pages, and continuous playback across clips.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -300,11 +283,6 @@ export const entries: Entry[] = [
     stack: ['TypeScript', 'Vite', 'PixiJS 8', 'React 19', 'Upstash Redis'],
     problem:
       'My games had no shared home, and a repo per game costs an install, a tracker and a deploy each. One repo holds every game plus a launcher, and each game keeps its own stack.',
-    hard: [
-      "Proving a recorded run is the real run. A tape format, a witness fold, always-on invariants and a refusal rule took about twenty of the game's 47 decision records.",
-      'Breaking the game into named modules without changing behavior: a 31-commit refactor plus a written proof that a 259-file change moved nothing.',
-      'Keeping the launcher from importing game code, which would force one PixiJS version on every game. The answer is an iframe driven by an experimental DOMContainer.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -342,11 +320,6 @@ export const entries: Entry[] = [
     stack: ['TypeScript', 'Bun', 'SQLite', 'OpenTelemetry', 'Grafana Cloud'],
     problem:
       'Engineers judge their AI-assisted work on feel. Regimen captures what actually happened across Claude Code, Codex, Copilot, and Gemini into a local store, then tells the engineer where the work went wrong and whether their fixes helped.',
-    hard: [
-      'Four agent CLIs disagree on everything at the capture edge: hook file formats, event names, timestamp units, whether the payload even names the event.',
-      'Three sibling repos were folded in as workspace packages, reversing an earlier multi-repo decision without breaking the sibling-path resolution the installer depends on.',
-      "Assessment needs an LLM, and not every user has a spare key. Three judge backends: an API key, the claude CLI's own auth, and a seam that hands the prompt to the agent already in the room.",
-    ],
     screens: [
       {
         kind: 'render',
@@ -408,9 +381,6 @@ export const entries: Entry[] = [
     commits: 117,
     problem:
       'Turn a markdown file into a legible shareable link, faster than a gist and more durable than a pastebin. The second audience is a coding agent that needs to publish and edit docs there as fluidly as it edits local files.',
-    hard: [
-      'an API an agent can drive without wasting context, with 409s that name every ambiguous match and its line.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -439,9 +409,6 @@ export const entries: Entry[] = [
     commits: 93,
     problem:
       "models.dev lists roughly 2,200 model identities, and most people pick the one name they have heard of. pickai takes a project's hard rules and what matters this week, then returns a short ordered list worth testing, with the reasoning attached.",
-    hard: [
-      'joining benchmark scores to catalog IDs mostly fails, which killed the planned built-in quality score.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -471,9 +438,6 @@ export const entries: Entry[] = [
     commits: 79,
     problem:
       "One model's answer is one opinion. This sends a question to several models at once, lets them read each other and refine over rounds, and has an evaluator model decide when they have converged.",
-    hard: [
-      'making 200-plus OpenRouter models behave alike, and letting a user stop several streams mid-round.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -495,9 +459,6 @@ export const entries: Entry[] = [
     commits: 78,
     problem:
       'My personal site. I want to be easier to learn from without becoming a content creator. It lists my projects as a terminal directory listing and holds a notebook of engineering writing worth keeping.',
-    hard: [
-      'a notebook that is a library, not a blog: superseded entries stay up with a forward pointer, and the banner reads as integrity, not a warning.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -525,9 +486,6 @@ export const entries: Entry[] = [
     commits: 64,
     problem:
       '"What did this project cost me this month" used to mean checking five dashboards. This pulls Anthropic, OpenAI, OpenRouter, and the flat-fee SaaS tail into one project-first view on your own machine.',
-    hard: [
-      'storing provider admin keys locally without a cloud KMS, and making three billing shapes comparable.',
-    ],
     screens: [
       {
         kind: 'capture',
@@ -555,7 +513,6 @@ export const entries: Entry[] = [
     commits: 51,
     problem:
       'People forget what they did all year and then write a performance review from memory. ReviewKit captures accomplishments by voice or text as they happen, then turns the pile into goal-aligned review content.',
-    hard: ['top-scoring models failed to return valid JSON, so the project grew a real eval funnel.'],
     screens: [
       {
         kind: 'capture',
@@ -583,8 +540,7 @@ export const entries: Entry[] = [
     live: [{ label: 'live', href: 'https://idea-vault.niftymonkey.dev' }],
     commits: 41,
     problem:
-      'App ideas start as a braindump and end as scattered text. This stores them in a structure you can scan, keep updating, and export as a build-ready prompt. The hard part was two encryption schemes with opposite trust assumptions in one app.',
-    hard: [],
+      'App ideas start as a braindump and end as scattered text. This stores them in a structure you can scan, keep updating, and export as a build-ready prompt.',
     screens: [
       {
         kind: 'capture',
@@ -603,8 +559,7 @@ export const entries: Entry[] = [
     repo: gh('session-scribe'),
     commits: 26,
     problem:
-      'A D&D group finishes a session with a Teams transcript and a dice log and no record anyone wants to read. This turns both into a scene-by-scene narrative recap. A four-hour transcript will not fit one prompt, so generation runs in three passes.',
-    hard: [],
+      'A D&D group finishes a session with a Teams transcript and a dice log and no record anyone wants to read. This turns both into a scene-by-scene narrative recap.',
     screens: [
       {
         kind: 'capture',
@@ -624,7 +579,6 @@ export const entries: Entry[] = [
     commits: 20,
     problem:
       'A hand-kept file of default tools went stale and got deleted. This is a catalog that refreshes itself: a weekly scheduled agent runs a written runbook and opens a PR. There is no UI. The showable artifacts are files.',
-    hard: [],
     screens: [
       {
         kind: 'capture',
@@ -643,8 +597,7 @@ export const entries: Entry[] = [
     repo: gh('tts-bake-off'),
     commits: 15,
     problem:
-      'Picking a text-to-speech voice by reading spec sheets does not work. This renders one line across eight engines, local and cloud, so the choice gets made by ear. The engines cannot share a Python interpreter, so each gets its own warm worker.',
-    hard: [],
+      'Picking a text-to-speech voice by reading spec sheets does not work. This renders one line across eight engines, local and cloud, so the choice gets made by ear.',
     screens: [
       {
         kind: 'render',
