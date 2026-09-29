@@ -1,0 +1,7 @@
+$ brief whoami
+person@emailserver.com
+
+$ brief generate https://www.youtube.com/watch?v=vsGwx28z4jk
+Fetching transcript...
+Generating brief on the server... (typically 5–15s)
+https://brief.niftymonkey.dev/brief/b22ee8a1-d3ad-4625-a73a-4ebfd372049f

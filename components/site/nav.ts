@@ -10,6 +10,7 @@ export interface NavItem {
 const ALL: Record<string, NavItem> = {
   home: { label: 'home', href: '/' },
   notebook: { label: 'notebook', href: '/notebook' },
+  showcase: { label: 'showcase', href: '/showcase' },
   philosophy: { label: 'philosophy', href: '/philosophy' },
   github: { label: 'github', href: GITHUB_URL, icon: 'github' },
 };
@@ -18,7 +19,7 @@ const ALL: Record<string, NavItem> = {
  * An entry is its own surface: it sits under the notebook rather than being it,
  * so it links to everything, the notebook included.
  */
-export type Surface = 'home' | 'notebook' | 'philosophy' | 'entry';
+export type Surface = 'home' | 'notebook' | 'showcase' | 'philosophy' | 'entry';
 
 /**
  * The header carries navigation, not a table of contents. Philosophy is not a
@@ -27,7 +28,7 @@ export type Surface = 'home' | 'notebook' | 'philosophy' | 'entry';
  * survive a phone.
  */
 export function navFor(current: Surface) {
-  return (['home', 'notebook', 'github'] as const)
+  return (['home', 'notebook', 'showcase', 'github'] as const)
     .filter((key) => key !== current)
     .map((key) => ALL[key]);
 }

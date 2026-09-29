@@ -13,7 +13,7 @@ colors:
   title-bar: "#181c1f"
   ink-strong: "#edf0f2"
   ink-soft: "#949ca4"
-  ink-faint: "#59616a"
+  ink-faint: "#7e868f"
   hairline: "#23272c"
   hairline-strong: "#2c3138"
   paper-ground-light: "#f6f7f7"
@@ -21,7 +21,7 @@ colors:
   title-bar-light: "#eef1f1"
   ink-strong-light: "#14181b"
   ink-soft-light: "#4c545c"
-  ink-faint-light: "#7b838c"
+  ink-faint-light: "#656d77"
   hairline-light: "#e4e7e9"
   hairline-strong-light: "#d3d8db"
   signal-sage-light: "oklch(0.48 0.09 158)"
@@ -177,12 +177,12 @@ Each has a matching wash at 12 to 15 percent alpha for a chip background.
 - **Title Bar** (`#181c1f`): the sticky terminal bar, hover rows, insets.
 - **Ink Strong** (`#edf0f2`): headings, entry titles, project names.
 - **Ink Soft** (`#949ca4`): body prose and secondary text. The default body color.
-- **Ink Faint** (`#59616a`): metadata, comments, permission strings, disabled controls.
+- **Ink Faint** (`#7e868f`): metadata, comments, permission strings, disabled controls.
 - **Hairline** (`#23272c`) and **Hairline Strong** (`#2c3138`): the only edge treatment. Strong is for emphasised rules and the column-head underline.
 
 ### Neutral (light, the equal peer)
 - **Paper Ground** (`#f6f7f7`), **Raised Sheet Light** (`#ffffff`), **Title Bar Light** (`#eef1f1`).
-- **Ink Strong Light** (`#14181b`), **Ink Soft Light** (`#4c545c`), **Ink Faint Light** (`#7b838c`).
+- **Ink Strong Light** (`#14181b`), **Ink Soft Light** (`#4c545c`), **Ink Faint Light** (`#656d77`).
 - **Hairline Light** (`#e4e7e9`) and **Hairline Strong Light** (`#d3d8db`).
 
 ### Named Rules
@@ -309,5 +309,5 @@ Two motions, and each one means something. Both play once, when their section ar
 
 **Sections arrive.** The showcase scrolls section to section with proximity scroll snapping at every width, so a section lands where the reader can see all of it and the page never fights the wheel. Mandatory snap is out: sections can run taller than a laptop viewport, and mandatory snap then jumps past their bottom.
 
-**Named rules.** The No Loop Rule: nothing repeats, nothing tickers, nothing drifts. The One Arrival Rule: a section plays its motion once; scrolling back does not replay it. The Hover Rule: hover changes color and border only, and nothing moves.
+**Named rules.** The No Loop Rule: nothing repeats, nothing tickers, nothing drifts. The One Arrival Rule: a section plays its motion once; scrolling back does not replay it. The Hover Rule: hover changes color and border only, and nothing moves, with one exception: a screen in a stack or the fan eases up, straightens, and comes to the front while hovered, then settles back. It is the one hover that moves, because the screens are objects on a desk and picking one up is what a hand does.
 

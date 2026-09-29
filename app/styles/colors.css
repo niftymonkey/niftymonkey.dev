@@ -15,7 +15,7 @@
   /* ---- text ---- */
   --text-strong:    #edf0f2;  /* headings, entry titles */
   --text-soft:      #949ca4;  /* body prose, secondary */
-  --text-faint:     #59616a;  /* metadata, comments, disabled */
+  --text-faint:     #7e868f;  /* metadata, comments, disabled; 4.6:1 on the panel */
 
   /* ---- lines ---- */
   --border:         #23272c;  /* default hairline */
@@ -48,7 +48,7 @@
     --surface-panel: #eef1f1;
     --text-strong:   #14181b;
     --text-soft:     #4c545c;
-    --text-faint:    #7b838c;
+    --text-faint:    #656d77;
     --border:        #e4e7e9;
     --border-strong: #d3d8db;
     --accent:        oklch(0.48 0.09 158);
@@ -71,7 +71,7 @@
   --surface-panel: #eef1f1;
   --text-strong:   #14181b;
   --text-soft:     #4c545c;
-  --text-faint:    #7b838c;
+  --text-faint:    #656d77;
   --border:        #e4e7e9;
   --border-strong: #d3d8db;
   --accent:        oklch(0.48 0.09 158);
@@ -93,7 +93,7 @@
   --surface-panel: #181c1f;
   --text-strong:   #edf0f2;
   --text-soft:     #949ca4;
-  --text-faint:    #59616a;
+  --text-faint:    #7e868f;
   --border:        #23272c;
   --border-strong: #2c3138;
   --accent:        oklch(0.77 0.09 158);

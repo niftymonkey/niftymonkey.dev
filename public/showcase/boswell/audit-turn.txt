@@ -1,0 +1,22 @@
+=== turn cf352e95 ===
+[utterance]
+  user_utterance (voice): Tell me about my friend R.
+[extraction]
+  entity f786f5a4  person  Mark Lozano
+  entity a9267990  person  R.
+  edge   d7c80738  friend  f786f5a4 -> a9267990
+[resolution]
+  bind      person/f2b0bb7fdfdaee040e734c86187d63d5bae56e21f6c17732bd0f88e094057a7f  entity=f786f5a4 matched=f786f5a4  first_person_anchor
+  bind      person/aa392d36bd86cef2f0fac485450602185be5ff071453ca350150236a18605f24  entity=a9267990 matched=a9267990  same_person_by_name
+[retrieval]
+  hits=8  relationships=100  entities: R., place, Mark, T., place, S., K., person
+[crosscheck]
+  no signal
+[reply]
+  [R.](boswell:turn/019f3dd1-758f-77b0-bb7b-913c263b94fd) is someone you've known since you were about 23—so for over 25 years now. You two got along really well from the start. You have a similar sense of humor, like the same foods, and both love pie. You even had a stretch where you'd celebrate "Pi Day" once a month at work, bringing in pie to share.
+  
+  You've worked together at multiple companies over the years—more than anyone else in your current friend group. He's [entertaining, nice, and generous](boswell:turn/019f3dd1-758f-77b0-bb7b-913c263b94fd). He loves hosting events and seems to enjoy making people happy. 
+  
+  He has a [basement theater at his house](boswell:turn/019f3dd1-758f-77b0-bb7b-913c263b94fd) where you have movie night. He usually makes really good food for those gatherings, and the rest of you bring sides or desserts.
+  
+  You two used to game together—World of Warcraft and EverQuest before that. His wife M. also played WoW with you guys, along with [S.](boswell:turn/019f3dcd-be51-7631-962a-f66ded1d7460). R. also rides motorcycles and has introduced other friends like K. and S. through that hobby.

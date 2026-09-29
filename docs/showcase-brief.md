@@ -19,6 +19,7 @@ Scroll the whole page once, section by section, and see fifteen working things. 
 - **Anchors:** the site's own homepage and notebook (identity preservation wins over any new lane); the E direction's stacked, tilted screens, now inside the site's chrome; a desk with printouts set down on it, which is what the drop motion means.
 - **Register:** brand (portfolio). The aesthetic lane is a literal terminal, which the site already committed to.
 - **Probe step:** skipped. No native image generation in this harness, and nine built HTML directions already did the job.
+- **Directions tried, so nobody re-walks them:** A, B, and C (static sketches obeying the site rules) read as neutered. D (warm paper, serif) was too quiet. E (coral, Archivo, scroll-scrubbed pinned scenes) was loved for its stacking and depth but had the wrong colors and fonts, and scroll-scrubbing lost to play-once-on-arrival. F (site design, print motion) had the right register but was flat. G1 (E's layout in site clothes) lost the tiers. G3 (F plus a hero) left the sections flat. G2 (site chrome with E's stacks) won. The losing pages stay in `design/showcase/preview/` for reference. A stale Claude Design canvas also exists; ignore it.
 
 ## 4. Scope
 
@@ -54,7 +55,6 @@ Four frame shapes. Every screen on the page is one of these.
 | Desktop | 16:10 | the live screen of every web app and dashboard | 1440 x 900 viewport, 2x |
 | Detail | 4:3 | secondary screens, terminal renders | 1200 x 900 viewport or a crop, 2x |
 | Phone | 9:19.5 | review-kit capture, the phone in the fan | iPhone 14 Pro Max, as captured. Bare screenshot, never a device bezel |
-| Strip | 21:9 | champ-sage's in-game overlay | crop of the game capture |
 
 Terminal output (regimen, tts-bake-off, boswell's audit, the-cabinet's measure report) is rendered from text, not captured. It is set in the site's mono at the Detail ratio, or Desktop when it is the live screen.
 
@@ -81,14 +81,14 @@ The live screen is the first item under "What to show" in the content doc unless
 5. The Hungry Grave in play, Desktop (the game fills the window; checked 2026-09-06)
 
 **Long builds:**
-- boswell: chat with citation cards (Desktop, live); `just audit-turn` render (Detail); provenance graph (Detail)
-- champ-sage: overlay strip over a live game (Strip, live); desktop window in champ select (Detail); eval dashboard (Detail)
+- boswell: chat with citation cards (Desktop, live); `just audit-turn` render (Detail); memory browser (Detail; replaced the provenance graph on 2026-09-28, which does not yet draw edges)
+- champ-sage: the in-game overlay over a live game (Desktop, live; the 21:9 Strip frame was dropped on 2026-09-28, it read as odd next to the other screens); desktop window in champ select (Detail); the post-game review (Desktop; replaced the Evalite eval dashboard on 2026-09-29, a third-party tool's UI that did not show the project)
 - brief: brief detail page with player and chapters (Desktop, live); library with filters (Detail); the `brief` CLI, rendered from text (Detail). Collections are out: not on production (Mark, 2026-09-06).
 - the-cabinet: The Hungry Grave at full weapon levels (Desktop, live); Housewarming (Detail); the replay route with a tape at a chosen tick (Detail)
 - regimen: `regimen rollup` render (Desktop, live); `regimen status` render (Detail); a Grafana dashboard (Detail)
 
 **Tools (two of the three in the doc; the third is dropped):**
-- md: reader with outline rail (Desktop, live); revision history (Detail). Dropped: the 409 curl.
+- md: reader with outline rail (Desktop, live); the "md" doc set wide with its Mermaid diagram (Detail). Dropped: revision history and the 409 curl (Mark, 2026-09-06: the diagram is the better picture).
 - pickai: rule rail and results table (Desktop, live); per-model panel (Detail). Dropped: the blend editor.
 - ai-consensus: a run in progress (Desktop, live); rounds panel (Detail). Dropped: the model picker.
 - niftymonkey.dev: the homepage listing (Desktop, live); a notebook entry (Detail). Dropped: the philosophy page.
@@ -120,10 +120,12 @@ Who captures what is decided in the capture checklist (plan step 4), not here.
 - Scroll is the whole interaction. Sections snap. Each section plays its motion once and never again. The trigger is the section's top crossing three quarters of the way up the viewport (`rootMargin: "0px 0px -25% 0px"`, threshold 0), not "30 percent of the section visible": on a phone a long-build section is two to three screens tall and the old rule fires a third of the way in, after the reader has already seen the top.
 - The standalone draw motion (a screen filling top to bottom with a sage scan line) is not used on this page. If it ever is, the scan line moves with `transform`, not `top`.
 - Each entry name links to the repo when public. Each entry with a live URL gets a `[live]` link in the meta line. Private entries say `[private]` and link nowhere.
-- Hover changes color and border only. Nothing lifts, nothing moves.
+- Hover on a screen eases it up 8px, straightens it, scales it to 1.05, and brings it to the front; on leave it settles back and drops under the others. Elsewhere hover changes color and border only. (Mark, 2026-09-29: the build first shipped without the lift and he asked for it back.)
 - The terminal bar is the site's. Double-tap returns to top.
 
 ## 9. Content
+
+- The hard parts are out (Mark, 2026-09-29, after seeing the built page with and without them): no "What was hard" list on a long build, no "Hard:" line on a tool, no folded hard sentence on a small one. Each entry is the problem paragraph and its screens. The lines below that mention hard parts predate this.
 
 - Title: `A year of building with AI`. Lede: `What I built between September 2025 and September 2026. The big ones get the full story. The rest get a picture and a paragraph, because that is what they were.` The count lives in the `total 15` line only; the lede does not restate it.
 - Small text uses the site's tokens as the system says. Ink Faint itself gets lifted to pass AA in the build. See finding 2.
