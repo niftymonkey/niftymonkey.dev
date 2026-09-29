@@ -178,11 +178,14 @@
   position: absolute;
 }
 
-.sc-fan .sc-shot:nth-child(1) { left: 0; top: 23%; width: 60%; }
-.sc-fan .sc-shot:nth-child(2) { left: 12%; top: 11%; width: 60%; }
+/* The three desktop screens sit on top; the phone and the game peek out from
+   under their bottom edges. */
+.sc-fan .sc-shot:nth-child(-n + 3) { z-index: 1; }
+.sc-fan .sc-shot:nth-child(1) { left: 0; top: 18%; width: 60%; }
+.sc-fan .sc-shot:nth-child(2) { left: 12%; top: 8%; width: 60%; }
 .sc-fan .sc-shot:nth-child(3) { left: 28%; top: 0; width: 64%; }
-.sc-fan .sc-shot:nth-child(4) { left: 6%; top: 38%; width: 24%; }
-.sc-fan .sc-shot:nth-child(5) { left: 54%; top: 58%; width: 42%; }
+.sc-fan .sc-shot:nth-child(4) { left: 2%; top: 46%; width: 21%; }
+.sc-fan .sc-shot:nth-child(5) { left: 54%; top: 42%; width: 42%; }
 
 /* ---- screens ---- */
 
@@ -227,6 +230,12 @@
   background: rgba(15, 17, 19, 0.8);
   padding: 3px 7px;
   border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* A phone frame is narrow; its tag shrinks rather than wrapping. */
+.sc-frame--phone .sc-shot__tag {
+  font-size: 0.58rem;
 }
 
 /* Terminal output, set in the site's mono rather than captured. */
@@ -469,16 +478,17 @@
   to { opacity: 1; transform: rotate(var(--r, 0deg)); }
 }
 
-/* The hero fan drops on load, left to right, the front screen last. */
+/* The hero fan drops on load: the two underneath first, then the desktop
+   screens left to right, the front one last. */
 .js .sc-fan .sc-shot {
   animation: sc-drop 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.js .sc-fan .sc-shot:nth-child(1) { animation-delay: 900ms; }
-.js .sc-fan .sc-shot:nth-child(2) { animation-delay: 1020ms; }
-.js .sc-fan .sc-shot:nth-child(3) { animation-delay: 1140ms; }
-.js .sc-fan .sc-shot:nth-child(4) { animation-delay: 1260ms; }
-.js .sc-fan .sc-shot:nth-child(5) { animation-delay: 1380ms; }
+.js .sc-fan .sc-shot:nth-child(4) { animation-delay: 900ms; }
+.js .sc-fan .sc-shot:nth-child(5) { animation-delay: 1020ms; }
+.js .sc-fan .sc-shot:nth-child(1) { animation-delay: 1140ms; }
+.js .sc-fan .sc-shot:nth-child(2) { animation-delay: 1260ms; }
+.js .sc-fan .sc-shot:nth-child(3) { animation-delay: 1380ms; }
 
 @media (prefers-reduced-motion: reduce) {
   :root:has(.sc-page) {
@@ -544,8 +554,8 @@
   .sc-fan .sc-shot:nth-child(1) { left: 0; top: 24%; width: 66%; }
   .sc-fan .sc-shot:nth-child(2) { left: 10%; top: 12%; width: 66%; }
   .sc-fan .sc-shot:nth-child(3) { left: 30%; top: 0; width: 70%; }
-  .sc-fan .sc-shot:nth-child(4) { left: 4%; top: 40%; width: 22%; }
-  .sc-fan .sc-shot:nth-child(5) { left: 50%; top: 58%; width: 48%; }
+  .sc-fan .sc-shot:nth-child(4) { left: 2%; top: 48%; width: 20%; }
+  .sc-fan .sc-shot:nth-child(5) { left: 50%; top: 46%; width: 48%; }
 
   .sc-scene,
   .sc-scene--flip {
