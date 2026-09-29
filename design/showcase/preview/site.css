@@ -50,6 +50,11 @@ h1 { font-size: 2.35rem; margin-bottom: 1.4rem; }
 .shot { background: var(--sheet); border: 1px solid var(--hair-strong); border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,.30), 0 18px 40px -28px rgba(0,0,0,.55); }
 .shot .tag { position: absolute; left: 10px; bottom: 8px; z-index: 2; font-family: var(--mono); font-size: 0.68rem; color: var(--ink-soft); background: rgba(15,17,19,0.8); padding: 3px 7px; border-radius: 3px; }
 .shot.live { border-color: var(--sage); box-shadow: 0 0 0 1px oklch(0.77 0.09 158 / 0.35), 0 1px 3px rgba(0,0,0,.30), 0 24px 60px -28px oklch(0.77 0.09 158 / 0.45); }
+/* hover: ease up to the top, ease back, then drop under */
+.shot { transition: scale 420ms cubic-bezier(0.2, 0.8, 0.2, 1), translate 420ms cubic-bezier(0.2, 0.8, 0.2, 1), rotate 420ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 420ms cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s linear 420ms; }
+.shot:hover { z-index: 20; scale: 1.05; translate: 0 -8px; rotate: calc(-1 * var(--r, 0deg)); box-shadow: 0 2px 6px rgba(0,0,0,.35), 0 32px 64px -24px rgba(0,0,0,.7); transition-delay: 0s; }
+.shot img { transition: scale 420ms cubic-bezier(0.2, 0.8, 0.2, 1); transform-origin: 50% 50%; }
+.shot:hover img { scale: 1.035; }
 
 /* layout */
 .shell { max-width: 66rem; margin: 0 auto; padding: 0 1.4rem 3.2rem; }
@@ -96,6 +101,7 @@ h1 { font-size: 2.35rem; margin-bottom: 1.4rem; }
   .typed { animation: none; width: 26ch; } .caret { animation: none; }
   [data-enter] [data-i], [data-enter] .shot[data-i], [data-enter] .shot[data-k], .stack .shot, .ministack .shot, .fan .shot, .rise { opacity: 1; clip-path: none; animation: none !important; }
   .divider .rule { transform: none; }
+  .shot { transition: none; } .shot:hover { scale: none; translate: none; rotate: none; } .shot img { transition: none; } .shot:hover img { scale: none; }
 }
 
 /* ---- small screens ---- */
