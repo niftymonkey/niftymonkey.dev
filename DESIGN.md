@@ -309,5 +309,5 @@ Two motions, and each one means something. Both play once, when their section ar
 
 **Sections arrive.** The showcase scrolls section to section with proximity scroll snapping at every width, so a section lands where the reader can see all of it and the page never fights the wheel. Mandatory snap is out: sections can run taller than a laptop viewport, and mandatory snap then jumps past their bottom.
 
-**Named rules.** The No Loop Rule: nothing repeats, nothing tickers, nothing drifts. The One Arrival Rule: a section plays its motion once; scrolling back does not replay it. The Hover Rule: hover changes color and border only, and nothing moves.
+**Named rules.** The No Loop Rule: nothing repeats, nothing tickers, nothing drifts. The One Arrival Rule: a section plays its motion once; scrolling back does not replay it. The Hover Rule: hover changes color and border only, and nothing moves, with one exception: a screen in a stack or the fan eases up, straightens, and comes to the front while hovered, then settles back. It is the one hover that moves, because the screens are objects on a desk and picking one up is what a hand does.
 

@@ -120,7 +120,7 @@ Who captures what is decided in the capture checklist (plan step 4), not here.
 - Scroll is the whole interaction. Sections snap. Each section plays its motion once and never again. The trigger is the section's top crossing three quarters of the way up the viewport (`rootMargin: "0px 0px -25% 0px"`, threshold 0), not "30 percent of the section visible": on a phone a long-build section is two to three screens tall and the old rule fires a third of the way in, after the reader has already seen the top.
 - The standalone draw motion (a screen filling top to bottom with a sage scan line) is not used on this page. If it ever is, the scan line moves with `transform`, not `top`.
 - Each entry name links to the repo when public. Each entry with a live URL gets a `[live]` link in the meta line. Private entries say `[private]` and link nowhere.
-- Hover changes color and border only. Nothing lifts, nothing moves.
+- Hover on a screen eases it up 8px, straightens it, scales it to 1.05, and brings it to the front; on leave it settles back and drops under the others. Elsewhere hover changes color and border only. (Mark, 2026-09-29: the build first shipped without the lift and he asked for it back.)
 - The terminal bar is the site's. Double-tap returns to top.
 
 ## 9. Content

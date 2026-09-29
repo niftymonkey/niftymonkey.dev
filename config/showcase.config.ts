@@ -85,7 +85,7 @@ export const fan: FanScreen[] = [
     alt: 'The costs-portal dashboard: a month total, project cards with sparklines, and the watchman panel',
     tag: 'costs-portal',
     frame: 'desktop',
-    tilt: -7,
+    tilt: -5,
   },
   {
     src: '/showcase/md/reader.png',
@@ -106,14 +106,14 @@ export const fan: FanScreen[] = [
     alt: 'The ReviewKit recording overlay: a waveform, a timer, and the live transcript',
     tag: 'review-kit',
     frame: 'phone',
-    tilt: -3,
+    tilt: -4,
   },
   {
     src: '/showcase/the-cabinet/hungry-grave.png',
     alt: 'The Hungry Grave: a run replaying, rings of orbiting shots around the player',
     tag: 'the-cabinet',
     frame: 'desktop',
-    tilt: -4,
+    tilt: 5,
   },
 ];
 

@@ -170,10 +170,14 @@
   vertical-align: bottom;
 }
 
+/* The pile is laid out in percentages of a box with a fixed ratio, so it
+   looks the same at every width. On a short viewport the box shrinks with
+   the height and stays centered. */
 .sc-fan {
   position: relative;
-  width: 100%;
-  height: min(520px, 62vh);
+  width: min(100%, calc(62vh / 0.72));
+  aspect-ratio: 1 / 0.72;
+  margin: 0 auto;
 }
 
 .sc-fan .sc-shot {
@@ -183,11 +187,11 @@
 /* The three desktop screens sit on top; the phone and the game peek out from
    under their bottom edges. */
 .sc-fan .sc-shot:nth-child(-n + 3) { z-index: 1; }
-.sc-fan .sc-shot:nth-child(1) { left: 0; top: 18%; width: 60%; }
-.sc-fan .sc-shot:nth-child(2) { left: 12%; top: 8%; width: 60%; }
-.sc-fan .sc-shot:nth-child(3) { left: 28%; top: 0; width: 64%; }
-.sc-fan .sc-shot:nth-child(4) { left: 12%; top: 46%; width: 21%; }
-.sc-fan .sc-shot:nth-child(5) { left: 54%; top: 42%; width: 42%; }
+.sc-fan .sc-shot:nth-child(1) { left: 14%; top: 34%; width: 54%; }
+.sc-fan .sc-shot:nth-child(2) { left: 16%; top: 0; width: 58%; }
+.sc-fan .sc-shot:nth-child(3) { left: 34%; top: 8%; width: 64%; }
+.sc-fan .sc-shot:nth-child(4) { left: 0; top: 40%; width: 17%; }
+.sc-fan .sc-shot:nth-child(5) { left: 62%; top: 56%; width: 36%; }
 
 /* ---- screens ---- */
 
@@ -199,6 +203,35 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
   transform: rotate(var(--r, 0deg));
+}
+
+/* Hover: the screen eases up, straightens, and comes to the front; then it
+   settles back and drops under the others again. Mark asked for this back
+   after the build (2026-09-29); it overrides the brief's hover rule. */
+.sc-shot {
+  transition:
+    scale 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    translate 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    rotate 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    z-index 0s linear 420ms;
+}
+
+.sc-shot.sc-shot:hover {
+  z-index: 20;
+  scale: 1.05;
+  translate: 0 -8px;
+  rotate: calc(-1 * var(--r, 0deg));
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 32px 64px -24px rgba(0, 0, 0, 0.7);
+  transition-delay: 0s;
+}
+
+.sc-shot__img {
+  transition: scale 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sc-shot:hover .sc-shot__img {
+  scale: 1.035;
 }
 
 .sc-frame--desktop { aspect-ratio: 16 / 10; }
@@ -518,6 +551,21 @@
     transform: none;
     animation: none;
   }
+
+  .sc-shot,
+  .sc-shot__img {
+    transition: none;
+  }
+
+  .sc-shot.sc-shot:hover {
+    scale: none;
+    translate: none;
+    rotate: none;
+  }
+
+  .sc-shot:hover .sc-shot__img {
+    scale: none;
+  }
 }
 
 /* ============================================================
@@ -546,16 +594,14 @@
   }
 
   .sc-fan {
-    max-width: 32rem;
-    height: min(80vw, 27rem);
-    margin: 0 auto;
+    width: min(100%, 32rem);
   }
 
-  .sc-fan .sc-shot:nth-child(1) { left: 0; top: 24%; width: 66%; }
-  .sc-fan .sc-shot:nth-child(2) { left: 10%; top: 12%; width: 66%; }
-  .sc-fan .sc-shot:nth-child(3) { left: 30%; top: 0; width: 70%; }
-  .sc-fan .sc-shot:nth-child(4) { left: 12%; top: 48%; width: 20%; }
-  .sc-fan .sc-shot:nth-child(5) { left: 50%; top: 46%; width: 48%; }
+  .sc-fan .sc-shot:nth-child(1) { left: 12%; top: 34%; width: 60%; }
+  .sc-fan .sc-shot:nth-child(2) { left: 14%; top: 0; width: 62%; }
+  .sc-fan .sc-shot:nth-child(3) { left: 30%; top: 8%; width: 70%; }
+  .sc-fan .sc-shot:nth-child(4) { left: 0; top: 44%; width: 19%; }
+  .sc-fan .sc-shot:nth-child(5) { left: 60%; top: 60%; width: 38%; }
 
   .sc-scene,
   .sc-scene--flip {
