@@ -13,7 +13,7 @@ colors:
   title-bar: "#181c1f"
   ink-strong: "#edf0f2"
   ink-soft: "#949ca4"
-  ink-faint: "#59616a"
+  ink-faint: "#7e868f"
   hairline: "#23272c"
   hairline-strong: "#2c3138"
   paper-ground-light: "#f6f7f7"
@@ -21,7 +21,7 @@ colors:
   title-bar-light: "#eef1f1"
   ink-strong-light: "#14181b"
   ink-soft-light: "#4c545c"
-  ink-faint-light: "#7b838c"
+  ink-faint-light: "#656d77"
   hairline-light: "#e4e7e9"
   hairline-strong-light: "#d3d8db"
   signal-sage-light: "oklch(0.48 0.09 158)"
@@ -177,12 +177,12 @@ Each has a matching wash at 12 to 15 percent alpha for a chip background.
 - **Title Bar** (`#181c1f`): the sticky terminal bar, hover rows, insets.
 - **Ink Strong** (`#edf0f2`): headings, entry titles, project names.
 - **Ink Soft** (`#949ca4`): body prose and secondary text. The default body color.
-- **Ink Faint** (`#59616a`): metadata, comments, permission strings, disabled controls.
+- **Ink Faint** (`#7e868f`): metadata, comments, permission strings, disabled controls.
 - **Hairline** (`#23272c`) and **Hairline Strong** (`#2c3138`): the only edge treatment. Strong is for emphasised rules and the column-head underline.
 
 ### Neutral (light, the equal peer)
 - **Paper Ground** (`#f6f7f7`), **Raised Sheet Light** (`#ffffff`), **Title Bar Light** (`#eef1f1`).
-- **Ink Strong Light** (`#14181b`), **Ink Soft Light** (`#4c545c`), **Ink Faint Light** (`#7b838c`).
+- **Ink Strong Light** (`#14181b`), **Ink Soft Light** (`#4c545c`), **Ink Faint Light** (`#656d77`).
 - **Hairline Light** (`#e4e7e9`) and **Hairline Strong Light** (`#d3d8db`).
 
 ### Named Rules
