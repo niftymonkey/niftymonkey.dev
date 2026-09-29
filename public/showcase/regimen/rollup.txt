@@ -1,0 +1,21 @@
+Hey, so quick gut-check on the last stretch since you asked: it went well overall. Most sessions land the thing you actually asked for, roughly three in five finish clean with no real back-and-forth needed, and only a small slice, about one in fourteen, really goes sideways.
+
+When something does need fixing, there's one pattern behind almost all of it: you catching Claude stating something as settled fact before it actually checked. A branch it called "clean" that wasn't. A claim that a skill didn't exist when it did. A "yes it's fixed" before anyone re-ran the thing. Session 6acc6193b is a clean example: Claude declared three PRs mergeable and you had to stop it and ask "are you sure?" before it actually looked. Same shape in fa647718: an audit said "no issues" while a stale line in its own doc contradicted it, and you're the one who caught the mismatch. It's not that Claude is careless across the board, it clearly does good, careful work most of the time, it's that the moment of "I'm done, here's the state" is where it gets ahead of the evidence.
+
+My recommendation is that we add a small standing habit: before Claude reports something as verified or complete, it names how it checked, not just that it checked. That forces the "how do you know" step to happen before you have to ask it, instead of after. I can draft that as a line for your instructions file if you want, and you can decide whether it's worth keeping in daily use or if you'd rather leave it as-is.
+
+Two smaller things I noticed but am not flagging as action items yet: a couple of sessions saw Claude overwrite a handoff file by hand instead of running the intended update process, and a couple were just empty exits with nothing in them. Neither is worth a fix on its own; I'll keep an eye out, and if either shows up again next week I'll bring it to you as something to actually act on.
+
+The numbers behind this:
+judged conversations: 425
+  accomplishment: accomplished 256, not-accomplished 31, partial 63
+  attribution: ai 17, conducting 16, environment 37, framing 25, leverage 3, verification 4
+  conducting: adequately-conducted 62, poorly-conducted 13, well-conducted 277
+  convention-adherence: followed 193, partially-followed 82
+  correction-cost: heavy 47, light 121, none 89
+  effort: high 111, low 82, moderate 159
+  engagement: engaged 314, not-engaged 38
+  framing: adequate 158, clear 149, underspecified 45
+  intent: bug-fix 41, exploration 84, feature 105, other 101, refactor 16, schema-change 2, test-writing 2
+  outcome: not-accomplished 31, partial 63, accomplished-under-heavy-correction 47, accomplished-under-light-correction 120, accomplished-cleanly 89
+  verification: accepted-unverified 64, nothing-to-verify 70, verified 205

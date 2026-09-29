@@ -1,0 +1,11 @@
+installed: regimen 1.0.0
+  installed 2026-07-06T04:34:30.548Z, updated 2026-07-06T04:34:32.223Z
+  codex: feedback, enforcement, guidance (config-home)
+  claude: feedback, enforcement, guidance (config-home)
+  copilot: feedback, enforcement, guidance (config-home)
+  gemini: feedback, enforcement, guidance (workspace:/home/mlo/dev/niftymonkey/regimen)
+feedback: enabled
+daemon: running (pid 376)
+last event: 2026-09-07T03:34:20.547Z (1s ago)
+backlog: 861800 bytes
+awaiting assessment: 284 conversations

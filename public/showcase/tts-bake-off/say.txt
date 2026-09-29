@@ -1,0 +1,8 @@
+$ time say.py --engine kokoro "Fifteen projects in a year. This one taught the rest of them to talk."
+real    0m6.66s
+$ time say.py --engine kokoro "Fifteen projects in a year. This one taught the rest of them to talk."
+real    0m2.52s
+$ time say.py --engine omnivoice "Fifteen projects in a year. This one taught the rest of them to talk."
+real    0m36.00s
+$ time say.py --engine omnivoice "Fifteen projects in a year. This one taught the rest of them to talk."
+real    0m1.68s
