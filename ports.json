@@ -1,5 +1,4 @@
 {
-  "$schema": "file:///home/mlo/.local/share/port-authority/ports.schema.json",
   "app": "niftymonkey",
   "home": "web",
   "pieces": {

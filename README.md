@@ -27,7 +27,7 @@ Run the development server:
 pnpm dev
 ```
 
-Open [http://niftymonkey.localhost](http://niftymonkey.localhost) (port 20000) to view the site.
+Open http://localhost:20000 to view the site, or http://niftymonkey.localhost with Port Authority.
 
 ## Project Structure
 
