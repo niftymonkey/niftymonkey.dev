@@ -3,6 +3,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
+  allowedDevOrigins: ['**.localhost'],
   async redirects() {
     return [
       // The dossier is now the notebook's first entry. Its original URL was

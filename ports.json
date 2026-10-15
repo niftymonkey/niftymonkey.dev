@@ -1,0 +1,11 @@
+{
+  "app": "niftymonkey",
+  "home": "web",
+  "pieces": {
+    "web": {
+      "what": "the niftymonkey.dev site",
+      "where": ".",
+      "port": 20000
+    }
+  }
+}

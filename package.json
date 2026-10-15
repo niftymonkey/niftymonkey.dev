@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "dotenv -e .ports.env -- sh -c 'next dev -H 127.0.0.1 -p ${WEB_PORT:-20000}'",
     "build": "next build",
-    "start": "next start",
+    "start": "dotenv -e .ports.env -- sh -c 'next start -H 127.0.0.1 -p ${WEB_PORT:-20000}'",
     "lint": "eslint",
     "check:frozen": "node scripts/check-frozen.mjs"
   },
@@ -25,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "11.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "tailwindcss": "^4",
