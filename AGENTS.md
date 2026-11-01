@@ -1,1 +1,1 @@
-This app uses Port Authority. Run `pa guide` before you first change this app's code or start it. Work that only touches docs or research needs neither, so leave Port Authority out of it.
+Ports here come from Port Authority. Run `pa guide` before you start any part of this app in a worktree, or change how anything gets its port.
