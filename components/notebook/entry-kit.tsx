@@ -53,12 +53,13 @@ export function Position({
   children,
 }: {
   id: string;
-  title: string;
+  /** Omit for an untitled opening, like an essay's intro that runs straight on from the masthead. */
+  title?: string;
   children: ReactNode;
 }) {
   return (
     <section className={`theme ${styles.pos}`} id={id}>
-      <h2 className="theme__title">{title}</h2>
+      {title ? <h2 className="theme__title">{title}</h2> : null}
       <div className={styles.body}>{children}</div>
     </section>
   );
@@ -75,6 +76,116 @@ export function Footing({ children }: { children: ReactNode }) {
       <h4>Footing</h4>
       <p>{children}</p>
     </aside>
+  );
+}
+
+/** A short index of parallel sections, so a reader can find their own before reading on. */
+export function KindMap({ children }: { children: ReactNode }) {
+  return <ul className={styles.map}>{children}</ul>;
+}
+
+export function KindMapRow({ href, kind, children }: { href: string; kind: string; children: ReactNode }) {
+  return (
+    <li className={styles.mapItem}>
+      <a className={styles.mapRow} href={href}>
+        <span className={styles.mapKind}>{kind}</span>
+        <span className={styles.mapText}>{children}</span>
+      </a>
+    </li>
+  );
+}
+
+/** Labelled rows that repeat across parallel sections, so one reads against the next. */
+export function Ledger({ children }: { children: ReactNode }) {
+  return <dl className={styles.ledger}>{children}</dl>;
+}
+
+export function LedgerRow({
+  label,
+  lead,
+  children,
+}: {
+  label: string;
+  /** Sets the row's text forward, for the line a reader should recognize themselves in. */
+  lead?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div className={styles.ledgerRow}>
+      <dt className={styles.ledgerLabel}>{label}</dt>
+      <dd className={lead ? `${styles.ledgerBody} ${styles.ledgerLead}` : styles.ledgerBody}>{children}</dd>
+    </div>
+  );
+}
+
+/** A set of named things people do: a name to scan for, then what it means. */
+export function Moves({ children }: { children: ReactNode }) {
+  return <ul className={styles.moves}>{children}</ul>;
+}
+
+export function Move({ name, children }: { name: string; children: ReactNode }) {
+  return (
+    <li className={styles.move}>
+      <span className={styles.moveName}>{name}</span>
+      <span className={styles.moveText}>{children}</span>
+    </li>
+  );
+}
+
+/** A boxed set of moves addressed to the reader, in the dossier's working-questions frame. */
+export function Decide({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <aside className="theme__q">
+      <h4>{label}</h4>
+      <Moves>{children}</Moves>
+    </aside>
+  );
+}
+
+/** A group of sources, read as a reference list to scan rather than prose. */
+export function SourceList({ children }: { children: ReactNode }) {
+  return <ul className={styles.sources}>{children}</ul>;
+}
+
+/**
+ * One source: the work's title as the link, with who made it and where it
+ * lives underneath, so the list reads as references and not a wall of links.
+ */
+export function Source({
+  by,
+  title,
+  href,
+  note,
+  paper,
+}: {
+  by: string;
+  title: string;
+  href: string;
+  /** Where it appeared, when the title alone doesn't say, e.g. a survey or venue name. */
+  note?: string;
+  /** The paper behind a write-up, when both are cited. */
+  paper?: string;
+}) {
+  const host = new URL(href).hostname.replace(/^www\./, '');
+  return (
+    <li className={styles.source}>
+      <a className={styles.sourceTitle} href={href}>
+        {title}
+      </a>
+      <span className={styles.sourceBy}>
+        {by}
+        {note ? `, ${note}` : null}
+        <span className={styles.sourceHost}> · {host}</span>
+        {paper ? (
+          <>
+            {' · '}
+            <a className={styles.sourcePaper} href={paper}>
+              paper
+            </a>
+          </>
+        ) : null}
+      </span>
+    </li>
   );
 }
 
