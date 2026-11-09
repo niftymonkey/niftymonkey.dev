@@ -72,10 +72,10 @@ export function Position({
  */
 export function Footing({ children }: { children: ReactNode }) {
   return (
-    <aside className="theme__q">
+    <section className="theme__q">
       <h4>Footing</h4>
       <p>{children}</p>
-    </aside>
+    </section>
   );
 }
 
@@ -135,10 +135,10 @@ export function Move({ name, children }: { name: string; children: ReactNode }) 
 /** A boxed set of moves addressed to the reader, in the dossier's working-questions frame. */
 export function Decide({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <aside className="theme__q">
+    <section className="theme__q">
       <h4>{label}</h4>
       <Moves>{children}</Moves>
-    </aside>
+    </section>
   );
 }
 

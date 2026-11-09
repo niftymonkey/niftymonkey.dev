@@ -115,10 +115,10 @@ export function ThemeIntro({ children }: { children: ReactNode }) {
  */
 export function WorkingQuestions({ children }: { children: ReactNode }) {
   return (
-    <aside className="theme__q">
+    <section className="theme__q">
       <h4>Working questions</h4>
       {children}
-    </aside>
+    </section>
   );
 }
 
