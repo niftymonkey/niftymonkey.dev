@@ -1,0 +1,267 @@
+import {
+  Decide,
+  KindMap,
+  KindMapRow,
+  Ledger,
+  LedgerRow,
+  Masthead,
+  Move,
+  Moves,
+  Position,
+  Source,
+  SourceList,
+} from '@/components/notebook/entry-kit';
+
+<Masthead
+  title="What AI is taking"
+  dek="What the agents are taking from you depends on what you got out of the work in the first place."
+  stamp="Published November 2026"
+/>
+
+<Position id="intro">
+
+Developer reports from across the industry say coding agents now write about half the code at work, and for some engineers nearly all of it. For a lot of engineers, that's taking the part of the job they loved. For others, it's taking the parts they could do without. What the agents are taking from you depends on what you got out of the work in the first place.
+
+A lot of engineers I respect, friends and coworkers, are having a hard time with this. I wanted to understand why the same shift in how we build software is landing so differently from one engineer to the next, me included, and how it fits with what I found researching [my last entry](/notebook/adopting-ai-evidence).
+
+</Position>
+
+<Position id="where-i-stand" title="Where I stand">
+
+I've been doing this for about thirty years, and a good day has always looked the same: a problem needed solving, and I made it work. I take pride in doing that well, with code that's fast, easy to read, easy to change, and solid past the happy path. The problems that pull me in are the ones close to me, where solving them helps me or the people around me. At work, that usually means building whatever I'm building so the next person doesn't have to start from scratch. Where it's easy, I make things reusable and composable: components instead of one-off screens, business logic pulled out of the UI so anything can use it. That same instinct is why I've spent the last several years building tools like CI, observability and harnesses. I love seeing the people around me move faster because of something I built.
+
+Outside work, I'm pulled in by my own ideas: things I want to exist because they'd solve a real problem for me, my family, or my friends. For years, most of them died the same way. I'd start building and hit some small, stupid bug: a typo in a config file, or a dependency that quietly changed under me. Nothing looked wrong, and nothing worked. I'd lose a day or two hunting it, lose my momentum, and give up. I have tons of ideas that never got past the start. At work, the same kind of bug could make a task I'd finished early take twice as long to close.
+
+Those hunts were never the engineering problem. They just stood between me and it. When I build with agents now, that stuff mostly doesn't reach me. The agents deal with it, and what comes back to me are the problems I actually wanted to solve. I keep my momentum, and the ideas keep coming. In the last year and a half, far more of those ideas have turned into finished projects that solve real problems for me. So I'm one of the engineers enjoying this, and that's my bias going in.
+
+</Position>
+
+<Position id="four-things" title="Four things engineers loved">
+
+So I went looking at what engineers have written about this over the last year or so. Les Orchard and Stephen Brennan both split engineers, roughly, into people who loved the craft and people who loved the result. Sorting the rest of what I found, I'd add two more. Knowing a system isn't the same as making it: some would hand off the typing, as long as they still understood every line. And some loved building with a team. Many of us loved some mix of the four.
+
+<KindMap>
+<KindMapRow href="#craft" kind="Craft">Writing the code yourself.</KindMapRow>
+<KindMapRow href="#knowledge" kind="Knowledge">Knowing how it all works.</KindMapRow>
+<KindMapRow href="#team" kind="Team">Building with other people.</KindMapRow>
+<KindMapRow href="#result" kind="Result">Making it work.</KindMapRow>
+</KindMap>
+
+<h3 id="craft">Craft</h3>
+
+<Ledger>
+<LedgerRow label="Loved" lead>
+
+Writing the code by hand. Flow, shaping it, the pride of "I made this."
+
+</LedgerRow>
+<LedgerRow label="AI takes">
+
+The making. What's left is reviewing code they didn't shape, and for some, there's little room for their own creativity in that. Directing the work doesn't feel like doing it.
+
+</LedgerRow>
+<LedgerRow label="Response">
+
+Many are finding ways to keep the work feeling like theirs:
+
+<Moves>
+<Move name="The parts they love">Where they have the say, they write the interesting parts by hand and give the agent the boilerplate. Some keep nearly all the typing and hand off the work around it: planning, research, review. One Haskell programmer keeps the typing because that's how they think in the language.</Move>
+<Move name="Make it theirs">Some rework and simplify agent code until they'd put their name on it, and the pride comes back.</Move>
+<Move name="Off the clock">Hand-coding becomes a hobby, often with rules. One engineer is starting a side project with chat and agents off: an hour at a time, usually on weekends, no deadline, no launch. The session is the point, not what ships. Another programmer is building their own game engine in C++ with no code assistant, because "the output doesn't feel like mine."</Move>
+<Move name="Stepping away">A few leave. One quit professional programming after six years: the work had already stopped being rewarding, and agents "made it worse," turning it into "an endless race for more work." One software developer of 27 years, who loved troubleshooting, walked away: AI could do that cheaper and faster, and reviewing its code wasn't enough.</Move>
+</Moves>
+
+</LedgerRow>
+</Ledger>
+
+<h3 id="knowledge">Knowledge</h3>
+
+<Ledger>
+<LedgerRow label="Loved" lead>
+
+Understanding the system all the way down: every line, why it's there, and what it costs. Learning, and being the one who knew.
+
+</LedgerRow>
+<LedgerRow label="AI takes">
+
+The depth. Skimming code you didn't write isn't the same as knowing it, and you still answer for it when it breaks. Skip the struggle and the learning can go with it: in a small Anthropic trial, mostly junior developers learning a new library scored lower with an AI assistant, except the ones who asked it to explain. And published know-how that took years to build is going into the agents.
+
+</LedgerRow>
+<LedgerRow label="Response">
+
+Many are deciding which code they need to truly know, and keeping that close:
+
+<Moves>
+<Move name="The core by hand">Some aim to write the core themselves, or at least understand every line of it: the code they'd have to debug when it fails. The agent writes the integrations and glue around it.</Move>
+<Move name="The agent as tutor">They write the code they're learning themselves, and use the agent to explain it and review what they wrote. One engineer wrote a skill that forbids the agent from writing code on the tasks they want to keep. It reads the codebase and hands back a guide to what to change and where.</Move>
+<Move name="Every decision theirs">The agent can write the code, but they make every design decision and review every change. One programmer learned that after a month of letting the agent run left them with a codebase they "didn't actually understand," and they threw it all away and started over.</Move>
+<Move name="The agent as checker">It never writes the code they care about. One retro game developer has it playtest their games and measure every frame, and never write the game code that ships, because when something breaks they need to know why.</Move>
+</Moves>
+
+</LedgerRow>
+</Ledger>
+
+<h3 id="team">Team</h3>
+
+<Ledger>
+<LedgerRow label="Loved" lead>
+
+Building with a team. Sharing a codebase everyone understands and can keep working on.
+
+</LedgerRow>
+<LedgerRow label="AI takes">
+
+Building together. One person with a few agents can own a whole feature, and some engineers say they work together less because of it. The review load lands on the people experienced enough to catch the mistakes, and that work rarely gets credit. And with agents doing what teammates used to, some find the work lonelier.
+
+</LedgerRow>
+<LedgerRow label="Response">
+
+Some are finding new ways to keep people building together:
+
+<Moves>
+<Move name="Pairing, still">Two people work together, each running agents, and keep each other honest about what got checked. The partner is the brake the agent doesn't have: a time to stop, and someone to ask whether it's worth doing at all. One engineer who hasn't typed code in a year says the best thing they did all year was build with a former coworker several hours a week.</Move>
+<Move name="Planning as a group">The agreement on what to build happens with several people and the agent in the room. One Atlassian team writes the spec together, has the agent build from it, and reviews the code as a group. One coach has the group write prompts silently, then combine the best parts, so the loudest voice doesn't steer the agent.</Move>
+<Move name="Shared checks">A team's standards go into checks every agent has to pass, whoever started the work. Evil Martians' CEO argues every agent should load the same setup and pass the same checks, whoever opened the pull request.</Move>
+<Move name="Rules the team agrees on">Teams write down how AI fits their work, as plain rules. At Oxide, you review your own generated code before anyone else sees it. One Honeycomb team tried having reviewers see the plan and the prompt, not just the code, and still does it for some changes.</Move>
+<Move name="Time together on purpose">Teams make room for it. Anthropic's Claude Code team started pairing lunches and makes time for hackathons, and found they learned a lot just watching each other work.</Move>
+</Moves>
+
+</LedgerRow>
+</Ledger>
+
+<h3 id="result">Result</h3>
+
+<Ledger>
+<LedgerRow label="Loved" lead>
+
+Getting the thing working. Shipping, solving problems, and building the tools that help the people around them move faster.
+
+</LedgerRow>
+<LedgerRow label="AI takes">
+
+Their natural stopping points. The work rarely stops, so waiting on agents, open loops and longer hours pile up. The setup around the agents can turn into a second job.
+
+</LedgerRow>
+<LedgerRow label="Response">
+
+Many are building more than ever, and some set limits so it lasts:
+
+<Moves>
+<Move name="Their own brakes">With nothing slowing the work down, people add their own limits: no long agent runs started near the end of the day, a 30-minute timer on each AI task, or a ceiling of three agents at once.</Move>
+<Move name="Tame the setup">Some who build agent setups move the workflow out of the agent's instructions and into fixed code and checks, so it runs the same way every time. Another builder keeps a simple test: if maintaining the setup takes more time than the work it supports, it has failed.</Move>
+<Move name="Helping everyone else">Some become the people who help the rest of the company adopt AI. At Intercom, that's now a full-time team of its most experienced people.</Move>
+<Move name="Back to building">Some managers get back into the code, and at least one gave up the title to learn this way of working firsthand.</Move>
+<Move name="Off the clock">They finally build the side projects they never finished. People who'd stopped coding are back too, from a VC who stopped in the 1980s to a farmer building the ideas that come while GPS steers the tractor.</Move>
+</Moves>
+
+</LedgerRow>
+</Ledger>
+
+</Position>
+
+<Position id="teams" title="What teams can do">
+
+Annie Vella has spent more than two decades in software, most recently as a Distinguished Engineer at the bank Westpac New Zealand. Her master's research at the University of Auckland, on how AI coding assistants are changing the work, was accepted by an ACM journal. She suspects most organizations leave the question of how much to hand the agents to each person, so it drifts to whatever the newest tool allows. She says to decide it on purpose: for each kind of work, how much the agent does and when a person steps in.
+
+<Decide label="What people are already doing points at what to decide">
+<Move name="Name the work people keep close">The core, the load-bearing parts, the code someone has to understand when it breaks: written by hand, or understood line by line.</Move>
+<Move name="Turn standards into checks">Agents follow written rules only some of the time, and a check doesn't forget. One developer's "prefer small modules" rule went unchecked, and one class grew from 15 methods to 271 in 16 days.</Move>
+<Move name="Keep people building together">Pairs and small groups are the brake agents don't have.</Move>
+<Move name="Set limits on the work">Agents don't get tired. Right now people set their own stopping points; a team can agree on them instead.</Move>
+<Move name="Give people a say">In a survey of 442 developers, burnout wasn't significantly linked to role or seniority. People who had more say over how they worked, and the time and training to learn AI, reported less burnout.</Move>
+</Decide>
+
+</Position>
+
+<Position id="sources" title="Sources">
+
+<details>
+<summary>Show all 54, grouped by section</summary>
+
+<h3>The split</h3>
+
+<SourceList>
+  <Source by="Les Orchard" title="Grief and the AI Split" href="https://blog.lmorchard.com/2026/03/11/grief-and-the-ai-split/" />
+  <Source by="Stephen Brennan" title="Why I Don't Have Fun With Claude Code" href="https://brennan.io/2026/01/23/claude-code/" />
+</SourceList>
+
+<h3>Craft</h3>
+
+<SourceList>
+  <Source by="Ben Nadel" title="Programming As A Hobby In The Age Of AI" href="https://www.bennadel.com/blog/4908-programming-as-a-hobby-in-the-age-of-ai.htm" />
+  <Source by="Tiziano Basile" title="The year I stopped writing code for fun" href="https://bstz.it/p/the-year-i-stopped-writing-code-for-fun/" />
+  <Source by="Claydon" title="The Nostalgia Problem: Six Months of AI-Generated Code" href="https://claydon.co/posts/nostalgia-for-writing-code/" />
+  <Source by="Hong Minhee" title="Why craft-lovers are losing their craft" href="https://writings.hongminhee.org/2026/03/craft-alienation-llm/" />
+  <Source by="Manuel Bärenz" title="How to keep enjoying programming in a world of LLMs" href="https://discourse.haskell.org/t/how-to-keep-enjoying-programming-in-a-world-of-llms/14705" />
+  <Source by="Jason Baciulis" title="AI didn't kill the joy of coding. I almost did" href="https://remarkable.dev/blog/joy-of-coding-with-ai" />
+  <Source by="Jon White" title="I Can No Longer Justify Writing Code By Hand" href="https://jonwhite.me/posts/2026-10-15-i-can-no-longer-justify-writing-code-by-hand.html" />
+  <Source by="Nolan Lawson" title="The diminished art of coding" href="https://nolanlawson.com/2026/03/22/the-diminished-art-of-coding/" />
+  <Source by="Xinye Tao" title="Sorry, I quit early" href="https://tabokie.github.io/non-fiction/2026/07/20/turn-off.html" />
+  <Source by="Joel Auterson" title="Fuck it, make it anyway" href="https://www.joelotter.com/posts/2026/09/make-it-anyway/" />
+  <Source by="Carrie Boeing" title="LinkedIn post" href="https://www.linkedin.com/posts/carrie-boeing-b839081_after-27-years-of-loving-my-job-i-walked-activity-7485830482287538176-rQQ6" />
+</SourceList>
+
+<h3>Knowledge</h3>
+
+<SourceList>
+  <Source by="Anthropic" title="How AI assistance impacts the formation of coding skills" href="https://www.anthropic.com/research/AI-assistance-coding-skills" paper="https://arxiv.org/abs/2601.20245" />
+  <Source by="Kevin Sookocheff" title="Human in the Core, AI in the Shell" href="https://sookocheff.com/post/ai/human-core-ai-shell/" />
+  <Source by="Lalit Maganti" title="Eight years of wanting, three months of building with AI" href="https://lalitm.com/post/building-syntaqlite-ai/" />
+  <Source by="Vlad Temian" title="vibe-infer" href="https://blog.vtemian.com/post/vibe-infer/" />
+  <Source by="Roger Boesch" title="I write this code by hand. Not because AI couldn't." href="https://www.rogerboesch.com/coding-by-hand/" />
+  <Source by="Brendan Gregg" title="On 'AI Brendans' or 'Virtual Brendans'" href="https://www.brendangregg.com/blog/2025-11-28/ai-virtual-brendans.html" />
+  <Source by="Handmade Network" title="A new AI policy" href="https://handmade.network/blog/p/9203-september_2026__a_new_ai_policy" />
+  <Source by="Sem Sinchenko" title="Why I Still Write Code By Hand And How AI Is Helping Me" href="https://semyonsinchenko.github.io/ssinchenko/post/writing_code_with_ai/" />
+</SourceList>
+
+<h3>Team</h3>
+
+<SourceList>
+  <Source by="Raida and Hou" title="Early Adoption of Agentic Coding Tools by GitHub Projects" href="https://arxiv.org/abs/2607.14037v2" />
+  <Source by="Xu et al." title="AI-assisted Programming May Decrease the Productivity of Experienced Developers by Increasing Maintenance Burden" href="https://arxiv.org/html/2510.10165v2" />
+  <Source by="Sreenivasa Reddy" title="AI productivity is burning out your best engineers" href="https://leaddev.com/ai/ai-productivity-is-burning-out-your-best-engineers" />
+  <Source by="Mark Ryall" title="Keep pairing with humans" href="https://impatientprogramming.org/essays/mark-ryall-keep-pairing-with-humans/" />
+  <Source by="Matt Wynne" title="Pair Programming in the Age of Agents" href="https://mattwynne.net/pair-programming-in-the-age-of-agents" />
+  <Source by="Jose Coelho" title="What Are We Pairing For Now?" href="https://www.jacoelho.com/blog/2026/10/what-are-we-pairing-for-now/" />
+  <Source by="Daniel Worthington-Bodart" title="From Pair Programming to Co-Steering" href="https://dan.bodar.com/2026/04/27/from-pair-programming-to-co-steering/" />
+  <Source by="Giang Vo (Atlassian)" title="Mobbing with AI" href="https://www.atlassian.com/blog/how-we-build/mobbing-with-ai" />
+  <Source by="Emily Bache" title="Agentic AI Coding BREAKS Mob Programming" href="https://coding-is-like-cooking.info/2026/10/agentic-ai-coding-breaks-mob-programming-heres-how-to-fix-it/" />
+  <Source by="Oxide" title="RFD 576: Using LLMs at Oxide" href="https://rfd.shared.oxide.computer/rfd/0576" />
+  <Source by="Fred Hebert" title="How I Came to Embrace the Code Review Bottleneck" href="https://www.honeycomb.io/blog/embracing-code-review-bottleneck" />
+  <Source by="Irina Nazarova" title="Give up a little speed, get your team back" href="https://evilmartians.com/chronicles/give-up-a-little-speed-get-your-team-back" />
+  <Source by="Philip Su" title="One Year of Not Touching Code" href="https://molochinations.substack.com/p/one-year-of-not-touching-code" />
+  <Source by="Fiona Fung on Lenny's Podcast" title="What happens after coding is solved?" href="https://www.youtube.com/watch?v=Ybrl4FYM57c" />
+</SourceList>
+
+<h3>Result</h3>
+
+<SourceList>
+  <Source by="Siddhant Khare" title="AI fatigue is real and nobody talks about it" href="https://siddhantkhare.com/writing/ai-fatigue-is-real" />
+  <Source by="Chau Tran" title="AI Made Coding Faster, But My Day Harder to End" href="https://nartc.me/blog/ai-work-life-balance/" />
+  <Source by="Kemal Akkoyun" title="New world as an ADHD person" href="https://kakkoyun.me/posts/adhd-new-world/" />
+  <Source by="Jacopo Castellano" title="Three AI Agents Is My Limit" href="https://jacopocastellano.com/blog/three-ai-agents-is-my-limit/" />
+  <Source by="Simon Dixon" title="Running ten agents broke my brain" href="https://simon.inkie.ink/blog/running-ten-agents-broke-my-brain" />
+  <Source by="Andrew Loutfi" title="Workbench" href="https://aloutfi.com/writing/workbench-development-harness" />
+  <Source by="Clifton Cunningham" title="The harness is the product" href="https://cliftonc.nl/blog/the-harness-is-the-product/" />
+  <Source by="Brian Scanlan (Intercom)" title="Aviator podcast" href="https://www.aviator.co/podcast/ai-engineering-intercom-brian-scanlan" />
+  <Source by="Sam Beckham" title="Stepping Down" href="https://sam.beckham.io/wrote/stepping-down/" />
+  <Source by="Matthew Brunelle" title="It's OK to Use Coding Assistance Tools To Revive The Projects You Never Were Going To Finish" href="https://blog.matthewbrunelle.com/its-ok-to-use-coding-assistance-tools-to-revive-the-projects-you-never-were-going-to-finish/" />
+  <Source by="Fred Wilson" title="I'm Coding Again" href="https://avc.xyz/im-coding-again" />
+  <Source by="Show HN" title="I quit coding years ago. AI brought me back" href="https://news.ycombinator.com/item?id=46673809" />
+  <Source by="Tell HN" title="I'm 60 years old. Claude Code has re-ignited a passion" href="https://news.ycombinator.com/item?id=47282777" />
+  <Source by="Chris Wellons" title="2026 has been the most pivotal year in my career" href="https://nullprogram.com/blog/2026/03/29/" />
+</SourceList>
+
+<h3>Across all four</h3>
+
+<SourceList>
+  <Source by="Annie Vella and Kelly Blincoe" title="The Impact of AI Coding Assistants on Software Engineering: A Longitudinal Study" href="https://arxiv.org/abs/2605.23135" />
+  <Source by="JetBrains" title="How much code do developers really let agents write?" href="https://blog.jetbrains.com/research/2026/08/how-much-code-do-developers-really-let-agents-write/" note="Developer Ecosystem Survey 2026" />
+  <Source by="Annie Vella" title="Supervisory Engineering Work" href="https://annievella.com/posts/supervisory-engineering-work/" />
+  <Source by="Zixuan Feng, Sadia Afroz, Anita Sarma" title="From Gains to Strains: Modeling Developer Burnout with GenAI Adoption" href="https://arxiv.org/html/2510.07435v2" note="ICSE-SEIS 2026" />
+  <Source by="Michael Cabassol" title="Enforcing AI agents' coding rules with scripts, not instructions" href="https://ucby.io/notes/a-check-for-every-agent-rule" />
+</SourceList>
+
+</details>
+
+</Position>

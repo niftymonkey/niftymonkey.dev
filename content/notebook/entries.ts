@@ -37,6 +37,16 @@ export interface NotebookEntry {
  */
 export const entries: readonly NotebookEntry[] = [
   {
+    slug: 'what-ai-is-taking',
+    title: 'What AI is taking',
+    description:
+      'What the agents are taking from you depends on what you got out of the work in the first place.',
+    kind: 'essay',
+    duration: '9 min',
+    published: '2026-11',
+    related: ['adopting-ai-evidence', 'adopting-ai-engineer'],
+  },
+  {
     slug: 'adopting-ai-engineer',
     title: "Adopting AI: An Engineer's Guide",
     description:
